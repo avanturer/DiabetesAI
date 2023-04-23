@@ -9,6 +9,7 @@
 #include <string>
 #include <algorithm>
 #include <random>
+#include <math.h>
 
 using namespace std;
 
@@ -32,15 +33,15 @@ public:
         fstream fin;
         fin.open("dataset.csv", ios::in);
         string line;
-        std::vector<std::vector<std::string> > parsedCsv;
+        vector<vector<string> > parsedCsv;
         if (fin.fail()) {
-            std::cout << "NOT OPEN";
+            cout << "NOT OPEN";
         }
-        while (std::getline(fin, line)) {
-            std::stringstream lineStream(line);
-            std::string cell;
-            std::vector<std::string> parsedRow;
-            while (std::getline(lineStream, cell, ',')) {
+        while (getline(fin, line)) {
+            stringstream lineStream(line);
+            string cell;
+            vector<string> parsedRow;
+            while (getline(lineStream, cell, ',')) {
                 parsedRow.push_back(cell);
             }
 
@@ -51,7 +52,7 @@ public:
 
         for (int i = 1; i < dataset.size(); i++) {
             vector<double> cell;
-            for (int j = 0; j < 9; ++j) {
+            for (int j = 0; j < 9; j++) {
                 if (j != 8) {
                     cell.push_back(stod(dataset[i][j]));
                 } else {
@@ -68,7 +69,7 @@ public:
         vector<double> avarage;
         for (int i = 0; i < X.size(); i++) {
             double summ = 0;
-            for (int j = 0; j < X[0].size(); ++j) {
+            for (int j = 0; j < X[0].size(); j++) {
                 summ += X[i][j];
             }
             avarage.push_back(summ / X[0].size());
@@ -83,8 +84,8 @@ public:
             deviation.push_back(sqrt(summ / X[0].size()));
         }
 
-        for (int i = 0; i < X.size(); ++i) {
-            for (int j = 0; j < X[0].size(); ++j) {
+        for (int i = 0; i < X.size(); i++) {
+            for (int j = 0; j < X[0].size(); j++) {
                 X[i][j] = (X[i][j] - avarage[i]) / deviation[i];
             }
         }
@@ -98,17 +99,21 @@ public:
     double feature6;
     double feature7;
     double feature8;
-    std::vector<std::vector<string>> dataset;
-    std::vector<std::vector<double>> X;
-    std::vector<int> y;
+    vector<vector<string>> dataset;
+    vector<vector<double>> X;
+    vector<int> y;
 private:
 
 };
 
 class LogisticRegression {
 public:
+    vector<vector<double>> X;
+    vector<int> y;
+    vector<double> w;
+    vector<double> losses;
 
-    LogisticRegression(std::vector<std::vector<double>> X, std::vector<int> y) {
+    LogisticRegression(const vector<vector<double>> X, const vector<int> y) {
         this->X = X;
         this->y = y;
         for (int i = 0; i < X.size(); ++i) {
@@ -118,9 +123,33 @@ public:
 
     }
 
-    std::vector<std::vector<double>> X;
-    std::vector<int> y;
-    vector<double> w;
+    vector<vector<double>> logit(vector<vector<double>> X, vector<vector<double>> w) {
+        int m = X.size();
+        int n = X[0].size();
+        int p = w[0].size();
+        vector<vector<double>> C(m, vector<double>(p, 0.0));
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < p; j++) {
+                for (int k = 0; k < n; k++) {
+                    C[i][j] += X[i][k] * w[k][j];
+                }
+            }
+        }
+        return C;
+    }
+
+    vector<vector<double>> sigmoid(vector<vector<double>> h) {
+        vector<vector<double>> sigmoids;
+        for (int i = 0; i < h.size(); i++) {
+            vector<double> sigmoid;
+            for (int j = 0; j < h[0].size(); j++) {
+                sigmoid.push_back(1 / (1 + log(h[i][j])));
+            }
+            sigmoids.push_back(sigmoid);
+        }
+        return sigmoids;
+    }
+
 
 };
 
