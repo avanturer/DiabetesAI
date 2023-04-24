@@ -9,14 +9,16 @@
 #include <string>
 #include <algorithm>
 #include <random>
-#include <math.h>
+#include <cmath>
 
 using namespace std;
 
 class DiabetesData {
 public:
     // Constructor
-    DiabetesData() = default;
+    DiabetesData() {
+        load_data_from_file();
+    }
 
     DiabetesData(double f1, double f2, double f3, double f4, double f5, double f6, double f7, double f8) {
         feature1 = f1;
@@ -116,43 +118,95 @@ public:
     LogisticRegression(const vector<vector<double>> X, const vector<int> y) {
         this->X = X;
         this->y = y;
-        for (int i = 0; i < X.size(); ++i) {
+        for (int i = 0; i < X.size(); i++) {
             double a = (rand() % 1000);
             w.push_back(a / 1000);
         }
 
     }
 
-    vector<vector<double>> logit(vector<vector<double>> X, vector<vector<double>> w) {
+    vector<vector<double>> logit() {
         int m = X.size();
         int n = X[0].size();
-        int p = w[0].size();
-        vector<vector<double>> C(m, vector<double>(p, 0.0));
+        vector<vector<double>> logits(m, vector<double>(1, 0.0));
         for (int i = 0; i < m; i++) {
-            for (int j = 0; j < p; j++) {
+            for (int j = 0; j < 1; j++) {
                 for (int k = 0; k < n; k++) {
-                    C[i][j] += X[i][k] * w[k][j];
+                    logits[i][j] += X[i][k] * w[k];
                 }
             }
         }
-        return C;
+        return logits;
     }
 
-    vector<vector<double>> sigmoid(vector<vector<double>> h) {
+    vector<vector<double>> sigmoid(vector<vector<double>> logits) {
         vector<vector<double>> sigmoids;
-        for (int i = 0; i < h.size(); i++) {
+        for (int i = 0; i < logits.size(); i++) {
             vector<double> sigmoid;
-            for (int j = 0; j < h[0].size(); j++) {
-                sigmoid.push_back(1 / (1 + log(h[i][j])));
+            for (int j = 0; j < logits[0].size(); j++) {
+                sigmoid.push_back(1 / (1 + exp(-logits[i][j])));
             }
             sigmoids.push_back(sigmoid);
         }
         return sigmoids;
     }
 
+    vector<double> fit(int max_iter = 100, double lr = 0.1) {
+        vector<vector<double>> X_train = X;
+
+        for (int i = 0; i < X_train.size(); i++) {
+            X_train[i].insert(X_train[i].begin(), 1);
+        }
+
+        vector<vector<double>> X_trainT(X_train[0].size(), vector<double>(X_train.size(), 0.0));
+        for (int i = 0; i < X_train.size(); i++) {
+            for (int j = 0; j < X_train[0].size(); j++) {
+                X_trainT[j][i] = X_train[i][j];
+            }
+        }
+
+        for (int iter = 0; iter <= max_iter; iter++) {
+            vector<vector<double>> z;
+            for (int i = 0; i < sigmoid(logit()).size(); i++) {
+                z.push_back(sigmoid(logit())[i]);
+            }
+            int m = X_trainT.size();
+            int n = X_trainT[0].size();
+            int p = z[0].size();
+
+            vector<vector<double>> grad(m, vector<double>(p, 0.0));
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < p; j++) {
+                    for (int k = 0; k < n; k++) {
+                        grad[i][j] += X_trainT[i][k] * (z[k][0] - y[k]);
+                    }
+                }
+            }
+
+            for (int i = 0; i < w.size(); i++) {
+                w[i] -= grad[i][0] / grad.size() * lr;
+            }
+            losses.push_back(loss(y, z));
+        }
+        return losses;
+    }
+
+    double loss(vector<int> y, vector<vector<double>> z) {
+        double loss = 0;
+        for (int i = 0; i < y.size(); i++) {
+            loss += (y[i] * (1 - log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0])) + pow(w[i], 2);
+        }
+        return loss;
+    }
+
 
 };
 
 int main() {
+    DiabetesData a;
+    vector<vector<double>> X = a.X;
+    vector<int> y = a.y;
 
+    LogisticRegression lg(X, y);
+    lg.fit();
 }
