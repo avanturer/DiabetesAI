@@ -178,9 +178,9 @@ public:
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < p; j++) {
                     for (int k = 0; k < n; k++) {
-                        grad[i][j] += X_trainT[i][k] * (z[k][0] - y[k]);
+                        grad[i][j] += (X_trainT[i][k] * (z[k][0] - y[k]));
                     }
-                    grad[i][j] /= grad.size();
+                    grad[i][j] /= y.size();
                 }
             }
 
@@ -195,7 +195,7 @@ public:
     double loss(vector<int> y, vector<vector<double>> z) {
         double loss = 0;
         for (int i = 0; i < y.size(); i++) {
-            loss += (y[i] * (1 - log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0])) + pow(w[i], 2);
+            loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
         }
         return loss;
     }
@@ -209,5 +209,8 @@ int main() {
     vector<int> y = a.y;
 
     LogisticRegression lg(X, y);
-    lg.fit();
+    vector<double> losses = lg.fit();
+    for (int i = 0; i < losses.size(); i++) {
+        std::cout << losses[i] << endl;
+    }
 }
