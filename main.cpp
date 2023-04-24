@@ -118,7 +118,7 @@ public:
     LogisticRegression(const vector<vector<double>> X, const vector<int> y) {
         this->X = X;
         this->y = y;
-        for (int i = 0; i < X.size(); i++) {
+        for (int i = 0; i < X[0].size(); i++) {
             double a = (rand() % 1000);
             w.push_back(a / 1000);
         }
@@ -180,11 +180,12 @@ public:
                     for (int k = 0; k < n; k++) {
                         grad[i][j] += X_trainT[i][k] * (z[k][0] - y[k]);
                     }
+                    grad[i][j] /= grad.size();
                 }
             }
 
             for (int i = 0; i < w.size(); i++) {
-                w[i] -= grad[i][0] / grad.size() * lr;
+                w[i] -= (grad[i][0] * lr);
             }
             losses.push_back(loss(y, z));
         }
