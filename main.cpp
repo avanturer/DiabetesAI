@@ -151,7 +151,7 @@ public:
         return sigmoids;
     }
 
-    vector<double> fit(int max_iter = 100, double lr = 0.1) {
+    vector<double> fit(int max_iter = 300, double lr = -0.1) {
         vector<vector<double>> X_train = X;
 
         for (int i = 0; i < X_train.size(); i++) {
@@ -195,7 +195,7 @@ public:
     double loss(vector<int> y, vector<vector<double>> z) {
         double loss = 0;
         for (int i = 0; i < y.size(); i++) {
-            loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
+            loss += -(y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0])+ abs(w[i]));
         }
         return loss;
     }
