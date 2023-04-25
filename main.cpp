@@ -17,8 +17,8 @@ using namespace std;
 class DiabetesData {
 public:
     // Constructor
-    DiabetesData() {
-        load_data_from_file();
+    DiabetesData(string data_name) {
+        load_data_from_file(data_name);
     }
 
     DiabetesData(double f1, double f2, double f3, double f4, double f5, double f6, double f7, double f8) {
@@ -33,9 +33,9 @@ public:
         features = data_normalization(features);
     }
 
-    void load_data_from_file() {
+    void load_data_from_file(string data_name) {
         fstream fin;
-        fin.open("dataset.csv", ios::in);
+        fin.open(data_name + ".csv", ios::in);
         string line;
         vector<vector<string>> parsedCsv;
         if (fin.fail()) {
@@ -147,7 +147,7 @@ public:
         return sigmoids;
     }
 
-    vector<double> fit(int max_iter = 30, double lr = 0.05) {
+    vector<double> fit(int max_iter = 10, double lr = 0.1) {
         vector<vector<double>> X_train = X;
 
         for (int i = 0; i < X_train.size(); i++) {
@@ -183,7 +183,7 @@ public:
             for (int i = 0; i < w.size(); i++) {
                 w[i] -= (grad[i][0] * lr);
             }
-            if (losses.size() != 0 and (abs(loss(y, z)) < abs(*min_element(losses.begin(), losses.end())))) {
+            if (losses.size() != 0 and (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
                 save_weights(w);
             }
             losses.push_back(loss(y, z));
@@ -194,8 +194,10 @@ public:
     double loss(vector<int> y, vector<vector<double>> z) {
         double loss = 0;
         for (int i = 0; i < y.size(); i++) {
-            loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]) + pow(w[i], 2));
+            loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
         }
+        loss/= y.size();
+        loss*= -1;
         return loss;
     }
 
@@ -221,7 +223,7 @@ public:
     }
 
     vector<vector<double>> predict_proba(vector<vector<double>> feauters) {
-        vector<vector<double>> _f = std::move(feauters);
+        vector<vector<double>> _f = feauters;
         vector<double> w;
         for (int i = 0; i < _f.size(); i++) {
             _f[i].insert(_f[i].begin(), 1);
@@ -234,27 +236,35 @@ public:
             string cell;
             getline(lineStream, cell);
             w.push_back(stod(cell));
+
         }
         fin.close();
         return sigmoid(logit(_f, w));
     }
 
-    bool predict(vector<vector<double>>feauters, double threshold=0.5) {
-        return (predict_proba(X)[0][0] >= threshold);
+    vector<int> predict(vector<vector<double>> feauters, double threshold = 0.5) {
+        vector<int> result;
+        for (int i = 0; i < predict_proba(feauters).size(); i++) {
+            result.push_back(predict_proba(feauters)[i][0] >= threshold);
+        }
+        return result;
     }
 
 };
 
 int main() {
-    DiabetesData a;
+    DiabetesData a("dataset1");
     vector<vector<double>> X = a.X;
     vector<int> y = a.y;
-    DiabetesData b(8,183,64,0,0,23.3,0.672,32);
 
     LogisticRegression lg(X, y);
     vector<double> losses = lg.fit();
     for (int i = 0; i < losses.size(); i++) {
         std::cout << losses[i] << endl;
     }
-    std::cout<<lg.predict(b.features);
+    DiabetesData b("dataset2");
+    vector<int> result = lg.predict(b.features);
+    for (int i = 0; i < result.size(); i++) {
+        std::cout << result[i];
+    }
 }
