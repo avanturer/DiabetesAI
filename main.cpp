@@ -196,8 +196,8 @@ public:
         for (int i = 0; i < y.size(); i++) {
             loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
         }
-        loss/= y.size();
-        loss*= -1;
+        loss /= y.size();
+        loss *= -1;
         return loss;
     }
 
