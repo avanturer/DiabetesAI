@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <fstream>
 #include <sstream>
@@ -21,21 +22,22 @@ public:
     }
 
     DiabetesData(double f1, double f2, double f3, double f4, double f5, double f6, double f7, double f8) {
-        feature1 = f1;
-        feature2 = f2;
-        feature3 = f3;
-        feature4 = f4;
-        feature5 = f5;
-        feature6 = f6;
-        feature7 = f7;
-        feature8 = f8;
+        features = {{f1},
+                    {f2},
+                    {f3},
+                    {f4},
+                    {f5},
+                    {f6},
+                    {f7},
+                    {f8}};
+        features = data_normalization(features);
     }
 
     void load_data_from_file() {
         fstream fin;
         fin.open("dataset.csv", ios::in);
         string line;
-        vector<vector<string> > parsedCsv;
+        vector<vector<string>> parsedCsv;
         if (fin.fail()) {
             cout << "NOT OPEN";
         }
@@ -63,10 +65,10 @@ public:
             }
             X.push_back(cell);
         }
-        data_normalization();
+        X = data_normalization(X);
     }
 
-    void data_normalization() {
+    vector<vector<double>> data_normalization(vector<vector<double>> X) {
 
         vector<double> avarage;
         for (int i = 0; i < X.size(); i++) {
@@ -91,16 +93,10 @@ public:
                 X[i][j] = (X[i][j] - avarage[i]) / deviation[i];
             }
         }
+        return X;
     }
 
-    double feature1;
-    double feature2;
-    double feature3;
-    double feature4;
-    double feature5;
-    double feature6;
-    double feature7;
-    double feature8;
+    vector<vector<double>> features;
     vector<vector<string>> dataset;
     vector<vector<double>> X;
     vector<int> y;
@@ -125,7 +121,7 @@ public:
 
     }
 
-    vector<vector<double>> logit() {
+    vector<vector<double>> logit(vector<vector<double>> X, vector<double> w) {
         int m = X.size();
         int n = X[0].size();
         vector<vector<double>> logits(m, vector<double>(1, 0.0));
@@ -151,7 +147,7 @@ public:
         return sigmoids;
     }
 
-    vector<double> fit(int max_iter = 300, double lr = -0.1) {
+    vector<double> fit(int max_iter = 30, double lr = 0.05) {
         vector<vector<double>> X_train = X;
 
         for (int i = 0; i < X_train.size(); i++) {
@@ -167,8 +163,8 @@ public:
 
         for (int iter = 0; iter <= max_iter; iter++) {
             vector<vector<double>> z;
-            for (int i = 0; i < sigmoid(logit()).size(); i++) {
-                z.push_back(sigmoid(logit())[i]);
+            for (int i = 0; i < sigmoid(logit(X, w)).size(); i++) {
+                z.push_back(sigmoid(logit(X, w))[i]);
             }
             int m = X_trainT.size();
             int n = X_trainT[0].size();
@@ -187,6 +183,9 @@ public:
             for (int i = 0; i < w.size(); i++) {
                 w[i] -= (grad[i][0] * lr);
             }
+            if (losses.size() != 0 and (abs(loss(y, z)) < abs(*min_element(losses.begin(), losses.end())))) {
+                save_weights(w);
+            }
             losses.push_back(loss(y, z));
         }
         return losses;
@@ -195,11 +194,54 @@ public:
     double loss(vector<int> y, vector<vector<double>> z) {
         double loss = 0;
         for (int i = 0; i < y.size(); i++) {
-            loss += (-1/y.size()) * (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0])+ abs(w[i]));
+            loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]) + pow(w[i], 2));
         }
         return loss;
     }
 
+    void save_weights(std::vector<double> weights) {
+        // проверяем, существует ли файл weights.txt
+        ofstream outfile("weights.txt", ios::out | ios::trunc);
+        bool file_exists = outfile.good();
+
+        // если файл не существует, создаем его
+        if (!file_exists) {
+            std::ofstream outfile("weights.txt");
+            outfile.close();
+        }
+
+        // открываем файл weights.txt для записи
+        std::ofstream file("weights.txt", ios_base::app);
+
+        // записываем значения в файл
+        for (double w: weights) {
+            file << w << std::endl;
+        }
+        file.close();
+    }
+
+    vector<vector<double>> predict_proba(vector<vector<double>> feauters) {
+        vector<vector<double>> _f = std::move(feauters);
+        vector<double> w;
+        for (int i = 0; i < _f.size(); i++) {
+            _f[i].insert(_f[i].begin(), 1);
+        }
+        fstream fin;
+        fin.open("weights.txt", ios::in);
+        string line;
+        while (getline(fin, line)) {
+            stringstream lineStream(line);
+            string cell;
+            getline(lineStream, cell);
+            w.push_back(stod(cell));
+        }
+        fin.close();
+        return sigmoid(logit(_f, w));
+    }
+
+    bool predict(vector<vector<double>>feauters, double threshold=0.5) {
+        return (predict_proba(X)[0][0] >= threshold);
+    }
 
 };
 
@@ -207,10 +249,12 @@ int main() {
     DiabetesData a;
     vector<vector<double>> X = a.X;
     vector<int> y = a.y;
+    DiabetesData b(8,183,64,0,0,23.3,0.672,32);
 
     LogisticRegression lg(X, y);
     vector<double> losses = lg.fit();
     for (int i = 0; i < losses.size(); i++) {
         std::cout << losses[i] << endl;
     }
+    std::cout<<lg.predict(b.features);
 }
