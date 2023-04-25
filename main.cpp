@@ -195,7 +195,7 @@ public:
     double loss(vector<int> y, vector<vector<double>> z) {
         double loss = 0;
         for (int i = 0; i < y.size(); i++) {
-            loss += -(y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0])+ abs(w[i]));
+            loss += (-1/y.size()) * (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0])+ abs(w[i]));
         }
         return loss;
     }
