@@ -57,9 +57,10 @@ public:
         for (int i = 1; i < dataset.size(); i++) {
             vector<double> cell;
             for (int j = 0; j < 9; j++) {
-                if (j != 8) {
+                if (j == 6) {
                     cell.push_back(stod(dataset[i][j]));
-                } else {
+                }
+                else if(j == 8){
                     y.push_back(stoi(dataset[i][j]));
                 }
             }
@@ -71,26 +72,26 @@ public:
     vector<vector<double>> data_normalization(vector<vector<double>> X) {
 
         vector<double> avarage;
-        for (int i = 0; i < X.size(); i++) {
+        for (int j = 0; j < X[0].size(); j++) {
             double summ = 0;
-            for (int j = 0; j < X[0].size(); j++) {
+            for (int i = 0; i < X.size(); i++) {
                 summ += X[i][j];
             }
-            avarage.push_back(summ / X[0].size());
+            avarage.push_back(summ / X.size());
         }
 
         vector<double> deviation;
-        for (int i = 0; i < X.size(); i++) {
+        for (int j = 0; j < X[0].size(); j++) {
             double summ = 0;
-            for (int j = 0; j < X[0].size(); ++j) {
-                summ += pow((X[i][j] - avarage[i]), 2);
+            for (int i = 0; i < X.size(); i++) {
+                summ += pow((X[i][j] - avarage[j]), 2);
             }
-            deviation.push_back(sqrt(summ / X[0].size()));
+            deviation.push_back(sqrt(summ / (X.size() - 1)));
         }
 
-        for (int i = 0; i < X.size(); i++) {
-            for (int j = 0; j < X[0].size(); j++) {
-                X[i][j] = (X[i][j] - avarage[i]) / deviation[i];
+        for (int j = 0; j < X[0].size(); j++) {
+            for (int i = 0; i < X[0].size(); i++) {
+                X[i][j] = (X[i][j] - avarage[j]) / deviation[j];
             }
         }
         return X;
