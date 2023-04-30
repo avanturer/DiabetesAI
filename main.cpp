@@ -59,8 +59,7 @@ public:
             for (int j = 0; j < 9; j++) {
                 if (j != 8) {
                     cell.push_back(stod(dataset[i][j]));
-                }
-                else if(j == 8){
+                } else if (j == 8) {
                     y.push_back(stoi(dataset[i][j]));
                 }
             }
@@ -115,7 +114,7 @@ public:
     LogisticRegression(const vector<vector<double>> X, const vector<int> y) {
         this->X = X;
         this->y = y;
-        for (int i = 0; i < X[0].size()+1; i++) {
+        for (int i = 0; i < X[0].size() + 1; i++) {
             double a = (rand() % 1000);
             w.push_back(a / 1000);
         }
@@ -198,7 +197,7 @@ public:
             loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
         }
         for (int i = 0; i < w.size(); i++) {
-            loss += pow(w[i],2);
+            loss += pow(w[i], 2);
         }
         loss /= y.size();
         loss *= -1;
@@ -260,10 +259,10 @@ int main() {
     DiabetesData a("dataset1");
     vector<vector<double>> X = a.X;
     vector<int> y = a.y;
-    LogisticRegression lg1(X,y);
-    vector<double> losses =     lg1.fit();
+    LogisticRegression lg1(X, y);
+    vector<double> losses = lg1.fit();
     for (int i = 0; i < losses.size(); i++) {
-        cout<<losses[i]<<endl;
+        cout << losses[i] << endl;
     }
 
 //    DiabetesData b("dataset2");
