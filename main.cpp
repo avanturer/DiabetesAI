@@ -56,10 +56,10 @@ public:
 
         for (int i = 1; i < dataset.size(); i++) {
             vector<double> cell;
-            for (int j = 0; j < 9; j++) {
-                if (j != 8) {
+            for (int j = 0; j < dataset[1].size(); j++) {
+                if (j != dataset[1].size() - 1) {
                     cell.push_back(stod(dataset[i][j]));
-                } else if (j == 8) {
+                } else if (j == dataset[1].size() - 1) {
                     y.push_back(stoi(dataset[i][j]));
                 }
             }
@@ -246,34 +246,47 @@ public:
     }
 
     vector<int> predict(vector<vector<double>> feauters, double threshold = 0.5) {
-        vector<int> result;
+        vector<int> results;
         for (int i = 0; i < predict_proba(feauters).size(); i++) {
-            result.push_back(predict_proba(feauters)[i][0] >= threshold);
+            results.push_back(predict_proba(feauters)[i][0] >= threshold);
         }
-        return result;
+        return results;
     }
+
+    int model_accuracy(vector<int> results, vector<int> y) {
+        double accuracy = 0;
+        double YES = 0;
+        double NO = 0;
+        for (int i = 0; i < results.size(); i++) {
+            if (results[i] == y[i]) {
+                YES++;
+            } else {
+                NO++;
+            }
+        }
+        accuracy = YES/(YES + NO);
+        return round(accuracy*100);
+    }
+
 
 };
 
 int main() {
-    DiabetesData a("dataset1");
-    vector<vector<double>> X = a.X;
-    vector<int> y = a.y;
-    LogisticRegression lg1(X, y);
-    vector<double> losses = lg1.fit();
-    for (int i = 0; i < losses.size(); i++) {
-        cout << losses[i] << endl;
-    }
+//    DiabetesData a("dataset1");
+//    vector<vector<double>> X = a.X;
+//    vector<int> y = a.y;
+//    LogisticRegression lg1(X, y);
+//    vector<double> losses = lg1.fit();
+//    for (int i = 0; i < losses.size(); i++) {
+//        cout << losses[i] << endl;
+//    }
 
-//    DiabetesData b("dataset2");
+//    DiabetesData b("dataset");
 //    vector<vector<double>> X = b.X;
 //    vector<int> y = b.y;
 //    LogisticRegression lg2(X,y);
 //    vector<int> results = lg2.predict(X);
-//    for (int i = 0; i < results.size(); i++) {
-//        cout<<results[i]<<endl;
-//    }
-
+//    cout<<to_string(lg2.model_accuracy(results, b.y)) +"%";
 
 
 }
