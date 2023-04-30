@@ -57,7 +57,7 @@ public:
         for (int i = 1; i < dataset.size(); i++) {
             vector<double> cell;
             for (int j = 0; j < 9; j++) {
-                if (j == 6) {
+                if (j != 8) {
                     cell.push_back(stod(dataset[i][j]));
                 }
                 else if(j == 8){
@@ -90,7 +90,7 @@ public:
         }
 
         for (int j = 0; j < X[0].size(); j++) {
-            for (int i = 0; i < X[0].size(); i++) {
+            for (int i = 0; i < X.size(); i++) {
                 X[i][j] = (X[i][j] - avarage[j]) / deviation[j];
             }
         }
@@ -115,7 +115,7 @@ public:
     LogisticRegression(const vector<vector<double>> X, const vector<int> y) {
         this->X = X;
         this->y = y;
-        for (int i = 0; i < X[0].size(); i++) {
+        for (int i = 0; i < X[0].size()+1; i++) {
             double a = (rand() % 1000);
             w.push_back(a / 1000);
         }
@@ -148,7 +148,7 @@ public:
         return sigmoids;
     }
 
-    vector<double> fit(int max_iter = 10, double lr = 0.1) {
+    vector<double> fit(int max_iter = 100, double lr = 0.3) {
         vector<vector<double>> X_train = X;
 
         for (int i = 0; i < X_train.size(); i++) {
@@ -164,8 +164,8 @@ public:
 
         for (int iter = 0; iter <= max_iter; iter++) {
             vector<vector<double>> z;
-            for (int i = 0; i < sigmoid(logit(X, w)).size(); i++) {
-                z.push_back(sigmoid(logit(X, w))[i]);
+            for (int i = 0; i < sigmoid(logit(X_train, w)).size(); i++) {
+                z.push_back(sigmoid(logit(X_train, w))[i]);
             }
             int m = X_trainT.size();
             int n = X_trainT[0].size();
@@ -184,7 +184,7 @@ public:
             for (int i = 0; i < w.size(); i++) {
                 w[i] -= (grad[i][0] * lr);
             }
-            if (losses.size() != 0 and (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
+            if (!losses.empty() and (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
                 save_weights(w);
             }
             losses.push_back(loss(y, z));
@@ -196,6 +196,9 @@ public:
         double loss = 0;
         for (int i = 0; i < y.size(); i++) {
             loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
+        }
+        for (int i = 0; i < w.size(); i++) {
+            loss += pow(w[i],2);
         }
         loss /= y.size();
         loss *= -1;
@@ -257,15 +260,21 @@ int main() {
     DiabetesData a("dataset1");
     vector<vector<double>> X = a.X;
     vector<int> y = a.y;
-
-    LogisticRegression lg(X, y);
-    vector<double> losses = lg.fit();
+    LogisticRegression lg1(X,y);
+    vector<double> losses =     lg1.fit();
     for (int i = 0; i < losses.size(); i++) {
-        std::cout << losses[i] << endl;
+        cout<<losses[i]<<endl;
     }
-    DiabetesData b("dataset2");
-    vector<int> result = lg.predict(b.features);
-    for (int i = 0; i < result.size(); i++) {
-        std::cout << result[i];
-    }
+
+//    DiabetesData b("dataset2");
+//    vector<vector<double>> X = b.X;
+//    vector<int> y = b.y;
+//    LogisticRegression lg2(X,y);
+//    vector<int> results = lg2.predict(X);
+//    for (int i = 0; i < results.size(); i++) {
+//        cout<<results[i]<<endl;
+//    }
+
+
+
 }
