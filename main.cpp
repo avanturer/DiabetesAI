@@ -121,8 +121,8 @@ public:
     }
 
     static vector<vector<double>> logit(vector<vector<double>> X, vector<double> w) {
-        int m = X.size();
-        int n = X[0].size();
+        unsigned long long int m = X.size();
+        unsigned long long int n = X[0].size();
         vector<vector<double>> logits(m, vector<double>(1, 0.0));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < 1; j++) {
@@ -166,9 +166,9 @@ public:
             for (int i = 0; i < sigmoid(logit(X_train, w)).size(); i++) {
                 z.push_back(sigmoid(logit(X_train, w))[i]);
             }
-            int m = X_trainT.size();
-            int n = X_trainT[0].size();
-            int p = z[0].size();
+            unsigned long long int m = X_trainT.size();
+            unsigned long long int n = X_trainT[0].size();
+            unsigned long long int p = z[0].size();
 
             vector<vector<double>> grad(m, vector<double>(p, 0.0));
             for (int i = 0; i < m; i++) {
