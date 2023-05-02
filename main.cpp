@@ -9,7 +9,6 @@
 #include <sstream>
 #include <string>
 #include <algorithm>
-#include <random>
 #include <cmath>
 
 using namespace std;
@@ -17,7 +16,7 @@ using namespace std;
 class DiabetesData {
 public:
     // Constructor
-    DiabetesData(string data_name) {
+    explicit DiabetesData(const string &data_name) {
         load_data_from_file(data_name);
     }
 
@@ -33,7 +32,7 @@ public:
         features = data_normalization(features);
     }
 
-    void load_data_from_file(string data_name) {
+    void load_data_from_file(const string &data_name) {
         fstream fin;
         fin.open(data_name + ".csv", ios::in);
         string line;
@@ -68,13 +67,13 @@ public:
         X = data_normalization(X);
     }
 
-    vector<vector<double>> data_normalization(vector<vector<double>> X) {
+    static vector<vector<double>> data_normalization(vector<vector<double>> X) {
 
         vector<double> avarage;
         for (int j = 0; j < X[0].size(); j++) {
             double summ = 0;
-            for (int i = 0; i < X.size(); i++) {
-                summ += X[i][j];
+            for (auto &i: X) {
+                summ += i[j];
             }
             avarage.push_back(summ / X.size());
         }
@@ -82,16 +81,16 @@ public:
         vector<double> deviation;
         for (int j = 0; j < X[0].size(); j++) {
             double summ = 0;
-            for (int i = 0; i < X.size(); i++) {
-                summ += pow((X[i][j] - avarage[j]), 2);
-            }
+            for (auto &i: X)
+                summ += pow((i[j] - avarage[j]), 2);
+
             deviation.push_back(sqrt(summ / (X.size() - 1)));
         }
 
         for (int j = 0; j < X[0].size(); j++) {
-            for (int i = 0; i < X.size(); i++) {
-                X[i][j] = (X[i][j] - avarage[j]) / deviation[j];
-            }
+            for (auto &i: X)
+                i[j] = (i[j] - avarage[j]) / deviation[j];
+
         }
         return X;
     }
@@ -121,7 +120,7 @@ public:
 
     }
 
-    vector<vector<double>> logit(vector<vector<double>> X, vector<double> w) {
+    static vector<vector<double>> logit(vector<vector<double>> X, vector<double> w) {
         int m = X.size();
         int n = X[0].size();
         vector<vector<double>> logits(m, vector<double>(1, 0.0));
@@ -135,24 +134,25 @@ public:
         return logits;
     }
 
-    vector<vector<double>> sigmoid(vector<vector<double>> logits) {
+    static vector<vector<double>> sigmoid(vector<vector<double>> logits) {
         vector<vector<double>> sigmoids;
         for (int i = 0; i < logits.size(); i++) {
             vector<double> sigmoid;
-            for (int j = 0; j < logits[0].size(); j++) {
+            sigmoid.reserve(logits[0].size());
+            for (int j = 0; j < logits[0].size(); j++)
                 sigmoid.push_back(1 / (1 + exp(-logits[i][j])));
-            }
+
             sigmoids.push_back(sigmoid);
         }
         return sigmoids;
     }
 
-    vector<double> fit(int max_iter = 100, double lr = 0.3) {
+    vector<double> fit(int max_iter = 10, double lr = 0.3) {
         vector<vector<double>> X_train = X;
 
-        for (int i = 0; i < X_train.size(); i++) {
-            X_train[i].insert(X_train[i].begin(), 1);
-        }
+        for (auto &i: X_train)
+            i.insert(i.begin(), 1);
+
 
         vector<vector<double>> X_trainT(X_train[0].size(), vector<double>(X_train.size(), 0.0));
         for (int i = 0; i < X_train.size(); i++) {
@@ -196,15 +196,15 @@ public:
         for (int i = 0; i < y.size(); i++) {
             loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
         }
-        for (int i = 0; i < w.size(); i++) {
-            loss += pow(w[i], 2);
-        }
+        for (double i: w)
+            loss += pow(i, 2);
+
         loss /= y.size();
         loss *= -1;
         return loss;
     }
 
-    void save_weights(std::vector<double> weights) {
+    static void save_weights(const std::vector<double> &weights) {
         // проверяем, существует ли файл weights.txt
         ofstream outfile("weights.txt", ios::out | ios::trunc);
         bool file_exists = outfile.good();
@@ -225,12 +225,12 @@ public:
         file.close();
     }
 
-    vector<vector<double>> predict_proba(vector<vector<double>> feauters) {
-        vector<vector<double>> _f = feauters;
+    static vector<vector<double>> predict_proba(vector<vector<double>> feauters) {
+        vector<vector<double>> _f = std::move(feauters);
         vector<double> w;
-        for (int i = 0; i < _f.size(); i++) {
-            _f[i].insert(_f[i].begin(), 1);
-        }
+        for (auto &i: _f)
+            i.insert(i.begin(), 1);
+
         fstream fin;
         fin.open("weights.txt", ios::in);
         string line;
@@ -245,7 +245,7 @@ public:
         return sigmoid(logit(_f, w));
     }
 
-    vector<int> predict(vector<vector<double>> feauters, double threshold = 0.5) {
+    static vector<int> predict(const vector<vector<double>> &feauters, double threshold = 0.5) {
         vector<int> results;
         for (int i = 0; i < predict_proba(feauters).size(); i++) {
             results.push_back(predict_proba(feauters)[i][0] >= threshold);
@@ -253,7 +253,7 @@ public:
         return results;
     }
 
-    int model_accuracy(vector<int> results, vector<int> y) {
+    static int model_accuracy(vector<int> results, vector<int> y) {
         double accuracy = 0;
         double YES = 0;
         double NO = 0;
@@ -264,29 +264,28 @@ public:
                 NO++;
             }
         }
-        accuracy = YES/(YES + NO);
-        return round(accuracy*100);
+        accuracy = YES / (YES + NO);
+        return round(accuracy * 100);
     }
 
 
 };
 
 int main() {
-//    DiabetesData a("dataset1");
-//    vector<vector<double>> X = a.X;
-//    vector<int> y = a.y;
-//    LogisticRegression lg1(X, y);
-//    vector<double> losses = lg1.fit();
-//    for (int i = 0; i < losses.size(); i++) {
-//        cout << losses[i] << endl;
-//    }
+    DiabetesData a("dataset1");
+    vector<vector<double>> X1 = a.X;
+    vector<int> y1 = a.y;
+    LogisticRegression lg1(X1, y1);
+    vector<double> losses = lg1.fit();
+    for (double losse: losses)
+        cout << losse << endl;
 
-//    DiabetesData b("dataset");
-//    vector<vector<double>> X = b.X;
-//    vector<int> y = b.y;
-//    LogisticRegression lg2(X,y);
-//    vector<int> results = lg2.predict(X);
-//    cout<<to_string(lg2.model_accuracy(results, b.y)) +"%";
+    DiabetesData b("dataset2");
+    vector<vector<double>> X = b.X;
+    vector<int> y = b.y;
+    LogisticRegression lg2(X, y);
+    vector<int> results = LogisticRegression::predict(X);
+    cout << to_string(LogisticRegression::model_accuracy(results, b.y)) + "%";
 
 
 }
