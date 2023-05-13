@@ -187,7 +187,7 @@ public:
             for (int i = 0; i < w.size(); i++) {
                 w[i] -= (grad[i][0] * lr);
             }
-            if (!losses.empty() and (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
+            if ((!losses.empty()) && (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
                 save_weights(w);
             }
             losses.push_back(loss(y, z));

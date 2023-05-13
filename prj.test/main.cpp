@@ -1,8 +1,7 @@
 //
 // Created by hedge on 22.04.2023.
 //
-#include "ai_realization.hpp"
-#include "plotting.hpp"
+#include <regression/regression.hpp>
 int main() {
     DiabetesData a("dataset1");
     vector<vector<double>> X1 = a.X;
