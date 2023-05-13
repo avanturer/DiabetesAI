@@ -151,7 +151,7 @@ public:
         return sigmoids;
     }
 
-    vector<double> fit(int max_iter = 10, double lr = 0.3) {
+    vector<double> fit(int max_iter = 100, double lr = 0.1) {
         vector<vector<double>> X_train = X;
 
         for (auto &i: X_train)
@@ -178,7 +178,7 @@ public:
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < p; j++) {
                     for (int k = 0; k < n; k++) {
-                        grad[i][j] += (X_trainT[i][k] * (z[k][0] - y[k]));
+                        grad[i][j] += ((X_trainT[i][k] * (z[k][0] - y[k])) + 2*w[i]);
                     }
                     grad[i][j] /= y.size();
                 }
