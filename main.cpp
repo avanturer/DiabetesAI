@@ -3,7 +3,6 @@
 //
 #include "ai_realization.hpp"
 #include "plotting.hpp"
-#include "matplotlibcpp.h"
 int main() {
     DiabetesData a("dataset1");
     vector<vector<double>> X1 = a.X;
