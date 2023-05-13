@@ -174,7 +174,7 @@ public:
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < p; j++) {
                     for (int k = 0; k < n; k++) {
-                        grad[i][j] += (X_trainT[i][k] * (z[k][0] - y[k]));
+                        grad[i][j] += ((X_trainT[i][k] * (z[k][0] - y[k])) + 2*w[i]);
                     }
                     grad[i][j] /= y.size();
                 }
@@ -183,7 +183,7 @@ public:
             for (int i = 0; i < w.size(); i++) {
                 w[i] -= (grad[i][0] * lr);
             }
-            if (!losses.empty() and (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
+            if ((!losses.empty()) && (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
                 save_weights(w);
             }
             losses.push_back(loss(y, z));
