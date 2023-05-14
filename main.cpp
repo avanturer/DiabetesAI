@@ -88,9 +88,12 @@ public:
         }
 
         for (int j = 0; j < X[0].size(); j++) {
-            for (auto &i: X)
+            for (auto &i: X) {
                 i[j] = (i[j] - avarage[j]) / deviation[j];
-
+                if (i[j] > 3*deviation[j]) {
+                    i[j] = 0;
+                }
+            }
         }
         return X;
     }
@@ -272,70 +275,70 @@ public:
 };
 
 int main() {
-//    DiabetesData a("dataset1");
-//    vector<vector<double>> X1 = a.X;
-//    vector<int> y1 = a.y;
-//    LogisticRegression lg1(X1, y1);
-//    vector<double> losses = lg1.fit();
-//    for (double losse: losses)
-//        cout << losse << endl;
+    DiabetesData a("dataset1");
+    vector<vector<double>> X1 = a.X;
+    vector<int> y1 = a.y;
+    LogisticRegression lg1(X1, y1);
+    vector<double> losses = lg1.fit();
+    for (double losse: losses)
+        cout << losse << endl;
+
+    DiabetesData b("dataset2");
+    vector<vector<double>> X = b.X;
+    vector<int> y = b.y;
+    LogisticRegression lg2(X, y);
+    vector<int> results = LogisticRegression::predict(X);
+    cout << to_string(LogisticRegression::model_accuracy(results, b.y)) + "%";
+//    std::ofstream outfile("myfigure.tex");
+//    outfile <<"\\documentclass{article}\n"
+//              "\\usepackage{pgfplots}\n"
+//              "\\pgfplotsset{compat=1.17}\n"
+//              "\\usepackage{filecontents}\n"
+//              "\n"
+//              "\\begin{filecontents}{data.csv}\n"
+//              "Weight,Label\n"
+//              "50,0\n"
+//              "60,0\n"
+//              "70,1\n"
+//              "80,1\n"
+//              "90,1\n"
+//              "\\end{filecontents}\n"
+//              "\n"
+//              "\\begin{document}\n"
+//              "\\begin{tikzpicture}\n"
+//              "\\begin{axis}[\n"
+//              "    xlabel={Weight},\n"
+//              "    ylabel={Label},\n"
+//              "    xmin=40, xmax=100,\n"
+//              "    ymin=-0.5, ymax=1.5,\n"
+//              "    ytick={0,1},\n"
+//              "    yticklabels={0,1},\n"
+//              "    legend pos=north west,\n"
+//              "    ymajorgrids=true,\n"
+//              "    grid style=dashed,\n"
+//              "]\n"
+//              "\n"
+//              "\\addplot[\n"
+//              "    only marks,\n"
+//              "    mark=*,\n"
+//              "    mark size=2.5pt,\n"
+//              "    color=blue,\n"
+//              "] table [x=Weight, y=Label, col sep=comma] {data.csv};\n"
+//              "\n"
+//              "\\addplot[\n"
+//              "    domain=40:100,\n"
+//              "    samples=100,\n"
+//              "    color=red,\n"
+//              "] {1/(1+exp(-(-25 + 0.5*x)))};\n"
+//              "\\addlegendentry{$y = \\frac{1}{1 + e^{-(-25 + 0.5x)}}$}\n"
+//              "\n"
+//              "\\end{axis}\n"
+//              "\\end{tikzpicture}\n"
+//              "\\end{document}";
 //
-//    DiabetesData b("dataset2");
-//    vector<vector<double>> X = b.X;
-//    vector<int> y = b.y;
-//    LogisticRegression lg2(X, y);
-//    vector<int> results = LogisticRegression::predict(X);
-//    cout << to_string(LogisticRegression::model_accuracy(results, b.y)) + "%";
-    std::ofstream outfile("myfigure.tex");
-    outfile <<"\\documentclass{article}\n"
-              "\\usepackage{pgfplots}\n"
-              "\\pgfplotsset{compat=1.17}\n"
-              "\\usepackage{filecontents}\n"
-              "\n"
-              "\\begin{filecontents}{data.csv}\n"
-              "Weight,Label\n"
-              "50,0\n"
-              "60,0\n"
-              "70,1\n"
-              "80,1\n"
-              "90,1\n"
-              "\\end{filecontents}\n"
-              "\n"
-              "\\begin{document}\n"
-              "\\begin{tikzpicture}\n"
-              "\\begin{axis}[\n"
-              "    xlabel={Weight},\n"
-              "    ylabel={Label},\n"
-              "    xmin=40, xmax=100,\n"
-              "    ymin=-0.5, ymax=1.5,\n"
-              "    ytick={0,1},\n"
-              "    yticklabels={0,1},\n"
-              "    legend pos=north west,\n"
-              "    ymajorgrids=true,\n"
-              "    grid style=dashed,\n"
-              "]\n"
-              "\n"
-              "\\addplot[\n"
-              "    only marks,\n"
-              "    mark=*,\n"
-              "    mark size=2.5pt,\n"
-              "    color=blue,\n"
-              "] table [x=Weight, y=Label, col sep=comma] {data.csv};\n"
-              "\n"
-              "\\addplot[\n"
-              "    domain=40:100,\n"
-              "    samples=100,\n"
-              "    color=red,\n"
-              "] {1/(1+exp(-(-25 + 0.5*x)))};\n"
-              "\\addlegendentry{$y = \\frac{1}{1 + e^{-(-25 + 0.5x)}}$}\n"
-              "\n"
-              "\\end{axis}\n"
-              "\\end{tikzpicture}\n"
-              "\\end{document}";
-
-    outfile.close();
-
-    std::system("pdflatex myfigure.tex");
+//    outfile.close();
+//
+//    std::system("pdflatex myfigure.tex");
 
 
 }
