@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <cmath>
 
+
 using namespace std;
 
 class DiabetesData {
@@ -90,7 +91,7 @@ public:
         for (int j = 0; j < X[0].size(); j++) {
             for (auto &i: X) {
                 i[j] = (i[j] - avarage[j]) / deviation[j];
-                if (i[j] > 3*deviation[j]) {
+                if (i[j] > 3 * deviation[j]) {
                     i[j] = 0;
                 }
             }
@@ -112,6 +113,8 @@ public:
     vector<int> y;
     vector<double> w;
     vector<double> losses;
+    vector<vector<double>> logloss;
+
 
     LogisticRegression(const vector<vector<double>> X, const vector<int> y) {
         this->X = X;
@@ -150,7 +153,7 @@ public:
         return sigmoids;
     }
 
-    vector<double> fit(int max_iter = 10, double lr = 0.3) {
+    vector<double> fit(int max_iter = 100, double lr = 0.1) {
         vector<vector<double>> X_train = X;
 
         for (auto &i: X_train)
@@ -163,9 +166,9 @@ public:
                 X_trainT[j][i] = X_train[i][j];
             }
         }
-
         for (int iter = 0; iter <= max_iter; iter++) {
             vector<vector<double>> z;
+
             for (int i = 0; i < sigmoid(logit(X_train, w)).size(); i++) {
                 z.push_back(sigmoid(logit(X_train, w))[i]);
             }
@@ -177,7 +180,7 @@ public:
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < p; j++) {
                     for (int k = 0; k < n; k++) {
-                        grad[i][j] += ((X_trainT[i][k] * (z[k][0] - y[k])) + 2*w[i]);
+                        grad[i][j] += ((X_trainT[i][k] * (z[k][0] - y[k])) + 2 * w[i]);
                     }
                     grad[i][j] /= y.size();
                 }
@@ -186,11 +189,12 @@ public:
             for (int i = 0; i < w.size(); i++) {
                 w[i] -= (grad[i][0] * lr);
             }
+            losses.push_back(loss(y, z));
             if ((!losses.empty()) && (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
                 save_weights(w);
             }
-            losses.push_back(loss(y, z));
         }
+        saveLossToCSV(losses);
         return losses;
     }
 
@@ -271,74 +275,71 @@ public:
         return round(accuracy * 100);
     }
 
+    void saveLossToCSV(const vector<double>& losses, const std::string& filename = "logloss.csv") {
+        std::ofstream outputFile(filename);
+        if (outputFile.is_open()) {
+            // Write the losses vector to the first column
+            outputFile << 100 << ","<< 0 << std::endl;
+            for (int i = 0; i< losses.size(); i++) {
+                outputFile << losses[i] << ","<< i+1 << std::endl;
+            }
+            outputFile.close();
+            std::cout << "Data saved to CSV successfully." << std::endl;
+        } else {
+            std::cerr << "Unable to open file: " << filename << std::endl;
+        }
+    }
 
 };
 
 int main() {
-    DiabetesData a("dataset1");
-    vector<vector<double>> X1 = a.X;
-    vector<int> y1 = a.y;
-    LogisticRegression lg1(X1, y1);
-    vector<double> losses = lg1.fit();
-    for (double losse: losses)
-        cout << losse << endl;
+//    DiabetesData a("dataset1");
+//    vector<vector<double>> X1 = a.X;
+//    vector<int> y1 = a.y;
+//    LogisticRegression lg1(X1, y1);
+//    lg1.fit();
+//    for (double losse: losses)
+//        cout << losse << endl;
+//
+//    DiabetesData b("dataset2");
+//    vector<vector<double>> X = b.X;
+//    vector<int> y = b.y;
+//    LogisticRegression lg2(X, y);
+//    vector<int> results = LogisticRegression::predict(X);
+//    cout << to_string(LogisticRegression::model_accuracy(results, b.y)) + "%";
 
-    DiabetesData b("dataset2");
-    vector<vector<double>> X = b.X;
-    vector<int> y = b.y;
-    LogisticRegression lg2(X, y);
-    vector<int> results = LogisticRegression::predict(X);
-    cout << to_string(LogisticRegression::model_accuracy(results, b.y)) + "%";
-//    std::ofstream outfile("myfigure.tex");
-//    outfile <<"\\documentclass{article}\n"
-//              "\\usepackage{pgfplots}\n"
-//              "\\pgfplotsset{compat=1.17}\n"
-//              "\\usepackage{filecontents}\n"
-//              "\n"
-//              "\\begin{filecontents}{data.csv}\n"
-//              "Weight,Label\n"
-//              "50,0\n"
-//              "60,0\n"
-//              "70,1\n"
-//              "80,1\n"
-//              "90,1\n"
-//              "\\end{filecontents}\n"
-//              "\n"
-//              "\\begin{document}\n"
-//              "\\begin{tikzpicture}\n"
-//              "\\begin{axis}[\n"
-//              "    xlabel={Weight},\n"
-//              "    ylabel={Label},\n"
-//              "    xmin=40, xmax=100,\n"
-//              "    ymin=-0.5, ymax=1.5,\n"
-//              "    ytick={0,1},\n"
-//              "    yticklabels={0,1},\n"
-//              "    legend pos=north west,\n"
-//              "    ymajorgrids=true,\n"
-//              "    grid style=dashed,\n"
-//              "]\n"
-//              "\n"
-//              "\\addplot[\n"
-//              "    only marks,\n"
-//              "    mark=*,\n"
-//              "    mark size=2.5pt,\n"
-//              "    color=blue,\n"
-//              "] table [x=Weight, y=Label, col sep=comma] {data.csv};\n"
-//              "\n"
-//              "\\addplot[\n"
-//              "    domain=40:100,\n"
-//              "    samples=100,\n"
-//              "    color=red,\n"
-//              "] {1/(1+exp(-(-25 + 0.5*x)))};\n"
-//              "\\addlegendentry{$y = \\frac{1}{1 + e^{-(-25 + 0.5x)}}$}\n"
-//              "\n"
-//              "\\end{axis}\n"
-//              "\\end{tikzpicture}\n"
-//              "\\end{document}";
-//
-//    outfile.close();
-//
-//    std::system("pdflatex myfigure.tex");
+    std::ofstream outfile("myfigure.tex");
+    outfile << "\\documentclass{article}\n"
+               "\\usepackage{pgfplots}\n"
+               "\\usepackage{csvsimple}\n"
+               "\\usepackage{pgfplotstable}\n"
+               "\n"
+               "\\begin{document}\n"
+               "\n"
+               "\\begin{tikzpicture}\n"
+               "\\begin{axis}[\n"
+               "    xlabel={Iters},\n"
+               "    ylabel={Log Loss},\n"
+               "    xmin=0, xmax=100,\n"
+               "    ymin=0, ymax=1,\n"
+               "    grid=both,\n"
+               "    major grid style={line width=0.2pt, draw=gray!50},\n"
+               "    minor tick num=1,\n"
+               "    width=14cm, height=8cm,\n"
+               "    samples=100\n"
+               "]\n"
+               "\n"
+               "\\pgfplotstableread[col sep=comma]{logloss.csv}\\datatable\n"
+               "\\addplot[blue] table[x index=1, y index=0] {\\datatable};\n"
+               "\n"
+               "\\end{axis}\n"
+               "\\end{tikzpicture}\n"
+               "\n"
+               "\\end{document}";
+
+    outfile.close();
+
+    std::system("pdflatex myfigure.tex");
 
 
 }
