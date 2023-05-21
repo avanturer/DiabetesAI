@@ -153,7 +153,9 @@ public:
         return sigmoids;
     }
 
-    vector<double> fit(int max_iter = 100, double lr = 0.1) {
+    vector<double> fit() {
+        int max_iter = 100;
+        double lr = 0.1;
         vector<vector<double>> X_train = X;
 
         for (auto &i: X_train)
@@ -211,29 +213,29 @@ public:
         return loss;
     }
 
-    static void save_weights(const std::vector<double> &weights) {
+    static void save_weights(const vector<double> &weights) {
         // проверяем, существует ли файл weights.txt
         ofstream outfile("weights.txt", ios::out | ios::trunc);
         bool file_exists = outfile.good();
 
         // если файл не существует, создаем его
         if (!file_exists) {
-            std::ofstream outfile("weights.txt");
+            ofstream outfile("weights.txt");
             outfile.close();
         }
 
         // открываем файл weights.txt для записи
-        std::ofstream file("weights.txt", ios_base::app);
+        ofstream file("weights.txt", ios_base::app);
 
         // записываем значения в файл
         for (double w: weights) {
-            file << w << std::endl;
+            file << w << endl;
         }
         file.close();
     }
 
     static vector<vector<double>> predict_proba(vector<vector<double>> feauters) {
-        vector<vector<double>> _f = std::move(feauters);
+        vector<vector<double>> _f = move(feauters);
         vector<double> w;
         for (auto &i: _f)
             i.insert(i.begin(), 1);
@@ -275,21 +277,118 @@ public:
         return round(accuracy * 100);
     }
 
-    void saveLossToCSV(const vector<double>& losses, const std::string& filename = "logloss.csv") {
-        std::ofstream outputFile(filename);
+    static void saveLossToCSV(const vector<double> &losses) {
+        const string filename = "losses.csv";
+        ofstream outputFile(filename);
         if (outputFile.is_open()) {
-            // Write the losses vector to the first column
-            outputFile << 100 << ","<< 0 << std::endl;
-            for (int i = 0; i< losses.size(); i++) {
-                outputFile << losses[i] << ","<< i+1 << std::endl;
+            outputFile << 1 << "," << 0 << endl;
+            for (int i = 0; i < losses.size(); i++) {
+                outputFile << losses[i] << "," << i + 1 << endl;
             }
             outputFile.close();
-            std::cout << "Data saved to CSV successfully." << std::endl;
+            cout << "Data saved to losses.csv successfully." << endl;
         } else {
-            std::cerr << "Unable to open file: " << filename << std::endl;
+            cerr << "Unable to open file: " << filename << endl;
         }
     }
 
+};
+
+class Plot {
+public:
+    Plot() = default;
+
+    void CreateLatexFile(vector<int> results, vector<int> y) {
+        int YESaYES = 0;
+        int YESaNO = 0;
+        int NOaNO = 0;
+        int NOaYES = 0;
+        for (int i = 0; i < results.size(); i++) {
+            if (results[i] == 1 && y[i] == 1) {
+                YESaYES++;
+            } else if (results[i] == 1 && y[i] == 0) {
+                YESaNO++;
+            } else if (results[i] == 0 && y[i] == 0) {
+                NOaNO++;
+            } else if (results[i] == 0 && y[i] == 1) {
+                NOaYES++;
+            }
+        }
+        const string &filename = "statistic.tex";
+        ofstream outputFile(filename);
+        if (outputFile.is_open()) {
+            outputFile << "\\documentclass{article}\n"
+                          "\\usepackage{pgfplots}\n"
+                          "\\usepackage{csvsimple}\n"
+                          "\\usepackage{pgfplotstable}\n"
+                          "\\usepackage{array}\n"
+                          "\\usepackage{graphicx}\n"
+                          "\\usepackage{multirow}\n"
+                          "\\usepackage{float} % Add the float package\n"
+                          "\n"
+                          "\\newcommand\\MyBox[2]{\n"
+                          "  \\fbox{\\lower0.75cm\n"
+                          "    \\vbox to 1.7cm{\\vfil\n"
+                          "      \\hbox to 1.7cm{\\hfil\\parbox{0.4cm}{#1}\\hfil}\n"
+                          "      \\vfil}%\n"
+                          "  }%\n"
+                          "}\n"
+                          "\n"
+                          "\\begin{document}\n"
+                          "\\title{Model Statistic}\n"
+                          "\\maketitle\n"
+                          "\n"
+                          "\\vspace{1cm}\n"
+                          "\n"
+                          "\\begin{figure}[H] % Use the H specifier from the float package\n"
+                          "  \\centering\n"
+                          "  \\begin{tikzpicture}\n"
+                          "    \\begin{axis}[\n"
+                          "        xlabel={Iters},\n"
+                          "        ylabel={Log Loss},\n"
+                          "        xmin=0, xmax=100,\n"
+                          "        ymin=0, ymax=1,\n"
+                          "        grid=both,\n"
+                          "        major grid style={line width=0.2pt, draw=gray!50},\n"
+                          "        minor tick num=1,\n"
+                          "        width=14cm, height=8cm,\n"
+                          "        samples=100\n"
+                          "    ]\n"
+                          "    \n"
+                          "    \\pgfplotstableread[col sep=comma]{losses.csv}\\datatable\n"
+                          "    \\addplot[blue] table[x index=1, y index=0] {\\datatable};\n"
+                          "    \n"
+                          "    \\end{axis}\n"
+                          "  \\end{tikzpicture}\n"
+                          "  \\caption{Loss changes every iteration}\n"
+                          "\\end{figure}\n"
+                          "\n"
+                          "\\vspace{1cm}\n"
+                          "\n"
+                          "\\begin{figure}[H] % Use the H specifier from the float package\n"
+                          "  \\centering\n"
+                          "  \\renewcommand\\arraystretch{1.5}\n"
+                          "  \\setlength\\tabcolsep{0pt}\n"
+                          "  \\begin{tabular}{c >{\\bfseries}r @{\\hspace{0.7em}}c @{\\hspace{0.4em}}c @{\\hspace{0.7em}}l}\n"
+                          "    \\multirow{10}{*}{\\rotatebox{90}{\\parbox{1.1cm}{\\bfseries\\centering actual\\\\ value}}} & \n"
+                          "      & \\multicolumn{2}{c}{\\bfseries Prediction outcome} & \\\\\n"
+                          "    & & \\bfseries p & \\bfseries n & \\bfseries total \\\\\n"
+                          "    & p$'$ & \\MyBox{" + to_string(YESaYES) + "}{Positive} & \\MyBox{" + to_string(NOaYES) +
+                          "}{Positive} & P$'$ \\\\[2.4em]\n"
+                          "    & n$'$ & \\MyBox{" + to_string(YESaNO) + "}{Positive} & \\MyBox{" + to_string(NOaNO) +
+                          "}{Positive} & N$'$ \\\\\n"
+                          "    & total & P & N &\n"
+                          "  \\end{tabular}\n"
+                          "  \\caption{Confusion Matrix}\n"
+                          "\\end{figure}\n"
+                          "\n"
+                          "\\end{document}";
+        } else {
+            cerr << "Unable to open file: " << filename << endl;
+        }
+    }
+
+private:
 };
 
 int main() {
@@ -301,45 +400,18 @@ int main() {
 //    for (double losse: losses)
 //        cout << losse << endl;
 //
-//    DiabetesData b("dataset2");
-//    vector<vector<double>> X = b.X;
-//    vector<int> y = b.y;
-//    LogisticRegression lg2(X, y);
-//    vector<int> results = LogisticRegression::predict(X);
-//    cout << to_string(LogisticRegression::model_accuracy(results, b.y)) + "%";
+    DiabetesData b("dataset2");
+    vector<vector<double>> X = b.X;
+    vector<int> y = b.y;
+    LogisticRegression lg2(X, y);
+    vector<int> results = LogisticRegression::predict(X);
+    cout << to_string(LogisticRegression::model_accuracy(results, b.y)) + "%";
 
-    std::ofstream outfile("myfigure.tex");
-    outfile << "\\documentclass{article}\n"
-               "\\usepackage{pgfplots}\n"
-               "\\usepackage{csvsimple}\n"
-               "\\usepackage{pgfplotstable}\n"
-               "\n"
-               "\\begin{document}\n"
-               "\n"
-               "\\begin{tikzpicture}\n"
-               "\\begin{axis}[\n"
-               "    xlabel={Iters},\n"
-               "    ylabel={Log Loss},\n"
-               "    xmin=0, xmax=100,\n"
-               "    ymin=0, ymax=1,\n"
-               "    grid=both,\n"
-               "    major grid style={line width=0.2pt, draw=gray!50},\n"
-               "    minor tick num=1,\n"
-               "    width=14cm, height=8cm,\n"
-               "    samples=100\n"
-               "]\n"
-               "\n"
-               "\\pgfplotstableread[col sep=comma]{logloss.csv}\\datatable\n"
-               "\\addplot[blue] table[x index=1, y index=0] {\\datatable};\n"
-               "\n"
-               "\\end{axis}\n"
-               "\\end{tikzpicture}\n"
-               "\n"
-               "\\end{document}";
+    Plot a;
+    a.CreateLatexFile(results, y);
 
-    outfile.close();
 
-    std::system("pdflatex myfigure.tex");
+    system("pdflatex statistic.tex");
 
 
 }
