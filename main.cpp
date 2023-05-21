@@ -16,21 +16,21 @@ using namespace std;
 
 class DiabetesData {
 public:
-    // Constructor
+
     explicit DiabetesData(const string &data_name) {
         load_data_from_file(data_name);
     }
 
     DiabetesData(double f1, double f2, double f3, double f4, double f5, double f6, double f7, double f8) {
-        features = {{f1},
-                    {f2},
-                    {f3},
-                    {f4},
-                    {f5},
-                    {f6},
-                    {f7},
-                    {f8}};
-        features = data_normalization(features);
+        features_ = {{f1},
+                     {f2},
+                     {f3},
+                     {f4},
+                     {f5},
+                     {f6},
+                     {f7},
+                     {f8}};
+        features_ = data_normalization(features_);
     }
 
     void load_data_from_file(const string &data_name) {
@@ -52,20 +52,20 @@ public:
             parsedCsv.push_back(parsedRow);
         }
         fin.close();
-        dataset = parsedCsv;
+        dataset_ = parsedCsv;
 
-        for (int i = 1; i < dataset.size(); i++) {
+        for (int i = 1; i < dataset_.size(); i++) {
             vector<double> cell;
-            for (int j = 0; j < dataset[1].size(); j++) {
-                if (j != dataset[1].size() - 1) {
-                    cell.push_back(stod(dataset[i][j]));
-                } else if (j == dataset[1].size() - 1) {
-                    y.push_back(stoi(dataset[i][j]));
+            for (int j = 0; j < dataset_[1].size(); j++) {
+                if (j != dataset_[1].size() - 1) {
+                    cell.push_back(stod(dataset_[i][j]));
+                } else if (j == dataset_[1].size() - 1) {
+                    y_.push_back(stoi(dataset_[i][j]));
                 }
             }
-            X.push_back(cell);
+            X_.push_back(cell);
         }
-        X = data_normalization(X);
+        X_ = data_normalization(X_);
     }
 
     static vector<vector<double>> data_normalization(vector<vector<double>> X) {
@@ -99,29 +99,29 @@ public:
         return X;
     }
 
-    vector<vector<double>> features;
-    vector<vector<string>> dataset;
-    vector<vector<double>> X;
-    vector<int> y;
+    vector<vector<double>> features_;
+    vector<vector<string>> dataset_;
+    vector<vector<double>> X_;
+    vector<int> y_;
 private:
 
 };
 
 class LogisticRegression {
 public:
-    vector<vector<double>> X;
-    vector<int> y;
-    vector<double> w;
-    vector<double> losses;
-    vector<vector<double>> logloss;
+    vector<vector<double>> X_;
+    vector<int> y_;
+    vector<double> w_;
+    vector<double> losses_;
+    vector<vector<double>> logloss_;
 
 
     LogisticRegression(const vector<vector<double>> X, const vector<int> y) {
-        this->X = X;
-        this->y = y;
+        this->X_ = X;
+        this->y_ = y;
         for (int i = 0; i < X[0].size() + 1; i++) {
             double a = (rand() % 1000);
-            w.push_back(a / 1000);
+            w_.push_back(a / 1000);
         }
 
     }
@@ -156,7 +156,7 @@ public:
     vector<double> fit() {
         int max_iter = 100;
         double lr = 0.1;
-        vector<vector<double>> X_train = X;
+        vector<vector<double>> X_train = X_;
 
         for (auto &i: X_train)
             i.insert(i.begin(), 1);
@@ -171,8 +171,8 @@ public:
         for (int iter = 0; iter <= max_iter; iter++) {
             vector<vector<double>> z;
 
-            for (int i = 0; i < sigmoid(logit(X_train, w)).size(); i++) {
-                z.push_back(sigmoid(logit(X_train, w))[i]);
+            for (int i = 0; i < sigmoid(logit(X_train, w_)).size(); i++) {
+                z.push_back(sigmoid(logit(X_train, w_))[i]);
             }
             unsigned long long int m = X_trainT.size();
             unsigned long long int n = X_trainT[0].size();
@@ -182,22 +182,22 @@ public:
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < p; j++) {
                     for (int k = 0; k < n; k++) {
-                        grad[i][j] += ((X_trainT[i][k] * (z[k][0] - y[k])) + 2 * w[i]);
+                        grad[i][j] += ((X_trainT[i][k] * (z[k][0] - y_[k])) + 2 * w_[i]);
                     }
-                    grad[i][j] /= y.size();
+                    grad[i][j] /= y_.size();
                 }
             }
 
-            for (int i = 0; i < w.size(); i++) {
-                w[i] -= (grad[i][0] * lr);
+            for (int i = 0; i < w_.size(); i++) {
+                w_[i] -= (grad[i][0] * lr);
             }
-            losses.push_back(loss(y, z));
-            if ((!losses.empty()) && (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
-                save_weights(w);
+            losses_.push_back(loss(y_, z));
+            if ((!losses_.empty()) && (loss(y_, z) < *min_element(losses_.begin(), losses_.end()))) {
+                save_weights(w_);
             }
         }
-        saveLossToCSV(losses);
-        return losses;
+        saveLossToCSV(losses_);
+        return losses_;
     }
 
     double loss(vector<int> y, vector<vector<double>> z) {
@@ -205,7 +205,7 @@ public:
         for (int i = 0; i < y.size(); i++) {
             loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
         }
-        for (double i: w)
+        for (double i: w_)
             loss += pow(i, 2);
 
         loss /= y.size();
@@ -278,7 +278,7 @@ public:
     }
 
     static void saveLossToCSV(const vector<double> &losses) {
-        const string filename = "losses.csv";
+        const string filename = "losses_.csv";
         ofstream outputFile(filename);
         if (outputFile.is_open()) {
             outputFile << 1 << "," << 0 << endl;
@@ -286,7 +286,7 @@ public:
                 outputFile << losses[i] << "," << i + 1 << endl;
             }
             outputFile.close();
-            cout << "Data saved to losses.csv successfully." << endl;
+            cout << "Data saved to losses_.csv successfully." << endl;
         } else {
             cerr << "Unable to open file: " << filename << endl;
         }
@@ -298,7 +298,7 @@ class Plot {
 public:
     Plot() = default;
 
-    void CreateLatexFile(vector<int> results, vector<int> y) {
+    static void CreateLatexFile(vector<int> results, vector<int> y) {
         int YESaYES = 0;
         int YESaNO = 0;
         int NOaNO = 0;
@@ -355,8 +355,8 @@ public:
                           "        samples=100\n"
                           "    ]\n"
                           "    \n"
-                          "    \\pgfplotstableread[col sep=comma]{losses.csv}\\datatable\n"
-                          "    \\addplot[blue] table[x index=1, y index=0] {\\datatable};\n"
+                          "    \\pgfplotstableread[col sep=comma]{losses_.csv}\\datatable\n"
+                          "    \\addplot[blue] table[x index=1, y_ index=0] {\\datatable};\n"
                           "    \n"
                           "    \\end{axis}\n"
                           "  \\end{tikzpicture}\n"
@@ -393,19 +393,19 @@ private:
 
 int main() {
 //    DiabetesData a("dataset1");
-//    vector<vector<double>> X1 = a.X;
-//    vector<int> y1 = a.y;
+//    vector<vector<double>> X1 = a.X_;
+//    vector<int> y1 = a.y_;
 //    LogisticRegression lg1(X1, y1);
 //    lg1.fit();
-//    for (double losse: losses)
+//    for (double losse: losses_)
 //        cout << losse << endl;
 //
     DiabetesData b("dataset2");
-    vector<vector<double>> X = b.X;
-    vector<int> y = b.y;
+    vector<vector<double>> X = b.X_;
+    vector<int> y = b.y_;
     LogisticRegression lg2(X, y);
     vector<int> results = LogisticRegression::predict(X);
-    cout << to_string(LogisticRegression::model_accuracy(results, b.y)) + "%";
+    cout << to_string(LogisticRegression::model_accuracy(results, b.y_)) + "%";
 
     Plot a;
     a.CreateLatexFile(results, y);
