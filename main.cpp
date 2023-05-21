@@ -8,7 +8,6 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <algorithm>
 #include <cmath>
 
 
@@ -19,18 +18,6 @@ public:
 
     explicit DiabetesData(const string &data_name) {
         load_data_from_file(data_name);
-    }
-
-    DiabetesData(double f1, double f2, double f3, double f4, double f5, double f6, double f7, double f8) {
-        features_ = {{f1},
-                     {f2},
-                     {f3},
-                     {f4},
-                     {f5},
-                     {f6},
-                     {f7},
-                     {f8}};
-        features_ = data_normalization(features_);
     }
 
     void load_data_from_file(const string &data_name) {
@@ -67,6 +54,15 @@ public:
         }
         X_ = data_normalization(X_);
     }
+
+    explicit DiabetesData(const vector<vector<double>> &features) {
+        if (features.size() != dataset_[0].size() || features.empty())
+            throw runtime_error(
+                    "The number of parameters does not match the number of dataset parameters, check the correctness of the entered data and check which dataset you submitted");
+
+        features_ = data_normalization(features);
+    }
+
 
     static vector<vector<double>> data_normalization(vector<vector<double>> X) {
 
@@ -114,13 +110,15 @@ public:
     vector<double> w_;
     vector<double> losses_;
     vector<vector<double>> logloss_;
+    int max_iter_ = 0;
+    double lr_ = 0;
 
 
-    LogisticRegression(const vector<vector<double>> X, const vector<int> y) {
-        this->X_ = X;
-        this->y_ = y;
+    LogisticRegression(const vector<vector<double>> &X, const vector<int> &y) {
+        X_ = X;
+        y_ = y;
         for (int i = 0; i < X[0].size() + 1; i++) {
-            double a = (rand() % 1000);
+            double a = rand() % 1000;
             w_.push_back(a / 1000);
         }
 
@@ -153,11 +151,13 @@ public:
         return sigmoids;
     }
 
-    vector<double> fit() {
-        int max_iter = 100;
-        double lr = 0.1;
+    vector<double> fit(int max_iter = 100, double lr = 0.1) {
+        if (max_iter <= 0 || lr <= 0) {
+            throw runtime_error("maximum iterations or learning rate < 0");
+        }
+        max_iter_ = max_iter;
+        lr_ = lr;
         vector<vector<double>> X_train = X_;
-
         for (auto &i: X_train)
             i.insert(i.begin(), 1);
 
@@ -168,7 +168,7 @@ public:
                 X_trainT[j][i] = X_train[i][j];
             }
         }
-        for (int iter = 0; iter <= max_iter; iter++) {
+        for (int iter = 0; iter <= max_iter_; iter++) {
             vector<vector<double>> z;
 
             for (int i = 0; i < sigmoid(logit(X_train, w_)).size(); i++) {
@@ -189,7 +189,7 @@ public:
             }
 
             for (int i = 0; i < w_.size(); i++) {
-                w_[i] -= (grad[i][0] * lr);
+                w_[i] -= (grad[i][0] * lr_);
             }
             losses_.push_back(loss(y_, z));
             if ((!losses_.empty()) && (loss(y_, z) < *min_element(losses_.begin(), losses_.end()))) {
@@ -214,20 +214,16 @@ public:
     }
 
     static void save_weights(const vector<double> &weights) {
-        // проверяем, существует ли файл weights.txt
         ofstream outfile("weights.txt", ios::out | ios::trunc);
         bool file_exists = outfile.good();
 
-        // если файл не существует, создаем его
         if (!file_exists) {
             ofstream outfile("weights.txt");
             outfile.close();
         }
 
-        // открываем файл weights.txt для записи
         ofstream file("weights.txt", ios_base::app);
 
-        // записываем значения в файл
         for (double w: weights) {
             file << w << endl;
         }
@@ -298,7 +294,7 @@ class Plot {
 public:
     Plot() = default;
 
-    static void CreateLatexFile(vector<int> results, vector<int> y) {
+    static void CreateLatexFile(vector<int> results, vector<int> y, int max_iter = 100) {
         int YESaYES = 0;
         int YESaNO = 0;
         int NOaNO = 0;
@@ -346,34 +342,35 @@ public:
                           "    \\begin{axis}[\n"
                           "        xlabel={Iters},\n"
                           "        ylabel={Log Loss},\n"
-                          "        xmin=0, xmax=100,\n"
-                          "        ymin=0, ymax=1,\n"
-                          "        grid=both,\n"
-                          "        major grid style={line width=0.2pt, draw=gray!50},\n"
-                          "        minor tick num=1,\n"
-                          "        width=14cm, height=8cm,\n"
-                          "        samples=100\n"
-                          "    ]\n"
-                          "    \n"
-                          "    \\pgfplotstableread[col sep=comma]{losses_.csv}\\datatable\n"
-                          "    \\addplot[blue] table[x index=1, y_ index=0] {\\datatable};\n"
-                          "    \n"
-                          "    \\end{axis}\n"
-                          "  \\end{tikzpicture}\n"
-                          "  \\caption{Loss changes every iteration}\n"
-                          "\\end{figure}\n"
-                          "\n"
-                          "\\vspace{1cm}\n"
-                          "\n"
-                          "\\begin{figure}[H] % Use the H specifier from the float package\n"
-                          "  \\centering\n"
-                          "  \\renewcommand\\arraystretch{1.5}\n"
-                          "  \\setlength\\tabcolsep{0pt}\n"
-                          "  \\begin{tabular}{c >{\\bfseries}r @{\\hspace{0.7em}}c @{\\hspace{0.4em}}c @{\\hspace{0.7em}}l}\n"
-                          "    \\multirow{10}{*}{\\rotatebox{90}{\\parbox{1.1cm}{\\bfseries\\centering actual\\\\ value}}} & \n"
-                          "      & \\multicolumn{2}{c}{\\bfseries Prediction outcome} & \\\\\n"
-                          "    & & \\bfseries p & \\bfseries n & \\bfseries total \\\\\n"
-                          "    & p$'$ & \\MyBox{" + to_string(YESaYES) + "}{Positive} & \\MyBox{" + to_string(NOaYES) +
+                          "        xtick=data,\n"
+                          "        xticklabel={\\pgfmathprintnumber[int detect]{\\tick}},"
+                          "        xmin=0, xmax=" + to_string(max_iter) + ",\n"
+                                                                          "        ymin=0, ymax=1,\n"
+                                                                          "        grid=both,\n"
+                                                                          "        width=14cm, height=8cm,\n"
+                                                                          "        samples=100\n"
+                                                                          "    ]\n"
+                                                                          "    \n"
+                                                                          "    \\pgfplotstableread[col sep=comma]{losses_.csv}\\datatable\n"
+                                                                          "    \\addplot[blue] table[x index=1, y index=0] {\\datatable};\n"
+                                                                          "    \n"
+                                                                          "    \\end{axis}\n"
+                                                                          "  \\end{tikzpicture}\n"
+                                                                          "  \\caption{Loss changes every iteration}\n"
+                                                                          "\\end{figure}\n"
+                                                                          "\n"
+                                                                          "\\vspace{1cm}\n"
+                                                                          "\n"
+                                                                          "\\begin{figure}[H] % Use the H specifier from the float package\n"
+                                                                          "  \\centering\n"
+                                                                          "  \\renewcommand\\arraystretch{1.5}\n"
+                                                                          "  \\setlength\\tabcolsep{0pt}\n"
+                                                                          "  \\begin{tabular}{c >{\\bfseries}r @{\\hspace{0.7em}}c @{\\hspace{0.4em}}c @{\\hspace{0.7em}}l}\n"
+                                                                          "    \\multirow{10}{*}{\\rotatebox{90}{\\parbox{1.1cm}{\\bfseries\\centering actual\\\\ value}}} & \n"
+                                                                          "      & \\multicolumn{2}{c}{\\bfseries Prediction outcome} & \\\\\n"
+                                                                          "    & & \\bfseries p & \\bfseries n & \\bfseries total \\\\\n"
+                                                                          "    & p$'$ & \\MyBox{" + to_string(YESaYES) +
+                          "}{Positive} & \\MyBox{" + to_string(NOaYES) +
                           "}{Positive} & P$'$ \\\\[2.4em]\n"
                           "    & n$'$ & \\MyBox{" + to_string(YESaNO) + "}{Positive} & \\MyBox{" + to_string(NOaNO) +
                           "}{Positive} & N$'$ \\\\\n"
@@ -392,23 +389,20 @@ private:
 };
 
 int main() {
-//    DiabetesData a("dataset1");
-//    vector<vector<double>> X1 = a.X_;
-//    vector<int> y1 = a.y_;
-//    LogisticRegression lg1(X1, y1);
-//    lg1.fit();
-//    for (double losse: losses_)
-//        cout << losse << endl;
-//
+    DiabetesData a("dataset1");
+    vector<vector<double>> X1 = a.X_;
+    vector<int> y1 = a.y_;
+    LogisticRegression lg1(X1, y1);
+    vector<double> losses = lg1.fit(5);
+    for (double losse: losses)
+        cout << losse << endl;
+
     DiabetesData b("dataset2");
     vector<vector<double>> X = b.X_;
     vector<int> y = b.y_;
     LogisticRegression lg2(X, y);
     vector<int> results = LogisticRegression::predict(X);
-    cout << to_string(LogisticRegression::model_accuracy(results, b.y_)) + "%";
-
-    Plot a;
-    a.CreateLatexFile(results, y);
+    Plot::CreateLatexFile(results, y, 5);
 
 
     system("pdflatex statistic.tex");
