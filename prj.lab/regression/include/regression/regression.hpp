@@ -12,114 +12,27 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <algorithm>
 #include <cmath>
 
 using namespace std;
 
-class DiabetesData {
-public:
-    // Constructor
-    explicit DiabetesData(const string &data_name) {
-        load_data_from_file(data_name);
-    }
-
-    DiabetesData(double f1, double f2, double f3, double f4, double f5, double f6, double f7, double f8) {
-        features = {{f1},
-                    {f2},
-                    {f3},
-                    {f4},
-                    {f5},
-                    {f6},
-                    {f7},
-                    {f8}};
-        features = data_normalization(features);
-    }
-
-    void load_data_from_file(const string &data_name) {
-        fstream fin;
-        fin.open(data_name + ".csv", ios::in);
-        string line;
-        vector<vector<string>> parsedCsv;
-        if (fin.fail()) {
-            cout << "NOT OPEN";
-        }
-        while (getline(fin, line)) {
-            stringstream lineStream(line);
-            string cell;
-            vector<string> parsedRow;
-            while (getline(lineStream, cell, ',')) {
-                parsedRow.push_back(cell);
-            }
-
-            parsedCsv.push_back(parsedRow);
-        }
-        fin.close();
-        dataset = parsedCsv;
-
-        for (int i = 1; i < dataset.size(); i++) {
-            vector<double> cell;
-            for (int j = 0; j < dataset[1].size(); j++) {
-                if (j != dataset[1].size() - 1) {
-                    cell.push_back(stod(dataset[i][j]));
-                } else if (j == dataset[1].size() - 1) {
-                    y.push_back(stoi(dataset[i][j]));
-                }
-            }
-            X.push_back(cell);
-        }
-        X = data_normalization(X);
-    }
-
-    static vector<vector<double>> data_normalization(vector<vector<double>> X) {
-
-        vector<double> avarage;
-        for (int j = 0; j < X[0].size(); j++) {
-            double summ = 0;
-            for (auto &i: X) {
-                summ += i[j];
-            }
-            avarage.push_back(summ / X.size());
-        }
-
-        vector<double> deviation;
-        for (int j = 0; j < X[0].size(); j++) {
-            double summ = 0;
-            for (auto &i: X)
-                summ += pow((i[j] - avarage[j]), 2);
-
-            deviation.push_back(sqrt(summ / (X.size() - 1)));
-        }
-
-        for (int j = 0; j < X[0].size(); j++) {
-            for (auto &i: X)
-                i[j] = (i[j] - avarage[j]) / deviation[j];
-
-        }
-        return X;
-    }
-
-    vector<vector<double>> features;
-    vector<vector<string>> dataset;
-    vector<vector<double>> X;
-    vector<int> y;
-private:
-
-};
-
 class LogisticRegression {
 public:
-    vector<vector<double>> X;
-    vector<int> y;
-    vector<double> w;
-    vector<double> losses;
+    vector<vector<double>> X_;
+    vector<int> y_;
+    vector<double> w_;
+    vector<double> losses_;
+    vector<vector<double>> logloss_;
+    int max_iter_ = 0;
+    double lr_ = 0;
 
-    LogisticRegression(const vector<vector<double>> X, const vector<int> y) {
-        this->X = X;
-        this->y = y;
+
+    LogisticRegression(const vector<vector<double>> &X, const vector<int> &y) {
+        X_ = X;
+        y_ = y;
         for (int i = 0; i < X[0].size() + 1; i++) {
-            double a = (rand() % 1000);
-            w.push_back(a / 1000);
+            double a = rand() % 1000;
+            w_.push_back(a / 1000);
         }
 
     }
@@ -152,8 +65,12 @@ public:
     }
 
     vector<double> fit(int max_iter = 100, double lr = 0.1) {
-        vector<vector<double>> X_train = X;
-
+        if (max_iter <= 0 || lr <= 0) {
+            throw runtime_error("maximum iterations or learning rate < 0");
+        }
+        max_iter_ = max_iter;
+        lr_ = lr;
+        vector<vector<double>> X_train = X_;
         for (auto &i: X_train)
             i.insert(i.begin(), 1);
 
@@ -164,11 +81,11 @@ public:
                 X_trainT[j][i] = X_train[i][j];
             }
         }
-
-        for (int iter = 0; iter <= max_iter; iter++) {
+        for (int iter = 0; iter <= max_iter_; iter++) {
             vector<vector<double>> z;
-            for (int i = 0; i < sigmoid(logit(X_train, w)).size(); i++) {
-                z.push_back(sigmoid(logit(X_train, w))[i]);
+
+            for (int i = 0; i < sigmoid(logit(X_train, w_)).size(); i++) {
+                z.push_back(sigmoid(logit(X_train, w_))[i]);
             }
             unsigned long long int m = X_trainT.size();
             unsigned long long int n = X_trainT[0].size();
@@ -178,21 +95,22 @@ public:
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < p; j++) {
                     for (int k = 0; k < n; k++) {
-                        grad[i][j] += ((X_trainT[i][k] * (z[k][0] - y[k])) + 2*w[i]);
+                        grad[i][j] += ((X_trainT[i][k] * (z[k][0] - y_[k])) + 2 * w_[i]);
                     }
-                    grad[i][j] /= y.size();
+                    grad[i][j] /= y_.size();
                 }
             }
 
-            for (int i = 0; i < w.size(); i++) {
-                w[i] -= (grad[i][0] * lr);
+            for (int i = 0; i < w_.size(); i++) {
+                w_[i] -= (grad[i][0] * lr_);
             }
-            if ((!losses.empty()) && (loss(y, z) < *min_element(losses.begin(), losses.end()))) {
-                save_weights(w);
+            losses_.push_back(loss(y_, z));
+            if ((!losses_.empty()) && (loss(y_, z) < *min_element(losses_.begin(), losses_.end()))) {
+                save_weights(w_);
             }
-            losses.push_back(loss(y, z));
         }
-        return losses;
+        saveLossToCSV(losses_);
+        return losses_;
     }
 
     double loss(vector<int> y, vector<vector<double>> z) {
@@ -200,7 +118,7 @@ public:
         for (int i = 0; i < y.size(); i++) {
             loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
         }
-        for (double i: w)
+        for (double i: w_)
             loss += pow(i, 2);
 
         loss /= y.size();
@@ -208,29 +126,25 @@ public:
         return loss;
     }
 
-    static void save_weights(const std::vector<double> &weights) {
-        // проверяем, существует ли файл weights.txt
+    static void save_weights(const vector<double> &weights) {
         ofstream outfile("weights.txt", ios::out | ios::trunc);
         bool file_exists = outfile.good();
 
-        // если файл не существует, создаем его
         if (!file_exists) {
-            std::ofstream outfile("weights.txt");
+            ofstream outfile("weights.txt");
             outfile.close();
         }
 
-        // открываем файл weights.txt для записи
-        std::ofstream file("weights.txt", ios_base::app);
+        ofstream file("weights.txt", ios_base::app);
 
-        // записываем значения в файл
         for (double w: weights) {
-            file << w << std::endl;
+            file << w << endl;
         }
         file.close();
     }
 
     static vector<vector<double>> predict_proba(vector<vector<double>> feauters) {
-        vector<vector<double>> _f = std::move(feauters);
+        vector<vector<double>> _f = move(feauters);
         vector<double> w;
         for (auto &i: _f)
             i.insert(i.begin(), 1);
@@ -272,6 +186,20 @@ public:
         return round(accuracy * 100);
     }
 
+    static void saveLossToCSV(const vector<double> &losses) {
+        const string filename = "losses_.csv";
+        ofstream outputFile(filename);
+        if (outputFile.is_open()) {
+            outputFile << 1 << "," << 0 << endl;
+            for (int i = 0; i < losses.size(); i++) {
+                outputFile << losses[i] << "," << i + 1 << endl;
+            }
+            outputFile.close();
+            cout << "Data saved to losses_.csv successfully." << endl;
+        } else {
+            cerr << "Unable to open file: " << filename << endl;
+        }
+    }
 
 };
 
