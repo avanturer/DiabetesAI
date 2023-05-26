@@ -14,7 +14,5 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${CMAKE_CURRENT_SOURCE_DIR}/bi
 
 project(DiabetesAI)
 
-find_package(sciplot REQUIRED)
-
 add_subdirectory(prj.lab)
 add_subdirectory(prj.test)
