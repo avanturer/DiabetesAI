@@ -15,7 +15,49 @@ DiabetesData::DiabetesData(const string &file_path, const string &data_name) {
     load_data_from_file(file_path, data_name);
 }
 
+/**
+ * иаортаитатп
+ * @param file_path
+ * @param data_name
+ *
+ * \code
+ * fstream fin;
+    fin.open(file_path + "\\" + data_name + ".csv", ios::in);
+    string line;
+    vector<vector<string>> parsedCsv;
+    if (fin.fail()) {
+        cout << "NOT OPEN";
+    }
+    while (getline(fin, line)) {
+        stringstream lineStream(line);
+        string cell;
+        vector<string> parsedRow;
+        while (getline(lineStream, cell, ',')) {
+            parsedRow.push_back(cell);
+        }
+
+        parsedCsv.push_back(parsedRow);
+    }
+    fin.close();
+    dataset_ = parsedCsv;
+
+    for (int i = 1; i < dataset_.size(); i++) {
+        vector<double> cell;
+        for (int j = 0; j < dataset_[1].size(); j++) {
+            if (j != dataset_[1].size() - 1) {
+                cell.push_back(stod(dataset_[i][j]));
+            } else if (j == dataset_[1].size() - 1) {
+                y_.push_back(stoi(dataset_[i][j]));
+            }
+        }
+        X_.push_back(cell);
+    }
+    X_ = data_normalization(X_);
+ * \endcode
+ */
+
 void DiabetesData::load_data_from_file(const string &file_path, const string &data_name) {
+
     fstream fin;
     fin.open(file_path + "\\" + data_name + ".csv", ios::in);
     string line;
