@@ -1,7 +1,10 @@
 //
 // Created by hedge on 22.04.2023.
 //
-#include "regression/regression.hpp"
+#include <regression/regression.hpp>
+#include <diabetes_data/diabetes_data.hpp>
+#include <plot/plot.hpp>
+
 int main() {
     DiabetesData a("dataset1");
     vector<vector<double>> X1 = a.X;
