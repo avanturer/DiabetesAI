@@ -1,3 +1,3 @@
-add_subdirectory(prj.lib/regression)
-add_subdirectory(prj.lib/data)
-add_subdirectory(prj.lib/plot)
+add_subdirectory(prj.lab/regression)
+add_subdirectory(prj.lab/data)
+add_subdirectory(prj.lab/plot)
