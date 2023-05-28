@@ -105,13 +105,7 @@ private:
 
 class LogisticRegression {
 public:
-    vector<vector<double>> X_;
-    vector<int> y_;
-    vector<double> w_;
-    vector<double> losses_;
-    vector<vector<double>> logloss_;
-    int max_iter_ = 0;
-    double lr_ = 0;
+
 
 
     LogisticRegression(const vector<vector<double>> &X, const vector<int> &y) {
@@ -191,10 +185,11 @@ public:
             for (int i = 0; i < w_.size(); i++) {
                 w_[i] -= (grad[i][0] * lr_);
             }
-            losses_.push_back(loss(y_, z));
+
             if ((!losses_.empty()) && (loss(y_, z) < *min_element(losses_.begin(), losses_.end()))) {
                 save_weights(w_);
             }
+            losses_.push_back(loss(y_, z));
         }
         saveLossToCSV(losses_);
         return losses_;
@@ -287,7 +282,14 @@ public:
             cerr << "Unable to open file: " << filename << endl;
         }
     }
-
+private:
+    vector<vector<double>> X_;
+    vector<int> y_;
+    vector<double> w_;
+    vector<double> losses_;
+    vector<vector<double>> logloss_;
+    int max_iter_ = 0;
+    double lr_ = 0;
 };
 
 class Plot {
