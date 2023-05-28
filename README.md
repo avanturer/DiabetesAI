@@ -93,5 +93,9 @@ n1, n2
 CreateLatexFile — функция отвечает за создание "statistic.tex" файла.
 
 
+![image](https://github.com/avanturer/DiabetesAI/assets/72664467/5d9b25ae-7fb2-4a28-80a5-e9f327d29330)
+![image](https://github.com/avanturer/DiabetesAI/assets/72664467/c91c6739-9242-4111-a112-01f965712ebb)
+
+
 ### Оркин Р.Р
 ### ИТКН БПМ-22-4, НИТУ МИСиС
