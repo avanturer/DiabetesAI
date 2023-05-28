@@ -9,7 +9,7 @@
 #include <sstream>
 #include <string>
 #include <cmath>
-#include <data/data.hpp>
+#include "diabetes_data/diabetes_data.hpp"
 
 DiabetesData::DiabetesData(const string &data_name) {
     load_data_from_file(data_name);
