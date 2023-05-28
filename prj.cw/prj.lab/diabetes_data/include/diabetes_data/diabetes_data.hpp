@@ -20,9 +20,9 @@ using namespace std;
 class DiabetesData {
 public:
 
-    explicit DiabetesData(const string &data_name);
+    explicit DiabetesData(const string &file_path, const string &data_name);
 
-    void load_data_from_file(const string &data_name);
+    void load_data_from_file(const string &file_path, const string &data_name);
 
     explicit DiabetesData(const vector<vector<double>> &features);
 
