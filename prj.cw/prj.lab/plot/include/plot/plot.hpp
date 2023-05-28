@@ -15,9 +15,7 @@ using namespace std;
 class Plot {
 public:
     Plot() = default;
-
     static void CreateLatexFile(vector<int> results, vector<int> y, int max_iter = 100);
-
 private:
 };
 

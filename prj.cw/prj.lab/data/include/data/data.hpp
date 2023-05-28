@@ -26,15 +26,13 @@ public:
 
     explicit DiabetesData(const vector<vector<double>> &features);
 
-
     static vector<vector<double>> data_normalization(vector<vector<double>> X);
 
+private:
     vector<vector<double>> features_;
     vector<vector<string>> dataset_;
     vector<vector<double>> X_;
     vector<int> y_;
-
-private:
 
 };
 

@@ -18,15 +18,6 @@ using namespace std;
 
 class LogisticRegression {
 public:
-    vector<vector<double>> X_;
-    vector<int> y_;
-    vector<double> w_;
-    vector<double> losses_;
-    vector<vector<double>> logloss_;
-    int max_iter_ = 0;
-    double lr_ = 0;
-
-
     LogisticRegression(const vector<vector<double>> &X, const vector<int> &y);
 
     static vector<vector<double>> logit(vector<vector<double>> X, vector<double> w);
@@ -47,6 +38,14 @@ public:
 
     static void saveLossToCSV(const vector<double> &losses);
 
+private:
+    vector<vector<double>> X_;
+    vector<int> y_;
+    vector<double> w_;
+    vector<double> losses_;
+    vector<vector<double>> logloss_;
+    int max_iter_ = 0;
+    double lr_ = 0;
 };
 
 #endif
