@@ -17,7 +17,7 @@ DiabetesData::DiabetesData(const string &data_name) {
 
 void DiabetesData::load_data_from_file(const string &data_name) {
     fstream fin;
-    fin.open("/data/" + data_name + ".csv", ios::in);
+    fin.open(data_name + ".csv", ios::in);
     string line;
     vector<vector<string>> parsedCsv;
     if (fin.fail()) {
@@ -87,4 +87,12 @@ vector<vector<double>> DiabetesData::data_normalization(vector<vector<double>> X
         }
     }
     return X;
+}
+
+vector<vector<double>> DiabetesData::get_X() {
+    return X_;
+}
+
+vector<int> DiabetesData::get_y() {
+    return y_;
 }

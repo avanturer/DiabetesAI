@@ -3,8 +3,8 @@
 //
 
 #pragma once
-#ifndef DIABETES_AI_HPP_09052023
-#define DIABETES_AI_HPP_09052023
+#ifndef DIABETES_AI_HPP_09052023DDAT
+#define DIABETES_AI_HPP_09052023DDAT
 
 #include <iostream>
 #include <utility>
@@ -28,12 +28,15 @@ public:
 
     static vector<vector<double>> data_normalization(vector<vector<double>> X);
 
+    vector<vector<double>> get_X ();
+
+    vector<int> get_y ();
+
 private:
     vector<vector<double>> features_;
     vector<vector<string>> dataset_;
     vector<vector<double>> X_;
     vector<int> y_;
-
 };
 
 #endif
