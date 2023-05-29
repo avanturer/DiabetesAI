@@ -10,14 +10,41 @@
 #include <cmath>
 #include <regression/regression.hpp>
 
-LogisticRegression::LogisticRegression(const vector<vector<double>> &X, const vector<int> &y) {
-    X_ = X;
+/**
+ * \code
+ *  X_ = X;
     y_ = y;
     for (int i = 0; i < X[0].size() + 1; i++) {
         double a = rand() % 1000;
         w_.push_back(a / 1000);
     }
+ * \endcode
+ */
+LogisticRegression::LogisticRegression(const vector<vector<double>> &X, const vector<int> &y) {
+    X_ = X;
+    y_ = y;
+
+    for (int i = 0; i < X[0].size() + 1; i++) {
+        double a = rand() % 1000;
+        w_.push_back(a / 1000);
+    }
 }
+
+/**
+ * \code
+ *  unsigned long long int m = X.size();
+    unsigned long long int n = X[0].size();
+    vector<vector<double>> logits(m, vector<double>(1, 0.0));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < 1; j++) {
+            for (int k = 0; k < n; k++) {
+                logits[i][j] += X[i][k] * w[k];
+            }
+        }
+    }
+    return logits;
+ * \endcode
+ */
 
 vector<vector<double>> LogisticRegression::logit(vector<vector<double>> X, vector<double> w) {
     unsigned long long int m = X.size();
@@ -33,6 +60,20 @@ vector<vector<double>> LogisticRegression::logit(vector<vector<double>> X, vecto
     return logits;
 }
 
+/**
+ * \code
+ * vector<vector<double>> sigmoids;
+    for (int i = 0; i < logits.size(); i++) {
+        vector<double> sigmoid;
+        sigmoid.reserve(logits[0].size());
+        for (int j = 0; j < logits[0].size(); j++)
+            sigmoid.push_back(1 / (1 + exp(-logits[i][j])));
+
+        sigmoids.push_back(sigmoid);
+    }
+    return sigmoids;
+    \endcode
+ */
 vector<vector<double>> LogisticRegression::sigmoid(vector<vector<double>> logits) {
     vector<vector<double>> sigmoids;
     for (int i = 0; i < logits.size(); i++) {
@@ -48,7 +89,7 @@ vector<vector<double>> LogisticRegression::sigmoid(vector<vector<double>> logits
 
 vector<double> LogisticRegression::fit(int max_iter, double lr) {
     if (max_iter <= 0 || lr <= 0) {
-        throw runtime_error("maximum iterations or learning rate < 0");
+        throw runtime_error("maximum iterations or learning rate <= 0");
     }
     max_iter_ = max_iter;
     lr_ = lr;
@@ -96,6 +137,20 @@ vector<double> LogisticRegression::fit(int max_iter, double lr) {
     return losses_;
 }
 
+/**
+ * \code
+ * double loss = 0;
+    for (int i = 0; i < y.size(); i++) {
+        loss += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));
+    }
+    for (double i: w_)
+        loss += pow(i, 2);
+
+    loss /= y.size();
+    loss *= -1;
+    return loss;
+    \endcode
+ */
 double LogisticRegression::loss(vector<int> y, vector<vector<double>> z) {
     double loss = 0;
     for (int i = 0; i < y.size(); i++) {

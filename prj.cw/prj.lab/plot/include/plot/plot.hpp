@@ -25,10 +25,15 @@ public:
     */
     Plot() = default;
     /**
-     * Функция создает .tex файл по результатам работы модели модели, содержащий в себе функцию потерь и confusion matrix
+     * Функция создает statistic.tex файл по результатам работы модели модели, содержащий в себе функцию потерь и confusion matrix
      * @param results вектор типа int, содержащий в себе результаты предсказаний модели
      * @param y вектор типа int, содержащий в себе действительный результат
      * @param max_iter переменная типа int, содержащая в себе кол-во итераций, которая совершила модель при обучении (по умолчанию 100)
+     * Пример:
+     *
+     * ![Пример statistic.tex](C:\Users\hedge\CLionProjects\DiabetesAI\prj.cw\prj.lab\data\img_1.png)
+     *
+     * ![Пример statistic.tex](C:\Users\hedge\CLionProjects\DiabetesAI\prj.cw\prj.lab\data\img_2.png)
      */
     static void CreateLatexFile(vector<int> results, vector<int> y, int max_iter = 100);
 private:

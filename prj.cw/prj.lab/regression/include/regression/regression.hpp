@@ -23,18 +23,38 @@ using namespace std;
 class LogisticRegression {
 public:
     /**
-     * Конструктор
-     * @param X
-     * @param y
+     * Конструктор сохраняет поступившие данные и рандомит веса для дальнейшей работы
+     * @param X Двумерный вектор типа double, содержащий в себе __нормализованную__ выборку
+     * @param y Вектор типа int, содержащий в себе итог(outсome)
      */
     LogisticRegression(const vector<vector<double>> &X, const vector<int> &y);
 
+    /**
+     * Функция подсчитывает логиты всей выборки по текущим весам и возвращает их
+     * @param X __Транспонированный__ двумерный вектор типа double, содержащий в себе выборку
+     * @param w Вектор весов типа double
+     * @return Двумерный вектор логитов типа double
+     * \f[
+     * \sum_{i=0}^{n} (b + w_i*x_i))^2
+     * \f]
+     */
     static vector<vector<double>> logit(vector<vector<double>> X, vector<double> w);
 
+    /**
+     * Функция подсчитывает сигмоиды по полученным логитам
+     * @param logits Двумерный вектор логитов типа double
+     * @return двумерный вектор типа double, содержащий в себе сигмоиды для каждого логита
+     */
     static vector<vector<double>> sigmoid(vector<vector<double>> logits);
 
     vector<double> fit(int max_iter = 100, double lr = 0.1);
 
+    /**
+     * Функция подсчитывает "функцию потерь" нашей логистической регрессии с использованием l2 - регуляризации, основываясь на у исходе(outcome) и сигмоидах.
+     * @param y Вектор типа int, содержащий в себе итог(outсome) для нашей выборки
+     * @param z Двумерный вектор типа double, содержащий в себе сигмоиды для каждого логита
+     * @return Число типа double показывающее текущее значение функции потерь
+     */
     double loss(vector<int> y, vector<vector<double>> z);
 
     static void save_weights(const vector<double> &weights);
