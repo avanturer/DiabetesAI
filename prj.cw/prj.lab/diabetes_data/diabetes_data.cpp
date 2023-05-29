@@ -11,15 +11,17 @@
 #include <cmath>
 #include <diabetes_data/diabetes_data.hpp>
 
+
+/**
+ * \code
+ * load_data_from_file(file_path, data_name);
+ * \endcode
+ */
 DiabetesData::DiabetesData(const string &file_path, const string &data_name) {
     load_data_from_file(file_path, data_name);
 }
 
 /**
- * иаортаитатп
- * @param file_path
- * @param data_name
- *
  * \code
  * fstream fin;
     fin.open(file_path + "\\" + data_name + ".csv", ios::in);
@@ -91,15 +93,52 @@ void DiabetesData::load_data_from_file(const string &file_path, const string &da
     }
     X_ = data_normalization(X_);
 }
-
+/**
+ * \code
+ * if (features.size() != dataset_[0].size() || features.empty())
+        throw runtime_error(
+                "The number of parameters does not match the number of dataset parameters, check the correctness of the entered data and check which dataset you submitted");
+    features_ = data_normalization(features);
+ * \endcode
+ */
 DiabetesData::DiabetesData(const vector<vector<double>> &features) {
     if (features.size() != dataset_[0].size() || features.empty())
         throw runtime_error(
                 "The number of parameters does not match the number of dataset parameters, check the correctness of the entered data and check which dataset you submitted");
-
     features_ = data_normalization(features);
 }
 
+/**
+ * \code
+ * vector<double> avarage;
+    for (int j = 0; j < X[0].size(); j++) {
+        double summ = 0;
+        for (auto &i: X) {
+            summ += i[j];
+        }
+        avarage.push_back(summ / X.size());
+    }
+
+    vector<double> deviation;
+    for (int j = 0; j < X[0].size(); j++) {
+        double summ = 0;
+        for (auto &i: X)
+            summ += pow((i[j] - avarage[j]), 2);
+
+        deviation.push_back(sqrt(summ / (X.size() - 1)));
+    }
+
+    for (int j = 0; j < X[0].size(); j++) {
+        for (auto &i: X) {
+            i[j] = (i[j] - avarage[j]) / deviation[j];
+            if (i[j] > 3 * deviation[j]) {
+                i[j] = 0;
+            }
+        }
+    }
+    return X;
+ * \endcode
+ */
 vector<vector<double>> DiabetesData::data_normalization(vector<vector<double>> X) {
 
     vector<double> avarage;
@@ -131,10 +170,20 @@ vector<vector<double>> DiabetesData::data_normalization(vector<vector<double>> X
     return X;
 }
 
+/**
+ * \code
+ * return X_;
+ * \endcode
+ */
 vector<vector<double>> DiabetesData::get_X() {
     return X_;
 }
 
+/**
+ * \code
+ * return y_;
+ * \endcode
+ */
 vector<int> DiabetesData::get_y() {
     return y_;
 }

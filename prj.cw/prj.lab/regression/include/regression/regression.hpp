@@ -16,8 +16,17 @@
 
 using namespace std;
 
+/**
+ * \brief Класс LogisticRegression предназначен для обучения модели на основе лог.регрессии
+ * \details Класс LogisticRegression предоставляет возможность обучить модель, основанную на лог.регрессии, путем градиентного спуска по функции потерь с использованием R2 - регуляризации
+ */
 class LogisticRegression {
 public:
+    /**
+     * Конструктор
+     * @param X
+     * @param y
+     */
     LogisticRegression(const vector<vector<double>> &X, const vector<int> &y);
 
     static vector<vector<double>> logit(vector<vector<double>> X, vector<double> w);
@@ -39,12 +48,31 @@ public:
     static void saveLossToCSV(const vector<double> &losses);
 
 private:
+    /**
+     * Двумерный вектор типа double, содержащий в себе __нормализованную__ выборку
+     */
     vector<vector<double>> X_;
+    /**
+     * Вектор типа int, содержащий в себе итог(outсome)
+     */
     vector<int> y_;
+    /**
+     * Вектор типа double, содержащий в себе веса наней модели
+     */
     vector<double> w_;
+    /**
+     * Вектор типа double, содержащий в себе результаты функции потерь на каждой итерации модели при обучении
+     */
     vector<double> losses_;
-    vector<vector<double>> logloss_;
+    /**
+     * Переменная типа int, содержащая в себе кол-во итераций, которые будет совершать модель при обучении
+     */
     int max_iter_ = 0;
+    /**
+     * Переменная типа double, содержащая в себе коэффициент скорости обучения модели
+     *
+     * ![Пример learning rate](C:\Users\hedge\CLionProjects\DiabetesAI\prj.cw\prj.lab\data\img.png)
+     */
     double lr_ = 0;
 };
 
