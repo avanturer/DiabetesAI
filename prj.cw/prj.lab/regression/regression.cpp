@@ -23,7 +23,6 @@
 LogisticRegression::LogisticRegression(const vector<vector<double>> &X, const vector<int> &y) {
     X_ = X;
     y_ = y;
-
     for (int i = 0; i < X[0].size() + 1; i++) {
         double a = rand() % 1000;
         w_.push_back(a / 1000);
@@ -164,6 +163,7 @@ double LogisticRegression::loss(vector<int> y, vector<vector<double>> z) {
     return loss;
 }
 
+
 void LogisticRegression::save_weights(const vector<double> &weights) {
     ofstream outfile("weights.txt", ios::out | ios::trunc);
     bool file_exists = outfile.good();
@@ -182,7 +182,7 @@ void LogisticRegression::save_weights(const vector<double> &weights) {
 }
 
 vector<vector<double>> LogisticRegression::predict_proba(vector<vector<double>> feauters) {
-    vector<vector<double>> _f = move(feauters);
+    vector<vector<double>> _f = std::move(feauters);
     vector<double> w;
     for (auto &i: _f)
         i.insert(i.begin(), 1);
