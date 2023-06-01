@@ -68,7 +68,7 @@ PROJECT_LOGO           = C:/Users/hedge/Downloads/8-pmftJWzscZHymkC.png
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = C:/Users/hedge/CLionProjects/DiabetesAI/prj.cw
+OUTPUT_DIRECTORY       = doxygen
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create up to 4096
 # sub-directories (in 2 levels) under the output directory of each output format
@@ -1028,7 +1028,8 @@ FILE_PATTERNS          = *.c \
                          *.vhdl \
                          *.ucf \
                          *.qsf \
-                         *.ice
+                         *.ice \
+                         *.cpp
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.

@@ -1,6 +1,6 @@
-add_executable(main main.cpp)
-target_link_libraries(main regression)
-target_link_libraries(main diabetes_data)
-target_link_libraries(main plot)
+add_executable(libtest libtest.cpp)
+target_link_libraries(libtest regression)
+target_link_libraries(libtest diabetes_data)
+target_link_libraries(libtest plot)
 
 

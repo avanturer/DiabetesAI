@@ -1,0 +1,347 @@
+\doxysection{Класс Logistic\+Regression}
+\hypertarget{class_logistic_regression}{}\label{class_logistic_regression}\index{LogisticRegression@{LogisticRegression}}
+
+
+Класс \doxylink{class_logistic_regression}{Logistic\+Regression} предназначен для обучения модели на основе лог.\+регрессии  
+
+
+
+
+{\ttfamily \#include $<$regression.\+hpp$>$}
+
+\doxysubsubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_logistic_regression_a6c917ff10fc2084739c902c84c3d18e5}{Logistic\+Regression}} (const vector$<$ vector$<$ double $>$ $>$ \&X, const vector$<$ int $>$ \&y)
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{class_logistic_regression_a48457103e07c0f4b27d3edc8daa85877}{fit}} (int max\+\_\+iter=100, double lr=0.\+1)
+\item 
+double \mbox{\hyperlink{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}{loss}} (vector$<$ int $>$ y, vector$<$ vector$<$ double $>$ $>$ z)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Открытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+static vector$<$ vector$<$ double $>$ $>$ \mbox{\hyperlink{class_logistic_regression_add90ffc867967ac392b642ca81c64c1e}{logit}} (vector$<$ vector$<$ double $>$ $>$ X, vector$<$ double $>$ w)
+\item 
+static vector$<$ vector$<$ double $>$ $>$ \mbox{\hyperlink{class_logistic_regression_a14b5b8b957149cec67d9d566554a2d28}{sigmoid}} (vector$<$ vector$<$ double $>$ $>$ logits)
+\item 
+static void \mbox{\hyperlink{class_logistic_regression_a13c6d61adff981f7e7fa7f7b945fb986}{save\+\_\+weights}} (const vector$<$ double $>$ \&weights)
+\item 
+static vector$<$ vector$<$ double $>$ $>$ \mbox{\hyperlink{class_logistic_regression_a9fef20236dd4323292c541ba5072b9de}{predict\+\_\+proba}} (vector$<$ vector$<$ double $>$ $>$ feauters)
+\item 
+static vector$<$ int $>$ \mbox{\hyperlink{class_logistic_regression_a90dd12a57fa04710159601253094b6a6}{predict}} (const vector$<$ vector$<$ double $>$ $>$ \&feauters, double threshold=0.\+5)
+\item 
+static int \mbox{\hyperlink{class_logistic_regression_a33085e510b1b4b3a0aa96165874eadc4}{model\+\_\+accuracy}} (vector$<$ int $>$ results, vector$<$ int $>$ y)
+\item 
+static void \mbox{\hyperlink{class_logistic_regression_ac03a1a3d62ddfae4922e3b87f4df6ff2}{save\+Loss\+To\+CSV}} (const vector$<$ double $>$ \&losses)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ vector$<$ double $>$ $>$ \mbox{\hyperlink{class_logistic_regression_aebf4fd5462f1593edf37444870278632}{X\+\_\+}}
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_logistic_regression_a844e8b75a0b428f07dbbd75b0ceef499}{y\+\_\+}}
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{class_logistic_regression_a809fd1af9406c3346df5e3d73c0c0e8f}{w\+\_\+}}
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{class_logistic_regression_afc792a8aa796fcf31ca1411435cec45f}{losses\+\_\+}}
+\item 
+int \mbox{\hyperlink{class_logistic_regression_aaa14ae296067296826728e4d7066aa2c}{max\+\_\+iter\+\_\+}} = 0
+\item 
+double \mbox{\hyperlink{class_logistic_regression_a853245cbfd4c24b9286985bf38fc386b}{lr\+\_\+}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс \doxylink{class_logistic_regression}{Logistic\+Regression} предназначен для обучения модели на основе лог.\+регрессии 
+
+Класс \doxylink{class_logistic_regression}{Logistic\+Regression} предоставляет возможность обучить модель, основанную на лог.\+регрессии, путем градиентного спуска по функции потерь с использованием R2 -\/ регуляризации 
+
+\doxysubsection{Конструктор(ы)}
+\Hypertarget{class_logistic_regression_a6c917ff10fc2084739c902c84c3d18e5}\label{class_logistic_regression_a6c917ff10fc2084739c902c84c3d18e5} 
+\index{LogisticRegression@{LogisticRegression}!LogisticRegression@{LogisticRegression}}
+\index{LogisticRegression@{LogisticRegression}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{LogisticRegression()}{LogisticRegression()}}
+{\footnotesize\ttfamily Logistic\+Regression\+::\+Logistic\+Regression (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ double $>$ $>$ \&}]{X,  }\item[{const vector$<$ int $>$ \&}]{y }\end{DoxyParamCaption})}
+
+Конструктор сохраняет поступившие данные и рандомит веса для дальнейшей работы 
+\begin{DoxyParams}{Аргументы}
+{\em X} & Двумерный вектор типа double, содержащий в себе {\bfseries{нормализованную}} выборку \\
+\hline
+{\em y} & Вектор типа int, содержащий в себе итог(outсome)\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_logistic_regression_aebf4fd5462f1593edf37444870278632}{X\_}}\ =\ X;}
+\DoxyCodeLine{\mbox{\hyperlink{class_logistic_regression_a844e8b75a0b428f07dbbd75b0ceef499}{y\_}}\ =\ y;}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ X[0].size()\ +\ 1;\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ rand()\ \%\ 1000;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_logistic_regression_a809fd1af9406c3346df5e3d73c0c0e8f}{w\_}}.push\_back(a\ /\ 1000);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Методы}
+\Hypertarget{class_logistic_regression_a48457103e07c0f4b27d3edc8daa85877}\label{class_logistic_regression_a48457103e07c0f4b27d3edc8daa85877} 
+\index{LogisticRegression@{LogisticRegression}!fit@{fit}}
+\index{fit@{fit}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{fit()}{fit()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Logistic\+Regression\+::fit (\begin{DoxyParamCaption}\item[{int}]{max\+\_\+iter = {\ttfamily 100},  }\item[{double}]{lr = {\ttfamily 0.1} }\end{DoxyParamCaption})}
+
+Функция, обучающая нашу модель по градиенту функции потерь логистической регрессии 
+\begin{DoxyParams}{Аргументы}
+{\em max\+\_\+iter} & Переменная типа int, содержащая в себе кол-\/во итераций, которые будет совершать модель при обучении \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Предупреждения}
+Большие значение дают большую точность, но значительно увеличивают время обучения, для быстрого результата советуем использовать значение 10 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Аргументы}
+{\em lr} & Переменная типа double, содержащая в себе коэффициент скорости обучения модели \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Вектор типа double, содержащий в себе результаты функции потерь на каждой итерации модели при обучении 
+\end{DoxyReturn}
+\Hypertarget{class_logistic_regression_add90ffc867967ac392b642ca81c64c1e}\label{class_logistic_regression_add90ffc867967ac392b642ca81c64c1e} 
+\index{LogisticRegression@{LogisticRegression}!logit@{logit}}
+\index{logit@{logit}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{logit()}{logit()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ double $>$ $>$ Logistic\+Regression\+::logit (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ double $>$ $>$}]{X,  }\item[{vector$<$ double $>$}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Функция подсчитывает логиты всей выборки по текущим весам и возвращает их 
+\begin{DoxyParams}{Аргументы}
+{\em X} & {\bfseries{Транспонированный}} двумерный вектор типа double, содержащий в себе выборку \\
+\hline
+{\em w} & Вектор весов типа double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Двумерный вектор логитов типа double
+\end{DoxyReturn}
+Формула по который мы вычисляем логиты\+:  \[
+\sum_{i=0}^{n} b + w_i*x_i
+\]
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ m\ =\ X.size();}
+\DoxyCodeLine{\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ n\ =\ X[0].size();}
+\DoxyCodeLine{vector<vector<double>>\ logits(m,\ vector<double>(1,\ 0.0));}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ m;\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 1;\ j++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ n;\ k++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ logits[i][j]\ +=\ X[i][k]\ *\ w[k];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ logits;}
+
+\end{DoxyCode}
+ \Hypertarget{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}\label{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22} 
+\index{LogisticRegression@{LogisticRegression}!loss@{loss}}
+\index{loss@{loss}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{loss()}{loss()}}
+{\footnotesize\ttfamily double Logistic\+Regression\+::loss (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{y,  }\item[{vector$<$ vector$<$ double $>$ $>$}]{z }\end{DoxyParamCaption})}
+
+Функция подсчитывает \"{}функцию потерь\"{} нашей логистической регрессии с использованием l2 -\/ регуляризации, основываясь на у исходе(outcome) и полученных сигмоидах. 
+\begin{DoxyParams}{Аргументы}
+{\em y} & Вектор типа int, содержащий в себе итог(outсome) для нашей выборки \\
+\hline
+{\em z} & Двумерный вектор типа double, содержащий в себе сигмоиды для каждого логита \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Число типа double показывающее текущее значение функции потерь
+\end{DoxyReturn}
+Формула по который мы вычисляем функцию потерь\+:  \[
+\sum_{i=0}^{n} (y_i * \log(\sigma_i) + (1 - y_i) * \log(1 - \sigma_i)) + \sum_{i=0}^{l} w_i ^ 2;
+\]
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}{loss}}\ =\ 0;}
+\DoxyCodeLine{\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ y.size();\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}{loss}}\ +=\ (y[i]\ *\ (log(z[i][0]))\ +\ (1\ -\/\ y[i])\ *\ log(1\ -\/\ z[i][0]));}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{double}\ i:\ \mbox{\hyperlink{class_logistic_regression_a809fd1af9406c3346df5e3d73c0c0e8f}{w\_}})}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}{loss}}\ +=\ pow(i,\ 2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \mbox{\hyperlink{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}{loss}}\ /=\ y.size();}
+\DoxyCodeLine{\ \mbox{\hyperlink{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}{loss}}\ *=\ -\/1;}
+\DoxyCodeLine{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}{loss}};}
+
+\end{DoxyCode}
+ \Hypertarget{class_logistic_regression_a33085e510b1b4b3a0aa96165874eadc4}\label{class_logistic_regression_a33085e510b1b4b3a0aa96165874eadc4} 
+\index{LogisticRegression@{LogisticRegression}!model\_accuracy@{model\_accuracy}}
+\index{model\_accuracy@{model\_accuracy}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{model\_accuracy()}{model\_accuracy()}}
+{\footnotesize\ttfamily int Logistic\+Regression\+::model\+\_\+accuracy (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{results,  }\item[{vector$<$ int $>$}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Функция показывает точность модели в виде процентов 
+\begin{DoxyParams}{Аргументы}
+{\em results} & вектор предсказанных результатов тестовой выборки типа int \\
+\hline
+{\em y} & вектор действительных результатов тестовой выборки типа int \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+целое число типа int, показывающее точность модели 
+\end{DoxyReturn}
+\Hypertarget{class_logistic_regression_a90dd12a57fa04710159601253094b6a6}\label{class_logistic_regression_a90dd12a57fa04710159601253094b6a6} 
+\index{LogisticRegression@{LogisticRegression}!predict@{predict}}
+\index{predict@{predict}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Logistic\+Regression\+::predict (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ double $>$ $>$ \&}]{feauters,  }\item[{double}]{threshold = {\ttfamily 0.5} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Функция возвращает предсказания модели по предоставленной выборке 
+\begin{DoxyParams}{Аргументы}
+{\em feauters} & двумерный вектор типа double, содержащий в себе выборку \\
+\hline
+{\em threshold} & переменная типа double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+вектор предсказаний типа int 
+\end{DoxyReturn}
+\Hypertarget{class_logistic_regression_a9fef20236dd4323292c541ba5072b9de}\label{class_logistic_regression_a9fef20236dd4323292c541ba5072b9de} 
+\index{LogisticRegression@{LogisticRegression}!predict\_proba@{predict\_proba}}
+\index{predict\_proba@{predict\_proba}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{predict\_proba()}{predict\_proba()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ double $>$ $>$ Logistic\+Regression\+::predict\+\_\+proba (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ double $>$ $>$}]{feauters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Функция выдает сигмоиды по выборке с использованием наилучших весов, наша функция предсказаний 
+\begin{DoxyParams}{Аргументы}
+{\em feauters} & двумерный вектор типа double, содержащий в себе выборку \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+двумерный вектор типа double, содержащий в себе сигмоиды для каждого логита нашей выборки 
+\end{DoxyReturn}
+\Hypertarget{class_logistic_regression_a13c6d61adff981f7e7fa7f7b945fb986}\label{class_logistic_regression_a13c6d61adff981f7e7fa7f7b945fb986} 
+\index{LogisticRegression@{LogisticRegression}!save\_weights@{save\_weights}}
+\index{save\_weights@{save\_weights}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{save\_weights()}{save\_weights()}}
+{\footnotesize\ttfamily void Logistic\+Regression\+::save\+\_\+weights (\begin{DoxyParamCaption}\item[{const vector$<$ double $>$ \&}]{weights }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Функция сохраняет наилучшие найденные веса в виде weights.\+txt файла, основываясь на функции потерь
+
+Принцип сохранения весов в функции \doxylink{class_logistic_regression_a48457103e07c0f4b27d3edc8daa85877}{fit()}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{f((!\mbox{\hyperlink{class_logistic_regression_afc792a8aa796fcf31ca1411435cec45f}{losses\_}}.empty())\ \&\&\ (\mbox{\hyperlink{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}{loss}}(\mbox{\hyperlink{class_logistic_regression_a844e8b75a0b428f07dbbd75b0ceef499}{y\_}},\ z)\ <\ *min\_element(\mbox{\hyperlink{class_logistic_regression_afc792a8aa796fcf31ca1411435cec45f}{losses\_}}.begin(),\ \mbox{\hyperlink{class_logistic_regression_afc792a8aa796fcf31ca1411435cec45f}{losses\_}}.end())))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{class_logistic_regression_a13c6d61adff981f7e7fa7f7b945fb986}{save\_weights}}(\mbox{\hyperlink{class_logistic_regression_a809fd1af9406c3346df5e3d73c0c0e8f}{w\_}});}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{\ \mbox{\hyperlink{class_logistic_regression_afc792a8aa796fcf31ca1411435cec45f}{losses\_}}.push\_back(\mbox{\hyperlink{class_logistic_regression_a6d4e290d4c3a49290430251f676a1c22}{loss}}(\mbox{\hyperlink{class_logistic_regression_a844e8b75a0b428f07dbbd75b0ceef499}{y\_}},\ z));}
+
+\end{DoxyCode}
+ 
+\begin{DoxyParams}{Аргументы}
+{\em weights} & двумерный вектор весов типа double \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_logistic_regression_ac03a1a3d62ddfae4922e3b87f4df6ff2}\label{class_logistic_regression_ac03a1a3d62ddfae4922e3b87f4df6ff2} 
+\index{LogisticRegression@{LogisticRegression}!saveLossToCSV@{saveLossToCSV}}
+\index{saveLossToCSV@{saveLossToCSV}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{saveLossToCSV()}{saveLossToCSV()}}
+{\footnotesize\ttfamily void Logistic\+Regression\+::save\+Loss\+To\+CSV (\begin{DoxyParamCaption}\item[{const vector$<$ double $>$ \&}]{losses }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Функция сохраняет \"{}функции потерь\"{} нашей модели на каждой итерации в файл losses\+\_\+.\+csv вида loss,iteration\+:
+
+\[
+
+1,0
+
+0.80,1
+
+0.5,2
+
+...
+
+n1, n2
+\] 
+\begin{DoxyParams}{Аргументы}
+{\em losses} & веткор потерь нашей модели на каждой итерации типа double \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_logistic_regression_a14b5b8b957149cec67d9d566554a2d28}\label{class_logistic_regression_a14b5b8b957149cec67d9d566554a2d28} 
+\index{LogisticRegression@{LogisticRegression}!sigmoid@{sigmoid}}
+\index{sigmoid@{sigmoid}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{sigmoid()}{sigmoid()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ double $>$ $>$ Logistic\+Regression\+::sigmoid (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ double $>$ $>$}]{logits }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Функция подсчитывает сигмоиды по полученным логитам 
+\begin{DoxyParams}{Аргументы}
+{\em logits} & Двумерный вектор логитов типа double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+двумерный вектор типа double, содержащий в себе сигмоиды для каждого логита
+\end{DoxyReturn}
+Формула по который мы вычисляем логиты\+:  \[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vector<vector<double>>\ sigmoids;}
+\DoxyCodeLine{\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ logits.size();\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ vector<double>\ \mbox{\hyperlink{class_logistic_regression_a14b5b8b957149cec67d9d566554a2d28}{sigmoid}};}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{class_logistic_regression_a14b5b8b957149cec67d9d566554a2d28}{sigmoid}}.reserve(logits[0].size());}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ logits[0].size();\ j++)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_logistic_regression_a14b5b8b957149cec67d9d566554a2d28}{sigmoid}}.push\_back(1\ /\ (1\ +\ exp(-\/logits[i][j])));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ sigmoids.push\_back(\mbox{\hyperlink{class_logistic_regression_a14b5b8b957149cec67d9d566554a2d28}{sigmoid}});}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{\ \textcolor{keywordflow}{return}\ sigmoids;}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Данные класса}
+\Hypertarget{class_logistic_regression_afc792a8aa796fcf31ca1411435cec45f}\label{class_logistic_regression_afc792a8aa796fcf31ca1411435cec45f} 
+\index{LogisticRegression@{LogisticRegression}!losses\_@{losses\_}}
+\index{losses\_@{losses\_}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{losses\_}{losses\_}}
+{\footnotesize\ttfamily vector$<$double$>$ Logistic\+Regression\+::losses\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Вектор типа double, содержащий в себе результаты функции потерь на каждой итерации модели при обучении \Hypertarget{class_logistic_regression_a853245cbfd4c24b9286985bf38fc386b}\label{class_logistic_regression_a853245cbfd4c24b9286985bf38fc386b} 
+\index{LogisticRegression@{LogisticRegression}!lr\_@{lr\_}}
+\index{lr\_@{lr\_}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{lr\_}{lr\_}}
+{\footnotesize\ttfamily double Logistic\+Regression\+::lr\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+Переменная типа double, содержащая в себе коэффициент скорости обучения модели
+
+ \Hypertarget{class_logistic_regression_aaa14ae296067296826728e4d7066aa2c}\label{class_logistic_regression_aaa14ae296067296826728e4d7066aa2c} 
+\index{LogisticRegression@{LogisticRegression}!max\_iter\_@{max\_iter\_}}
+\index{max\_iter\_@{max\_iter\_}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{max\_iter\_}{max\_iter\_}}
+{\footnotesize\ttfamily int Logistic\+Regression\+::max\+\_\+iter\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+Переменная типа int, содержащая в себе кол-\/во итераций, которые будет совершать модель при обучении \Hypertarget{class_logistic_regression_a809fd1af9406c3346df5e3d73c0c0e8f}\label{class_logistic_regression_a809fd1af9406c3346df5e3d73c0c0e8f} 
+\index{LogisticRegression@{LogisticRegression}!w\_@{w\_}}
+\index{w\_@{w\_}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{w\_}{w\_}}
+{\footnotesize\ttfamily vector$<$double$>$ Logistic\+Regression\+::w\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Вектор типа double, содержащий в себе веса наней модели \Hypertarget{class_logistic_regression_aebf4fd5462f1593edf37444870278632}\label{class_logistic_regression_aebf4fd5462f1593edf37444870278632} 
+\index{LogisticRegression@{LogisticRegression}!X\_@{X\_}}
+\index{X\_@{X\_}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{X\_}{X\_}}
+{\footnotesize\ttfamily vector$<$vector$<$double$>$ $>$ Logistic\+Regression\+::\+X\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Двумерный вектор типа double, содержащий в себе {\bfseries{нормализованную}} выборку \Hypertarget{class_logistic_regression_a844e8b75a0b428f07dbbd75b0ceef499}\label{class_logistic_regression_a844e8b75a0b428f07dbbd75b0ceef499} 
+\index{LogisticRegression@{LogisticRegression}!y\_@{y\_}}
+\index{y\_@{y\_}!LogisticRegression@{LogisticRegression}}
+\doxysubsubsection{\texorpdfstring{y\_}{y\_}}
+{\footnotesize\ttfamily vector$<$int$>$ Logistic\+Regression\+::y\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Вектор типа int, содержащий в себе итог(outсome) 
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+prj.\+lab/regression/include/regression/regression.\+hpp\item 
+prj.\+lab/regression/regression.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\doxysection{Файл prj.\+test/libtest.cpp}
+\hypertarget{libtest_8cpp}{}\label{libtest_8cpp}\index{prj.test/libtest.cpp@{prj.test/libtest.cpp}}
+
+
+Тестовое приложение библиотеки Diabetes\+AI.  
+
+
+{\ttfamily \#include $<$regression/regression.\+hpp$>$}\newline
+{\ttfamily \#include $<$diabetes\+\_\+data/diabetes\+\_\+data.\+hpp$>$}\newline
+{\ttfamily \#include $<$plot/plot.\+hpp$>$}\newline
+\doxysubsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{libtest_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Тестовое приложение библиотеки Diabetes\+AI. 
+
+В данном приложении мы тестируем основные функции и методы библиотеки, а именно\+: обработка датасета с помощью класса \doxylink{class_diabetes_data}{Diabetes\+Data}, обучение модели с помощью класса \doxylink{class_logistic_regression}{Logistic\+Regression} по встроенному датасету 1 и кол-\/вом итераций = 10, вывод функции потерь в консоль, прогнозирование диабета по встроенному датасету 2 и вывод статистики модели c помощью класса \doxylink{class_plot}{Plot} 
+
+\doxysubsection{Функции}
+\Hypertarget{libtest_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{libtest_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{libtest.cpp@{libtest.cpp}!main@{main}}
+\index{main@{main}!libtest.cpp@{libtest.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Обрабатываем встроенный датасет 1 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_diabetes_data}{DiabetesData}}\ a(\textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)hedge\(\backslash\)\(\backslash\)CLionProjects\(\backslash\)\(\backslash\)DiabetesAI\(\backslash\)\(\backslash\)prj.cw\(\backslash\)\(\backslash\)prj.lab\(\backslash\)\(\backslash\)data"{}},\textcolor{stringliteral}{"{}dataset1"{}});}
+\DoxyCodeLine{vector<vector<double>>\ X1\ =\ a.get\_X();}
+\DoxyCodeLine{vector<int>\ y1\ =\ a.get\_y();}
+\DoxyCodeLine{\mbox{\hyperlink{class_logistic_regression}{LogisticRegression}}\ lg1(X1,\ y1);}
+
+\end{DoxyCode}
+ Выводим функции потерь в консоль 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vector<double>\ losses\ =\ lg1.fit(10);}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{double}\ losse:\ losses)}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ losse\ <<\ endl;}
+
+\end{DoxyCode}
+ Обрабатываем встроенный датасет 2 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_diabetes_data}{DiabetesData}}\ b(\textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)hedge\(\backslash\)\(\backslash\)CLionProjects\(\backslash\)\(\backslash\)DiabetesAI\(\backslash\)\(\backslash\)prj.cw\(\backslash\)\(\backslash\)prj.lab\(\backslash\)\(\backslash\)data"{}},\textcolor{stringliteral}{"{}dataset2"{}});}
+\DoxyCodeLine{vector<vector<double>>\ X\ =\ a.get\_X();}
+\DoxyCodeLine{vector<int>\ y\ =\ a.get\_y();}
+
+\end{DoxyCode}
+ Берем предсказания датасета 2 из обученной модели 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_logistic_regression}{LogisticRegression}}\ lg2(X,\ y);}
+\DoxyCodeLine{vector<int>\ results\ =\ \mbox{\hyperlink{class_logistic_regression_a90dd12a57fa04710159601253094b6a6}{LogisticRegression::predict}}(X);}
+
+\end{DoxyCode}
+ Создаем statistic.\+tex файл 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_plot_acea287214f4d6b3234b66e72d98f3307}{Plot::CreateLatexFile}}(results,\ y,\ 10);}
+
+\end{DoxyCode}
+ 

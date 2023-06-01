@@ -1,0 +1,258 @@
+\doxysection{Класс Diabetes\+Data}
+\hypertarget{class_diabetes_data}{}\label{class_diabetes_data}\index{DiabetesData@{DiabetesData}}
+
+
+Класс \doxylink{class_diabetes_data}{Diabetes\+Data} предназначен для подготовки датасета  
+
+
+
+
+{\ttfamily \#include $<$diabetes\+\_\+data.\+hpp$>$}
+
+\doxysubsubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_diabetes_data_a6d19ab168a0f470edba1b166858fd3c3}{Diabetes\+Data}} ()=default
+\item 
+\mbox{\hyperlink{class_diabetes_data_ab0e6fc36b8775df89a47b811ef331843}{Diabetes\+Data}} (const string \&file\+\_\+path, const string \&data\+\_\+name)
+\item 
+\mbox{\hyperlink{class_diabetes_data_ada379a336a04d95924dded2e900f61bd}{Diabetes\+Data}} (const vector$<$ vector$<$ double $>$ $>$ \&features)
+\item 
+void \mbox{\hyperlink{class_diabetes_data_a5c1e71193a2115d0c0d24e7503e160ad}{load\+\_\+data\+\_\+from\+\_\+file}} (const string \&file\+\_\+path, const string \&data\+\_\+name)
+\item 
+vector$<$ vector$<$ double $>$ $>$ \mbox{\hyperlink{class_diabetes_data_a51dc5dc2c6c7eb2335f71816ccab5708}{get\+\_\+X}} ()
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_diabetes_data_a92e4bcd0c824467dd55664f669bb7c1c}{get\+\_\+y}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Открытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+static vector$<$ vector$<$ double $>$ $>$ \mbox{\hyperlink{class_diabetes_data_a2dca530bd792e41e74a349c2a092d35a}{data\+\_\+normalization}} (vector$<$ vector$<$ double $>$ $>$ X)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ vector$<$ double $>$ $>$ \mbox{\hyperlink{class_diabetes_data_aecb75ed45e396721c4e5cd3651340f41}{features\+\_\+}}
+\item 
+vector$<$ vector$<$ string $>$ $>$ \mbox{\hyperlink{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}{dataset\+\_\+}}
+\item 
+vector$<$ vector$<$ double $>$ $>$ \mbox{\hyperlink{class_diabetes_data_adf7114ea89ea6f144f37dd7a7c5193f3}{X\+\_\+}}
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{class_diabetes_data_a04ef97ad15cdbcda9ddc332f417f3536}{y\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс \doxylink{class_diabetes_data}{Diabetes\+Data} предназначен для подготовки датасета 
+
+Класс \doxylink{class_diabetes_data}{Diabetes\+Data} предоставляет возможность подготовить датасет для дальнейшей работы с классом \doxylink{class_logistic_regression}{Logistic\+Regression} и \doxylink{class_plot}{Plot}, путем разбиения датасета на двумерный вектор double и одномерный вектор int\+: вектор X\+\_\+ содержит в себе строки датасета, не включая названия столбцов и исход(outcome), и у\+\_\+, содержит в себе лишь исход(outcome) 
+
+\doxysubsection{Конструктор(ы)}
+\Hypertarget{class_diabetes_data_a6d19ab168a0f470edba1b166858fd3c3}\label{class_diabetes_data_a6d19ab168a0f470edba1b166858fd3c3} 
+\index{DiabetesData@{DiabetesData}!DiabetesData@{DiabetesData}}
+\index{DiabetesData@{DiabetesData}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{DiabetesData()}{DiabetesData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Diabetes\+Data\+::\+Diabetes\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Конструктор по умолчанию для создания объекта класса \Hypertarget{class_diabetes_data_ab0e6fc36b8775df89a47b811ef331843}\label{class_diabetes_data_ab0e6fc36b8775df89a47b811ef331843} 
+\index{DiabetesData@{DiabetesData}!DiabetesData@{DiabetesData}}
+\index{DiabetesData@{DiabetesData}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{DiabetesData()}{DiabetesData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Diabetes\+Data\+::\+Diabetes\+Data (\begin{DoxyParamCaption}\item[{const string \&}]{file\+\_\+path,  }\item[{const string \&}]{data\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Конструктор принимает на вход полный путь к директории с датасетами и название датасета, после чего он вызывает функцию {\ttfamily load\+\_\+data\+\_\+from\+\_\+file} 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em file\+\_\+path} & Полный путь к репозиторию с датасетами вида\+: \"{}С\+:\textbackslash{}\textbackslash{}...\textbackslash{}\textbackslash{}data\"{} \\
+\hline
+\mbox{\texttt{ in}}  & {\em data\+\_\+name} & Название файла .csv с датасетои вида\+: \"{}dataset\"{}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_diabetes_data_a5c1e71193a2115d0c0d24e7503e160ad}{load\_data\_from\_file}}(file\_path,\ data\_name);}
+
+\end{DoxyCode}
+ Граф вызовов\+:
+% FIG 0
+\Hypertarget{class_diabetes_data_ada379a336a04d95924dded2e900f61bd}\label{class_diabetes_data_ada379a336a04d95924dded2e900f61bd} 
+\index{DiabetesData@{DiabetesData}!DiabetesData@{DiabetesData}}
+\index{DiabetesData@{DiabetesData}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{DiabetesData()}{DiabetesData()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Diabetes\+Data\+::\+Diabetes\+Data (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ double $>$ $>$ \&}]{features }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Конструктор принимает на вход выборку и нормализует её с помощью {\ttfamily data\+\_\+normalization} 
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em features} & двумерный вектор double состоящий из одной строчки и n столбцов (n = кол-\/ву столбцов датасета -\/ 1)\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (features.size()\ !=\ \mbox{\hyperlink{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}{dataset\_}}[0].size()\ ||\ features.empty())}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{throw}\ runtime\_error(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}The\ number\ of\ parameters\ does\ not\ match\ the\ number\ of\ dataset\ parameters,\ check\ the\ correctness\ of\ the\ entered\ data\ and\ check\ which\ dataset\ you\ submitted"{}});}
+\DoxyCodeLine{\ \mbox{\hyperlink{class_diabetes_data_aecb75ed45e396721c4e5cd3651340f41}{features\_}}\ =\ \mbox{\hyperlink{class_diabetes_data_a2dca530bd792e41e74a349c2a092d35a}{data\_normalization}}(features);}
+
+\end{DoxyCode}
+ Граф вызовов\+:
+% FIG 1
+
+
+\doxysubsection{Методы}
+\Hypertarget{class_diabetes_data_a2dca530bd792e41e74a349c2a092d35a}\label{class_diabetes_data_a2dca530bd792e41e74a349c2a092d35a} 
+\index{DiabetesData@{DiabetesData}!data\_normalization@{data\_normalization}}
+\index{data\_normalization@{data\_normalization}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{data\_normalization()}{data\_normalization()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ double $>$ $>$ Diabetes\+Data\+::data\+\_\+normalization (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ double $>$ $>$}]{X }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Функция принимает на вход выборку Х\+\_\+ и нормализует её методом z-\/масштабирования 
+\begin{DoxyParams}{Аргументы}
+{\em X} & Двумерный вектор типа double, содержащий в себе выборку\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vector<double>\ avarage;}
+\DoxyCodeLine{\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ X[0].size();\ j++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordtype}{double}\ summ\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&i:\ X)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ summ\ +=\ i[j];}
+\DoxyCodeLine{\ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ avarage.push\_back(summ\ /\ X.size());}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ vector<double>\ deviation;}
+\DoxyCodeLine{\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ X[0].size();\ j++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordtype}{double}\ summ\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&i:\ X)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ summ\ +=\ pow((i[j]\ -\/\ avarage[j]),\ 2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ deviation.push\_back(sqrt(summ\ /\ (X.size()\ -\/\ 1)));}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ X[0].size();\ j++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&i:\ X)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ i[j]\ =\ (i[j]\ -\/\ avarage[j])\ /\ deviation[j];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i[j]\ >\ 3\ *\ deviation[j])\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ i[j]\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \}}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{\ \textcolor{keywordflow}{return}\ X;}
+
+\end{DoxyCode}
+ Граф вызова функции\+:
+% FIG 2
+\Hypertarget{class_diabetes_data_a51dc5dc2c6c7eb2335f71816ccab5708}\label{class_diabetes_data_a51dc5dc2c6c7eb2335f71816ccab5708} 
+\index{DiabetesData@{DiabetesData}!get\_X@{get\_X}}
+\index{get\_X@{get\_X}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{get\_X()}{get\_X()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ double $>$ $>$ Diabetes\+Data\+::get\+\_\+X (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Функция возвращающая приватный член Х\+\_\+ \begin{DoxyReturn}{Возвращает}
+двумерный вектор типа double
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_diabetes_data_adf7114ea89ea6f144f37dd7a7c5193f3}{X\_}};}
+
+\end{DoxyCode}
+ \Hypertarget{class_diabetes_data_a92e4bcd0c824467dd55664f669bb7c1c}\label{class_diabetes_data_a92e4bcd0c824467dd55664f669bb7c1c} 
+\index{DiabetesData@{DiabetesData}!get\_y@{get\_y}}
+\index{get\_y@{get\_y}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{get\_y()}{get\_y()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Diabetes\+Data\+::get\+\_\+y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Функция возвращающая приватный член y\+\_\+ \begin{DoxyReturn}{Возвращает}
+вектор типа int
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_diabetes_data_a04ef97ad15cdbcda9ddc332f417f3536}{y\_}};}
+
+\end{DoxyCode}
+ \Hypertarget{class_diabetes_data_a5c1e71193a2115d0c0d24e7503e160ad}\label{class_diabetes_data_a5c1e71193a2115d0c0d24e7503e160ad} 
+\index{DiabetesData@{DiabetesData}!load\_data\_from\_file@{load\_data\_from\_file}}
+\index{load\_data\_from\_file@{load\_data\_from\_file}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{load\_data\_from\_file()}{load\_data\_from\_file()}}
+{\footnotesize\ttfamily void Diabetes\+Data\+::load\+\_\+data\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{const string \&}]{file\+\_\+path,  }\item[{const string \&}]{data\+\_\+name }\end{DoxyParamCaption})}
+
+Функция принимает на вход полный путь к директории с датасетами и название датасета, обрабатывает его, и записывает результат в X\+\_\+ и y\+\_\+ 
+\begin{DoxyParams}{Аргументы}
+{\em file\+\_\+path} & Полный путь к репозиторию с датасетами вида\+: \"{}С\+:\textbackslash{}\textbackslash{}...\textbackslash{}\textbackslash{}data\"{} \\
+\hline
+{\em data\+\_\+name} & Название файла .csv с датасетои вида\+: \"{}dataset\"{}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fstream\ fin;}
+\DoxyCodeLine{\ fin.open(file\_path\ +\ \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)"{}}\ +\ data\_name\ +\ \textcolor{stringliteral}{"{}.csv"{}},\ ios::in);}
+\DoxyCodeLine{\ \textcolor{keywordtype}{string}\ line;}
+\DoxyCodeLine{\ vector<vector<string>>\ parsedCsv;}
+\DoxyCodeLine{\ \textcolor{keywordflow}{if}\ (fin.fail())\ \{}
+\DoxyCodeLine{\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}NOT\ OPEN"{}};}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{\ \textcolor{keywordflow}{while}\ (getline(fin,\ line))\ \{}
+\DoxyCodeLine{\ \ \ \ \ stringstream\ lineStream(line);}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordtype}{string}\ cell;}
+\DoxyCodeLine{\ \ \ \ \ vector<string>\ parsedRow;}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(lineStream,\ cell,\ \textcolor{charliteral}{','}))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ parsedRow.push\_back(cell);}
+\DoxyCodeLine{\ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ parsedCsv.push\_back(parsedRow);}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{\ fin.close();}
+\DoxyCodeLine{\ \mbox{\hyperlink{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}{dataset\_}}\ =\ parsedCsv;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ \mbox{\hyperlink{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}{dataset\_}}.size();\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ vector<double>\ cell;}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}{dataset\_}}[1].size();\ j++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ !=\ \mbox{\hyperlink{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}{dataset\_}}[1].size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ cell.push\_back(stod(\mbox{\hyperlink{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}{dataset\_}}[i][j]));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (j\ ==\ \mbox{\hyperlink{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}{dataset\_}}[1].size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_diabetes_data_a04ef97ad15cdbcda9ddc332f417f3536}{y\_}}.push\_back(stoi(\mbox{\hyperlink{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}{dataset\_}}[i][j]));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{class_diabetes_data_adf7114ea89ea6f144f37dd7a7c5193f3}{X\_}}.push\_back(cell);}
+\DoxyCodeLine{\ \}}
+\DoxyCodeLine{\ \mbox{\hyperlink{class_diabetes_data_adf7114ea89ea6f144f37dd7a7c5193f3}{X\_}}\ =\ \mbox{\hyperlink{class_diabetes_data_a2dca530bd792e41e74a349c2a092d35a}{data\_normalization}}(\mbox{\hyperlink{class_diabetes_data_adf7114ea89ea6f144f37dd7a7c5193f3}{X\_}});}
+
+\end{DoxyCode}
+ Граф вызовов\+:
+% FIG 3
+Граф вызова функции\+:
+% FIG 4
+
+
+\doxysubsection{Данные класса}
+\Hypertarget{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8}\label{class_diabetes_data_ae10e45c5b27aa3a9bf3c00dd0a8764c8} 
+\index{DiabetesData@{DiabetesData}!dataset\_@{dataset\_}}
+\index{dataset\_@{dataset\_}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{dataset\_}{dataset\_}}
+{\footnotesize\ttfamily vector$<$vector$<$string$>$ $>$ Diabetes\+Data\+::dataset\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Двумерный вектор типа double, содержащий в себе выборку \Hypertarget{class_diabetes_data_aecb75ed45e396721c4e5cd3651340f41}\label{class_diabetes_data_aecb75ed45e396721c4e5cd3651340f41} 
+\index{DiabetesData@{DiabetesData}!features\_@{features\_}}
+\index{features\_@{features\_}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{features\_}{features\_}}
+{\footnotesize\ttfamily vector$<$vector$<$double$>$ $>$ Diabetes\+Data\+::features\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Двумерный вектор типа double, содержащий в себе выборку для использования на уже обученной модели \Hypertarget{class_diabetes_data_adf7114ea89ea6f144f37dd7a7c5193f3}\label{class_diabetes_data_adf7114ea89ea6f144f37dd7a7c5193f3} 
+\index{DiabetesData@{DiabetesData}!X\_@{X\_}}
+\index{X\_@{X\_}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{X\_}{X\_}}
+{\footnotesize\ttfamily vector$<$vector$<$double$>$ $>$ Diabetes\+Data\+::\+X\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Двумерный вектор типа double, содержащий в себе {\bfseries{нормализованную}} выборку \Hypertarget{class_diabetes_data_a04ef97ad15cdbcda9ddc332f417f3536}\label{class_diabetes_data_a04ef97ad15cdbcda9ddc332f417f3536} 
+\index{DiabetesData@{DiabetesData}!y\_@{y\_}}
+\index{y\_@{y\_}!DiabetesData@{DiabetesData}}
+\doxysubsubsection{\texorpdfstring{y\_}{y\_}}
+{\footnotesize\ttfamily vector$<$int$>$ Diabetes\+Data\+::y\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Вектор типа int, содержащий в себе итог(outсome) 
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+prj.\+lab/diabetes\+\_\+data/include/diabetes\+\_\+data/diabetes\+\_\+data.\+hpp\item 
+prj.\+lab/diabetes\+\_\+data/diabetes\+\_\+data.\+cpp\end{DoxyCompactItemize}

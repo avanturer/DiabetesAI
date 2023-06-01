@@ -1,0 +1,120 @@
+\begin{theindex}
+
+  \item {CreateLatexFile}
+    \subitem {Plot}, \hyperpage{15}
+
+  \indexspace
+
+  \item {data\_normalization}
+    \subitem {DiabetesData}, \hyperpage{6}
+  \item {dataset\_}
+    \subitem {DiabetesData}, \hyperpage{8}
+  \item {DiabetesData}, \hyperpage{5}
+    \subitem {data\_normalization}, \hyperpage{6}
+    \subitem {dataset\_}, \hyperpage{8}
+    \subitem {DiabetesData}, \hyperpage{6}
+    \subitem {features\_}, \hyperpage{8}
+    \subitem {get\_X}, \hyperpage{7}
+    \subitem {get\_y}, \hyperpage{7}
+    \subitem {load\_data\_from\_file}, \hyperpage{7}
+    \subitem {X\_}, \hyperpage{8}
+    \subitem {y\_}, \hyperpage{8}
+
+  \indexspace
+
+  \item {features\_}
+    \subitem {DiabetesData}, \hyperpage{8}
+  \item {fit}
+    \subitem {LogisticRegression}, \hyperpage{10}
+
+  \indexspace
+
+  \item {get\_X}
+    \subitem {DiabetesData}, \hyperpage{7}
+  \item {get\_y}
+    \subitem {DiabetesData}, \hyperpage{7}
+
+  \indexspace
+
+  \item {libtest.cpp}
+    \subitem {main}, \hyperpage{21}
+  \item {load\_data\_from\_file}
+    \subitem {DiabetesData}, \hyperpage{7}
+  \item {LogisticRegression}, \hyperpage{9}
+    \subitem {fit}, \hyperpage{10}
+    \subitem {LogisticRegression}, \hyperpage{9}
+    \subitem {logit}, \hyperpage{10}
+    \subitem {loss}, \hyperpage{11}
+    \subitem {losses\_}, \hyperpage{14}
+    \subitem {lr\_}, \hyperpage{14}
+    \subitem {max\_iter\_}, \hyperpage{14}
+    \subitem {model\_accuracy}, \hyperpage{11}
+    \subitem {predict}, \hyperpage{12}
+    \subitem {predict\_proba}, \hyperpage{12}
+    \subitem {save\_weights}, \hyperpage{13}
+    \subitem {saveLossToCSV}, \hyperpage{13}
+    \subitem {sigmoid}, \hyperpage{13}
+    \subitem {w\_}, \hyperpage{14}
+    \subitem {X\_}, \hyperpage{14}
+    \subitem {y\_}, \hyperpage{15}
+  \item {logit}
+    \subitem {LogisticRegression}, \hyperpage{10}
+  \item {loss}
+    \subitem {LogisticRegression}, \hyperpage{11}
+  \item {losses\_}
+    \subitem {LogisticRegression}, \hyperpage{14}
+  \item {lr\_}
+    \subitem {LogisticRegression}, \hyperpage{14}
+
+  \indexspace
+
+  \item {main}
+    \subitem {libtest.cpp}, \hyperpage{21}
+  \item {max\_iter\_}
+    \subitem {LogisticRegression}, \hyperpage{14}
+  \item {model\_accuracy}
+    \subitem {LogisticRegression}, \hyperpage{11}
+
+  \indexspace
+
+  \item {Plot}, \hyperpage{15}
+    \subitem {CreateLatexFile}, \hyperpage{15}
+    \subitem {Plot}, \hyperpage{15}
+  \item {predict}
+    \subitem {LogisticRegression}, \hyperpage{12}
+  \item {predict\_proba}
+    \subitem {LogisticRegression}, \hyperpage{12}
+  \item {prj.lab/diabetes\_data/include/diabetes\_data/diabetes\_data.hpp}, 
+		\hyperpage{19}
+  \item {prj.lab/plot/include/plot/plot.hpp}, \hyperpage{19}
+  \item {prj.lab/regression/include/regression/regression.hpp}, 
+		\hyperpage{20}
+  \item {prj.test/libtest.cpp}, \hyperpage{20}
+
+  \indexspace
+
+  \item {save\_weights}
+    \subitem {LogisticRegression}, \hyperpage{13}
+  \item {saveLossToCSV}
+    \subitem {LogisticRegression}, \hyperpage{13}
+  \item {sigmoid}
+    \subitem {LogisticRegression}, \hyperpage{13}
+
+  \indexspace
+
+  \item {w\_}
+    \subitem {LogisticRegression}, \hyperpage{14}
+
+  \indexspace
+
+  \item {X\_}
+    \subitem {DiabetesData}, \hyperpage{8}
+    \subitem {LogisticRegression}, \hyperpage{14}
+
+  \indexspace
+
+  \item {y\_}
+    \subitem {DiabetesData}, \hyperpage{8}
+    \subitem {LogisticRegression}, \hyperpage{15}
+
+\end{theindex}

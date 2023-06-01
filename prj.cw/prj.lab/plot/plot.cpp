@@ -99,7 +99,7 @@
     }
  * \endcode
  */
-void Plot::CreateLatexFile(vector<int> results, vector<int> y, int max_iter) {
+void Plot::CreateLatexFile(int max_iter, vector<int> results, vector<int> y) {
     int YESaYES = 0;
     int YESaNO = 0;
     int NOaNO = 0;

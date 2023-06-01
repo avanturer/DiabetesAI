@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DiabetesAI: Файл prj.test/libtest.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="8-pmftJWzscZHymkC.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">DiabetesAI<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2f1eef70b8994749577a31648b5ce375.html">prj.test</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл libtest.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Тестовое приложение библиотеки DiabetesAI.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;regression/regression.hpp&gt;</code><br />
+<code>#include &lt;diabetes_data/diabetes_data.hpp&gt;</code><br />
+<code>#include &lt;plot/plot.hpp&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libtest_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Тестовое приложение библиотеки DiabetesAI. </p>
+<p>В данном приложении мы тестируем основные функции и методы библиотеки, а именно: обработка датасета с помощью класса <a class="el" href="class_diabetes_data.html" title="Класс DiabetesData предназначен для подготовки датасета">DiabetesData</a>, обучение модели с помощью класса <a class="el" href="class_logistic_regression.html" title="Класс LogisticRegression предназначен для обучения модели на основе лог.регрессии">LogisticRegression</a> по встроенному датасету 1 и кол-вом итераций = 10, вывод функции потерь в консоль, прогнозирование диабета по встроенному датасету 2 и вывод статистики модели c помощью класса <a class="el" href="class_plot.html" title="Класс Plot предназначен для создания .tex файла с информацией о модели">Plot</a> </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Обрабатываем встроенный датасет 1 </p><div class="fragment"><div class="line"><a class="code hl_class" href="class_diabetes_data.html">DiabetesData</a> a(<span class="stringliteral">&quot;C:\\Users\\hedge\\CLionProjects\\DiabetesAI\\prj.cw\\prj.lab\\data&quot;</span>,<span class="stringliteral">&quot;dataset1&quot;</span>);</div>
+<div class="line">vector&lt;vector&lt;double&gt;&gt; X1 = a.get_X();</div>
+<div class="line">vector&lt;int&gt; y1 = a.get_y();</div>
+<div class="line"><a class="code hl_class" href="class_logistic_regression.html">LogisticRegression</a> lg1(X1, y1);</div>
+<div class="ttc" id="aclass_diabetes_data_html"><div class="ttname"><a href="class_diabetes_data.html">DiabetesData</a></div><div class="ttdoc">Класс DiabetesData предназначен для подготовки датасета</div><div class="ttdef"><b>Definition</b> diabetes_data.hpp:24</div></div>
+<div class="ttc" id="aclass_logistic_regression_html"><div class="ttname"><a href="class_logistic_regression.html">LogisticRegression</a></div><div class="ttdoc">Класс LogisticRegression предназначен для обучения модели на основе лог.регрессии</div><div class="ttdef"><b>Definition</b> regression.hpp:23</div></div>
+</div><!-- fragment --><p> Выводим функции потерь в консоль </p><div class="fragment"><div class="line">vector&lt;double&gt; losses = lg1.fit(10);</div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">double</span> losse: losses)</div>
+<div class="line">    cout &lt;&lt; losse &lt;&lt; endl;</div>
+</div><!-- fragment --><p> Обрабатываем встроенный датасет 2 </p><div class="fragment"><div class="line"><a class="code hl_class" href="class_diabetes_data.html">DiabetesData</a> b(<span class="stringliteral">&quot;C:\\Users\\hedge\\CLionProjects\\DiabetesAI\\prj.cw\\prj.lab\\data&quot;</span>,<span class="stringliteral">&quot;dataset2&quot;</span>);</div>
+<div class="line">vector&lt;vector&lt;double&gt;&gt; X = a.get_X();</div>
+<div class="line">vector&lt;int&gt; y = a.get_y();</div>
+</div><!-- fragment --><p> Берем предсказания датасета 2 из обученной модели </p><div class="fragment"><div class="line"><a class="code hl_class" href="class_logistic_regression.html">LogisticRegression</a> lg2(X, y);</div>
+<div class="line">vector&lt;int&gt; results = <a class="code hl_function" href="class_logistic_regression.html#a90dd12a57fa04710159601253094b6a6">LogisticRegression::predict</a>(X);</div>
+<div class="ttc" id="aclass_logistic_regression_html_a90dd12a57fa04710159601253094b6a6"><div class="ttname"><a href="class_logistic_regression.html#a90dd12a57fa04710159601253094b6a6">LogisticRegression::predict</a></div><div class="ttdeci">static vector&lt; int &gt; predict(const vector&lt; vector&lt; double &gt; &gt; &amp;feauters, double threshold=0.5)</div><div class="ttdef"><b>Definition</b> regression.cpp:204</div></div>
+</div><!-- fragment --><p> Создаем statistic.tex файл </p><div class="fragment"><div class="line"><a class="code hl_function" href="class_plot.html#acea287214f4d6b3234b66e72d98f3307">Plot::CreateLatexFile</a>(results, y, 10);</div>
+<div class="ttc" id="aclass_plot_html_acea287214f4d6b3234b66e72d98f3307"><div class="ttname"><a href="class_plot.html#acea287214f4d6b3234b66e72d98f3307">Plot::CreateLatexFile</a></div><div class="ttdeci">static void CreateLatexFile(int max_iter=100, vector&lt; int &gt; results={}, vector&lt; int &gt; y={})</div><div class="ttdef"><b>Definition</b> plot.cpp:102</div></div>
+</div><!-- fragment --> 
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>

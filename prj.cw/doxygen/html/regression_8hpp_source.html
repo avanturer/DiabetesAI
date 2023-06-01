@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DiabetesAI: Исходный файл prj.lab/regression/include/regression/regression.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="8-pmftJWzscZHymkC.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">DiabetesAI<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_31c7dff5446dd44343544bd971528a21.html">prj.lab</a></li><li class="navelem"><a class="el" href="dir_abb0f207ebd0055876389b323942da3c.html">regression</a></li><li class="navelem"><a class="el" href="dir_0e5edfac1448a24959fb82ea02be57a7.html">include</a></li><li class="navelem"><a class="el" href="dir_e812fa6cff5729ee15806f5e7f091311.html">regression</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">regression.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Created by hedge on 09.05.2023.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef DIABETES_AI_HPP_09052023REG</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define DIABETES_AI_HPP_09052023REG</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_logistic_regression.html">   23</a></span><span class="keyword">class </span><a class="code hl_class" href="class_logistic_regression.html">LogisticRegression</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_class" href="class_logistic_regression.html">LogisticRegression</a>(<span class="keyword">const</span> vector&lt;vector&lt;double&gt;&gt; &amp;X, <span class="keyword">const</span> vector&lt;int&gt; &amp;y);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static</span> vector&lt;vector&lt;double&gt;&gt; <a class="code hl_function" href="class_logistic_regression.html#add90ffc867967ac392b642ca81c64c1e">logit</a>(vector&lt;vector&lt;double&gt;&gt; X, vector&lt;double&gt; w);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">static</span> vector&lt;vector&lt;double&gt;&gt; <a class="code hl_function" href="class_logistic_regression.html#a14b5b8b957149cec67d9d566554a2d28">sigmoid</a>(vector&lt;vector&lt;double&gt;&gt; logits);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    vector&lt;double&gt; <a class="code hl_function" href="class_logistic_regression.html#a48457103e07c0f4b27d3edc8daa85877">fit</a>(<span class="keywordtype">int</span> max_iter = 100, <span class="keywordtype">double</span> lr = 0.1);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">double</span> <a class="code hl_function" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a>(vector&lt;int&gt; y, vector&lt;vector&lt;double&gt;&gt; z);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_logistic_regression.html#a13c6d61adff981f7e7fa7f7b945fb986">save_weights</a>(<span class="keyword">const</span> vector&lt;double&gt; &amp;weights);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">static</span> vector&lt;vector&lt;double&gt;&gt; <a class="code hl_function" href="class_logistic_regression.html#a9fef20236dd4323292c541ba5072b9de">predict_proba</a>(vector&lt;vector&lt;double&gt;&gt; feauters);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keyword">static</span> vector&lt;int&gt; <a class="code hl_function" href="class_logistic_regression.html#a90dd12a57fa04710159601253094b6a6">predict</a>(<span class="keyword">const</span> vector&lt;vector&lt;double&gt;&gt; &amp;feauters, <span class="keywordtype">double</span> threshold = 0.5);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_logistic_regression.html#a33085e510b1b4b3a0aa96165874eadc4">model_accuracy</a>(vector&lt;int&gt; results, vector&lt;int&gt; y);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_logistic_regression.html#ac03a1a3d62ddfae4922e3b87f4df6ff2">saveLossToCSV</a>(<span class="keyword">const</span> vector&lt;double&gt; &amp;losses);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="class_logistic_regression.html#aebf4fd5462f1593edf37444870278632">  139</a></span>    vector&lt;vector&lt;double&gt;&gt; <a class="code hl_variable" href="class_logistic_regression.html#aebf4fd5462f1593edf37444870278632">X_</a>;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="class_logistic_regression.html#a844e8b75a0b428f07dbbd75b0ceef499">  143</a></span>    vector&lt;int&gt; <a class="code hl_variable" href="class_logistic_regression.html#a844e8b75a0b428f07dbbd75b0ceef499">y_</a>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="class_logistic_regression.html#a809fd1af9406c3346df5e3d73c0c0e8f">  147</a></span>    vector&lt;double&gt; <a class="code hl_variable" href="class_logistic_regression.html#a809fd1af9406c3346df5e3d73c0c0e8f">w_</a>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="class_logistic_regression.html#afc792a8aa796fcf31ca1411435cec45f">  151</a></span>    vector&lt;double&gt; <a class="code hl_variable" href="class_logistic_regression.html#afc792a8aa796fcf31ca1411435cec45f">losses_</a>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="class_logistic_regression.html#aaa14ae296067296826728e4d7066aa2c">  155</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_logistic_regression.html#aaa14ae296067296826728e4d7066aa2c">max_iter_</a> = 0;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="class_logistic_regression.html#a853245cbfd4c24b9286985bf38fc386b">  161</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="class_logistic_regression.html#a853245cbfd4c24b9286985bf38fc386b">lr_</a> = 0;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>};</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclass_logistic_regression_html"><div class="ttname"><a href="class_logistic_regression.html">LogisticRegression</a></div><div class="ttdoc">Класс LogisticRegression предназначен для обучения модели на основе лог.регрессии</div><div class="ttdef"><b>Definition</b> regression.hpp:23</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a13c6d61adff981f7e7fa7f7b945fb986"><div class="ttname"><a href="class_logistic_regression.html#a13c6d61adff981f7e7fa7f7b945fb986">LogisticRegression::save_weights</a></div><div class="ttdeci">static void save_weights(const vector&lt; double &gt; &amp;weights)</div><div class="ttdef"><b>Definition</b> regression.cpp:167</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a14b5b8b957149cec67d9d566554a2d28"><div class="ttname"><a href="class_logistic_regression.html#a14b5b8b957149cec67d9d566554a2d28">LogisticRegression::sigmoid</a></div><div class="ttdeci">static vector&lt; vector&lt; double &gt; &gt; sigmoid(vector&lt; vector&lt; double &gt; &gt; logits)</div><div class="ttdef"><b>Definition</b> regression.cpp:76</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a33085e510b1b4b3a0aa96165874eadc4"><div class="ttname"><a href="class_logistic_regression.html#a33085e510b1b4b3a0aa96165874eadc4">LogisticRegression::model_accuracy</a></div><div class="ttdeci">static int model_accuracy(vector&lt; int &gt; results, vector&lt; int &gt; y)</div><div class="ttdef"><b>Definition</b> regression.cpp:212</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a48457103e07c0f4b27d3edc8daa85877"><div class="ttname"><a href="class_logistic_regression.html#a48457103e07c0f4b27d3edc8daa85877">LogisticRegression::fit</a></div><div class="ttdeci">vector&lt; double &gt; fit(int max_iter=100, double lr=0.1)</div><div class="ttdef"><b>Definition</b> regression.cpp:89</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a6d4e290d4c3a49290430251f676a1c22"><div class="ttname"><a href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">LogisticRegression::loss</a></div><div class="ttdeci">double loss(vector&lt; int &gt; y, vector&lt; vector&lt; double &gt; &gt; z)</div><div class="ttdef"><b>Definition</b> regression.cpp:153</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a809fd1af9406c3346df5e3d73c0c0e8f"><div class="ttname"><a href="class_logistic_regression.html#a809fd1af9406c3346df5e3d73c0c0e8f">LogisticRegression::w_</a></div><div class="ttdeci">vector&lt; double &gt; w_</div><div class="ttdef"><b>Definition</b> regression.hpp:147</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a844e8b75a0b428f07dbbd75b0ceef499"><div class="ttname"><a href="class_logistic_regression.html#a844e8b75a0b428f07dbbd75b0ceef499">LogisticRegression::y_</a></div><div class="ttdeci">vector&lt; int &gt; y_</div><div class="ttdef"><b>Definition</b> regression.hpp:143</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a853245cbfd4c24b9286985bf38fc386b"><div class="ttname"><a href="class_logistic_regression.html#a853245cbfd4c24b9286985bf38fc386b">LogisticRegression::lr_</a></div><div class="ttdeci">double lr_</div><div class="ttdef"><b>Definition</b> regression.hpp:161</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a90dd12a57fa04710159601253094b6a6"><div class="ttname"><a href="class_logistic_regression.html#a90dd12a57fa04710159601253094b6a6">LogisticRegression::predict</a></div><div class="ttdeci">static vector&lt; int &gt; predict(const vector&lt; vector&lt; double &gt; &gt; &amp;feauters, double threshold=0.5)</div><div class="ttdef"><b>Definition</b> regression.cpp:204</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a9fef20236dd4323292c541ba5072b9de"><div class="ttname"><a href="class_logistic_regression.html#a9fef20236dd4323292c541ba5072b9de">LogisticRegression::predict_proba</a></div><div class="ttdeci">static vector&lt; vector&lt; double &gt; &gt; predict_proba(vector&lt; vector&lt; double &gt; &gt; feauters)</div><div class="ttdef"><b>Definition</b> regression.cpp:184</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_aaa14ae296067296826728e4d7066aa2c"><div class="ttname"><a href="class_logistic_regression.html#aaa14ae296067296826728e4d7066aa2c">LogisticRegression::max_iter_</a></div><div class="ttdeci">int max_iter_</div><div class="ttdef"><b>Definition</b> regression.hpp:155</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_ac03a1a3d62ddfae4922e3b87f4df6ff2"><div class="ttname"><a href="class_logistic_regression.html#ac03a1a3d62ddfae4922e3b87f4df6ff2">LogisticRegression::saveLossToCSV</a></div><div class="ttdeci">static void saveLossToCSV(const vector&lt; double &gt; &amp;losses)</div><div class="ttdef"><b>Definition</b> regression.cpp:227</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_add90ffc867967ac392b642ca81c64c1e"><div class="ttname"><a href="class_logistic_regression.html#add90ffc867967ac392b642ca81c64c1e">LogisticRegression::logit</a></div><div class="ttdeci">static vector&lt; vector&lt; double &gt; &gt; logit(vector&lt; vector&lt; double &gt; &gt; X, vector&lt; double &gt; w)</div><div class="ttdef"><b>Definition</b> regression.cpp:48</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_aebf4fd5462f1593edf37444870278632"><div class="ttname"><a href="class_logistic_regression.html#aebf4fd5462f1593edf37444870278632">LogisticRegression::X_</a></div><div class="ttdeci">vector&lt; vector&lt; double &gt; &gt; X_</div><div class="ttdef"><b>Definition</b> regression.hpp:139</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_afc792a8aa796fcf31ca1411435cec45f"><div class="ttname"><a href="class_logistic_regression.html#afc792a8aa796fcf31ca1411435cec45f">LogisticRegression::losses_</a></div><div class="ttdeci">vector&lt; double &gt; losses_</div><div class="ttdef"><b>Definition</b> regression.hpp:151</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DiabetesAI: Класс Plot</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="8-pmftJWzscZHymkC.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">DiabetesAI<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pub-static-methods">Открытые статические члены</a> &#124;
+<a href="class_plot-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Класс Plot</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Класс <a class="el" href="class_plot.html" title="Класс Plot предназначен для создания .tex файла с информацией о модели">Plot</a> предназначен для создания .tex файла с информацией о модели  
+ <a href="class_plot.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="plot_8hpp_source.html">plot.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a04a125d8a167b28312f3b3afd4c5f71c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plot.html#a04a125d8a167b28312f3b3afd4c5f71c">Plot</a> ()=default</td></tr>
+<tr class="separator:a04a125d8a167b28312f3b3afd4c5f71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Открытые статические члены</h2></td></tr>
+<tr class="memitem:acea287214f4d6b3234b66e72d98f3307"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plot.html#acea287214f4d6b3234b66e72d98f3307">CreateLatexFile</a> (int max_iter=100, vector&lt; int &gt; results={}, vector&lt; int &gt; y={})</td></tr>
+<tr class="separator:acea287214f4d6b3234b66e72d98f3307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Класс <a class="el" href="class_plot.html" title="Класс Plot предназначен для создания .tex файла с информацией о модели">Plot</a> предназначен для создания .tex файла с информацией о модели </p>
+<p>Класс <a class="el" href="class_plot.html" title="Класс Plot предназначен для создания .tex файла с информацией о модели">Plot</a> предоставляет возможность вывести данные о текущей модели в виде .tex файла, а именно: функция потерь и confusion matrix. </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a04a125d8a167b28312f3b3afd4c5f71c" name="a04a125d8a167b28312f3b3afd4c5f71c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04a125d8a167b28312f3b3afd4c5f71c">&#9670;&#160;</a></span>Plot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Plot::Plot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Конструктор по умолчанию для создания объекта класса </p>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="acea287214f4d6b3234b66e72d98f3307" name="acea287214f4d6b3234b66e72d98f3307"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acea287214f4d6b3234b66e72d98f3307">&#9670;&#160;</a></span>CreateLatexFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Plot::CreateLatexFile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_iter</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>results</em> = <code>{}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>y</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Функция создает statistic.tex файл по результатам работы модели модели, содержащий в себе функцию потерь и confusion matrix </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">max_iter</td><td>переменная типа int, содержащая в себе кол-во итераций, которая совершила модель при обучении (по умолчанию 100) </td></tr>
+    <tr><td class="paramname">results</td><td>вектор типа int, содержащий в себе результаты предсказаний модели (по умолчанию пустой) </td></tr>
+    <tr><td class="paramname">y</td><td>вектор типа int, содержащий в себе действительный результат (по умолчанию пустой) Пример:</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><img src="C:\Users\hedge\CLionProjects\DiabetesAI\prj.cw\prj.lab\data\img_1.png" alt="Пример statistic.tex" class="inline"/></p>
+<p><img src="C:\Users\hedge\CLionProjects\DiabetesAI\prj.cw\prj.lab\data\img_2.png" alt="Пример statistic.tex" class="inline"/></p>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> YESaYES = 0;</div>
+<div class="line"> <span class="keywordtype">int</span> YESaNO = 0;</div>
+<div class="line"> <span class="keywordtype">int</span> NOaNO = 0;</div>
+<div class="line"> <span class="keywordtype">int</span> NOaYES = 0;</div>
+<div class="line"> <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; results.size(); i++) {</div>
+<div class="line">     <span class="keywordflow">if</span> (results[i] == 1 &amp;&amp; y[i] == 1) {</div>
+<div class="line">         YESaYES++;</div>
+<div class="line">     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (results[i] == 1 &amp;&amp; y[i] == 0) {</div>
+<div class="line">         YESaNO++;</div>
+<div class="line">     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (results[i] == 0 &amp;&amp; y[i] == 0) {</div>
+<div class="line">         NOaNO++;</div>
+<div class="line">     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (results[i] == 0 &amp;&amp; y[i] == 1) {</div>
+<div class="line">         NOaYES++;</div>
+<div class="line">     }</div>
+<div class="line"> }</div>
+<div class="line"> <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename = <span class="stringliteral">&quot;statistic.tex&quot;</span>;</div>
+<div class="line"> ofstream outputFile(filename);</div>
+<div class="line"> <span class="keywordflow">if</span> (outputFile.is_open()) {</div>
+<div class="line">     outputFile &lt;&lt; <span class="stringliteral">&quot;\\documentclass{article}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\usepackage{pgfplots}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\usepackage{csvsimple}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\usepackage{pgfplotstable}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\usepackage{array}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\usepackage{graphicx}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\usepackage{multirow}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\usepackage{float} % Add the float package\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\newcommand\\MyBox[2]{\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\fbox{\\lower0.75cm\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    \\vbox to 1.7cm{\\vfil\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;      \\hbox to 1.7cm{\\hfil\\parbox{0.4cm}{#1}\\hfil}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;      \\vfil}%\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  }%\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\begin{document}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\title{Model Statistic}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\maketitle\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\vspace{1cm}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\begin{figure}[H] % Use the H specifier from the float package\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\centering\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\begin{tikzpicture}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    \\begin{axis}[\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;        xlabel={Iters},\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;        ylabel={Log Loss},\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;        xtick=data,\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;        xticklabel={\\pgfmathprintnumber[int detect]{\\tick}},&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;        xmin=0, xmax=&quot;</span> + to_string(max_iter) + <span class="stringliteral">&quot;,\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;        ymin=0, ymax=1,\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;        grid=both,\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;        width=14cm, height=8cm,\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;        samples=100\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    ]\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    \n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    \\pgfplotstableread[col sep=comma]{losses_.csv}\\datatable\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    \\addplot[blue] table[x index=1, y index=0] {\\datatable};\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    \n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    \\end{axis}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\end{tikzpicture}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\caption{Loss changes every iteration}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\end{figure}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\vspace{1cm}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\begin{figure}[H] % Use the H specifier from the float package\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\centering\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\renewcommand\\arraystretch{1.5}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\setlength\\tabcolsep{0pt}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\begin{tabular}{c &gt;{\\bfseries}r @{\\hspace{0.7em}}c @{\\hspace{0.4em}}c @{\\hspace{0.7em}}l}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    \\multirow{10}{*}{\\rotatebox{90}{\\parbox{1.1cm}{\\bfseries\\centering actual\\\\ value}}} &amp; \n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;      &amp; \\multicolumn{2}{c}{\\bfseries Prediction outcome} &amp; \\\\\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    &amp; &amp; \\bfseries p &amp; \\bfseries n &amp; \\bfseries total \\\\\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    &amp; p$&#39;$ &amp; \\MyBox{&quot;</span> + to_string(YESaYES) +</div>
+<div class="line">                   <span class="stringliteral">&quot;}{Positive} &amp; \\MyBox{&quot;</span> + to_string(NOaYES) +</div>
+<div class="line">                   <span class="stringliteral">&quot;}{Positive} &amp; P$&#39;$ \\\\[2.4em]\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    &amp; n$&#39;$ &amp; \\MyBox{&quot;</span> + to_string(YESaNO) + <span class="stringliteral">&quot;}{Positive} &amp; \\MyBox{&quot;</span> + to_string(NOaNO) +</div>
+<div class="line">                   <span class="stringliteral">&quot;}{Positive} &amp; N$&#39;$ \\\\\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;    &amp; total &amp; P &amp; N &amp;\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\end{tabular}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;  \\caption{Confusion Matrix}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\end{figure}\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">                   <span class="stringliteral">&quot;\\end{document}&quot;</span>;</div>
+<div class="line"> } <span class="keywordflow">else</span> {</div>
+<div class="line">     cerr &lt;&lt; <span class="stringliteral">&quot;Unable to open file: &quot;</span> &lt;&lt; filename &lt;&lt; endl;</div>
+<div class="line"> }</div>
+</div><!-- fragment --> 
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>prj.lab/plot/include/plot/<a class="el" href="plot_8hpp_source.html">plot.hpp</a></li>
+<li>prj.lab/plot/plot.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>

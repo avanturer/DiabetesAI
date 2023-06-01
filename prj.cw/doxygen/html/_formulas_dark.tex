@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{ifthen}
+\usepackage{epsfig}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\color{white}
+\pagecolor{black}
+\usepackage{newunicodechar}
+  \makeatletter
+    \def\doxynewunicodechar#1#2{%
+    \@tempswafalse
+    \edef\nuc@tempa{\detokenize{#1}}%
+    \if\relax\nuc@tempa\relax
+      \nuc@emptyargerr
+    \else
+      \edef\@tempb{\expandafter\@car\nuc@tempa\@nil}%
+      \nuc@check
+      \if@tempswa
+        \@namedef{u8:\nuc@tempa}{#2}%
+      \fi
+    \fi
+  }
+  \makeatother
+  \doxynewunicodechar{⁻}{${}^{-}$}% Superscript minus
+  \doxynewunicodechar{²}{${}^{2}$}% Superscript two
+  \doxynewunicodechar{³}{${}^{3}$}% Superscript three
+
+\pagestyle{empty}
+\begin{document}
+\[
+\sum_{i=0}^{n} b + w_i*x_i
+\]
+\pagebreak
+
+\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]
+\pagebreak
+
+\[
+\sum_{i=0}^{n} (y_i * \log(\sigma_i) + (1 - y_i) * \log(1 - \sigma_i)) + \sum_{i=0}^{l} w_i ^ 2;
+\]
+\pagebreak
+
+\[
+
+1,0
+
+0.80,1
+
+0.5,2
+
+...
+
+n1, n2
+\]
+\pagebreak
+
+\end{document}

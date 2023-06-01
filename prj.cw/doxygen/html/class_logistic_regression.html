@@ -1,0 +1,737 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DiabetesAI: Класс LogisticRegression</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="8-pmftJWzscZHymkC.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">DiabetesAI<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pub-static-methods">Открытые статические члены</a> &#124;
+<a href="#pri-attribs">Закрытые данные</a> &#124;
+<a href="class_logistic_regression-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Класс LogisticRegression</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Класс <a class="el" href="class_logistic_regression.html" title="Класс LogisticRegression предназначен для обучения модели на основе лог.регрессии">LogisticRegression</a> предназначен для обучения модели на основе лог.регрессии  
+ <a href="class_logistic_regression.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="regression_8hpp_source.html">regression.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a6c917ff10fc2084739c902c84c3d18e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a6c917ff10fc2084739c902c84c3d18e5">LogisticRegression</a> (const vector&lt; vector&lt; double &gt; &gt; &amp;X, const vector&lt; int &gt; &amp;y)</td></tr>
+<tr class="separator:a6c917ff10fc2084739c902c84c3d18e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48457103e07c0f4b27d3edc8daa85877"><td class="memItemLeft" align="right" valign="top">vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a48457103e07c0f4b27d3edc8daa85877">fit</a> (int max_iter=100, double lr=0.1)</td></tr>
+<tr class="separator:a48457103e07c0f4b27d3edc8daa85877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d4e290d4c3a49290430251f676a1c22"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a> (vector&lt; int &gt; y, vector&lt; vector&lt; double &gt; &gt; z)</td></tr>
+<tr class="separator:a6d4e290d4c3a49290430251f676a1c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Открытые статические члены</h2></td></tr>
+<tr class="memitem:add90ffc867967ac392b642ca81c64c1e"><td class="memItemLeft" align="right" valign="top">static vector&lt; vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#add90ffc867967ac392b642ca81c64c1e">logit</a> (vector&lt; vector&lt; double &gt; &gt; X, vector&lt; double &gt; w)</td></tr>
+<tr class="separator:add90ffc867967ac392b642ca81c64c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14b5b8b957149cec67d9d566554a2d28"><td class="memItemLeft" align="right" valign="top">static vector&lt; vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a14b5b8b957149cec67d9d566554a2d28">sigmoid</a> (vector&lt; vector&lt; double &gt; &gt; logits)</td></tr>
+<tr class="separator:a14b5b8b957149cec67d9d566554a2d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13c6d61adff981f7e7fa7f7b945fb986"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a13c6d61adff981f7e7fa7f7b945fb986">save_weights</a> (const vector&lt; double &gt; &amp;weights)</td></tr>
+<tr class="separator:a13c6d61adff981f7e7fa7f7b945fb986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fef20236dd4323292c541ba5072b9de"><td class="memItemLeft" align="right" valign="top">static vector&lt; vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a9fef20236dd4323292c541ba5072b9de">predict_proba</a> (vector&lt; vector&lt; double &gt; &gt; feauters)</td></tr>
+<tr class="separator:a9fef20236dd4323292c541ba5072b9de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90dd12a57fa04710159601253094b6a6"><td class="memItemLeft" align="right" valign="top">static vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a90dd12a57fa04710159601253094b6a6">predict</a> (const vector&lt; vector&lt; double &gt; &gt; &amp;feauters, double threshold=0.5)</td></tr>
+<tr class="separator:a90dd12a57fa04710159601253094b6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33085e510b1b4b3a0aa96165874eadc4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a33085e510b1b4b3a0aa96165874eadc4">model_accuracy</a> (vector&lt; int &gt; results, vector&lt; int &gt; y)</td></tr>
+<tr class="separator:a33085e510b1b4b3a0aa96165874eadc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac03a1a3d62ddfae4922e3b87f4df6ff2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#ac03a1a3d62ddfae4922e3b87f4df6ff2">saveLossToCSV</a> (const vector&lt; double &gt; &amp;losses)</td></tr>
+<tr class="separator:ac03a1a3d62ddfae4922e3b87f4df6ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Закрытые данные</h2></td></tr>
+<tr class="memitem:aebf4fd5462f1593edf37444870278632"><td class="memItemLeft" align="right" valign="top">vector&lt; vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#aebf4fd5462f1593edf37444870278632">X_</a></td></tr>
+<tr class="separator:aebf4fd5462f1593edf37444870278632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a844e8b75a0b428f07dbbd75b0ceef499"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a844e8b75a0b428f07dbbd75b0ceef499">y_</a></td></tr>
+<tr class="separator:a844e8b75a0b428f07dbbd75b0ceef499"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a809fd1af9406c3346df5e3d73c0c0e8f"><td class="memItemLeft" align="right" valign="top">vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a809fd1af9406c3346df5e3d73c0c0e8f">w_</a></td></tr>
+<tr class="separator:a809fd1af9406c3346df5e3d73c0c0e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc792a8aa796fcf31ca1411435cec45f"><td class="memItemLeft" align="right" valign="top">vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#afc792a8aa796fcf31ca1411435cec45f">losses_</a></td></tr>
+<tr class="separator:afc792a8aa796fcf31ca1411435cec45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa14ae296067296826728e4d7066aa2c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#aaa14ae296067296826728e4d7066aa2c">max_iter_</a> = 0</td></tr>
+<tr class="separator:aaa14ae296067296826728e4d7066aa2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a853245cbfd4c24b9286985bf38fc386b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_logistic_regression.html#a853245cbfd4c24b9286985bf38fc386b">lr_</a> = 0</td></tr>
+<tr class="separator:a853245cbfd4c24b9286985bf38fc386b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Класс <a class="el" href="class_logistic_regression.html" title="Класс LogisticRegression предназначен для обучения модели на основе лог.регрессии">LogisticRegression</a> предназначен для обучения модели на основе лог.регрессии </p>
+<p>Класс <a class="el" href="class_logistic_regression.html" title="Класс LogisticRegression предназначен для обучения модели на основе лог.регрессии">LogisticRegression</a> предоставляет возможность обучить модель, основанную на лог.регрессии, путем градиентного спуска по функции потерь с использованием R2 - регуляризации </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a6c917ff10fc2084739c902c84c3d18e5" name="a6c917ff10fc2084739c902c84c3d18e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c917ff10fc2084739c902c84c3d18e5">&#9670;&#160;</a></span>LogisticRegression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LogisticRegression::LogisticRegression </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; vector&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Конструктор сохраняет поступившие данные и рандомит веса для дальнейшей работы </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>Двумерный вектор типа double, содержащий в себе <b>нормализованную</b> выборку </td></tr>
+    <tr><td class="paramname">y</td><td>Вектор типа int, содержащий в себе итог(outсome)</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a class="code hl_variable" href="class_logistic_regression.html#aebf4fd5462f1593edf37444870278632">X_</a> = X;</div>
+<div class="line"><a class="code hl_variable" href="class_logistic_regression.html#a844e8b75a0b428f07dbbd75b0ceef499">y_</a> = y;</div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; X[0].size() + 1; i++) {</div>
+<div class="line">    <span class="keywordtype">double</span> a = rand() % 1000;</div>
+<div class="line">    <a class="code hl_variable" href="class_logistic_regression.html#a809fd1af9406c3346df5e3d73c0c0e8f">w_</a>.push_back(a / 1000);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_logistic_regression_html_a809fd1af9406c3346df5e3d73c0c0e8f"><div class="ttname"><a href="class_logistic_regression.html#a809fd1af9406c3346df5e3d73c0c0e8f">LogisticRegression::w_</a></div><div class="ttdeci">vector&lt; double &gt; w_</div><div class="ttdef"><b>Definition</b> regression.hpp:147</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_a844e8b75a0b428f07dbbd75b0ceef499"><div class="ttname"><a href="class_logistic_regression.html#a844e8b75a0b428f07dbbd75b0ceef499">LogisticRegression::y_</a></div><div class="ttdeci">vector&lt; int &gt; y_</div><div class="ttdef"><b>Definition</b> regression.hpp:143</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_aebf4fd5462f1593edf37444870278632"><div class="ttname"><a href="class_logistic_regression.html#aebf4fd5462f1593edf37444870278632">LogisticRegression::X_</a></div><div class="ttdeci">vector&lt; vector&lt; double &gt; &gt; X_</div><div class="ttdef"><b>Definition</b> regression.hpp:139</div></div>
+</div><!-- fragment --> 
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a48457103e07c0f4b27d3edc8daa85877" name="a48457103e07c0f4b27d3edc8daa85877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48457103e07c0f4b27d3edc8daa85877">&#9670;&#160;</a></span>fit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; double &gt; LogisticRegression::fit </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_iter</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>lr</em> = <code>0.1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Функция, обучающая нашу модель по градиенту функции потерь логистической регрессии </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">max_iter</td><td>Переменная типа int, содержащая в себе кол-во итераций, которые будет совершать модель при обучении </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Предупреждения</dt><dd>Большие значение дают большую точность, но значительно увеличивают время обучения, для быстрого результата советуем использовать значение 10 </dd></dl>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lr</td><td>Переменная типа double, содержащая в себе коэффициент скорости обучения модели </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Вектор типа double, содержащий в себе результаты функции потерь на каждой итерации модели при обучении </dd></dl>
+
+</div>
+</div>
+<a id="add90ffc867967ac392b642ca81c64c1e" name="add90ffc867967ac392b642ca81c64c1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add90ffc867967ac392b642ca81c64c1e">&#9670;&#160;</a></span>logit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; vector&lt; double &gt; &gt; LogisticRegression::logit </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; vector&lt; double &gt; &gt;&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>w</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Функция подсчитывает логиты всей выборки по текущим весам и возвращает их </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td><b>Транспонированный</b> двумерный вектор типа double, содержащий в себе выборку </td></tr>
+    <tr><td class="paramname">w</td><td>Вектор весов типа double </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Двумерный вектор логитов типа double</dd></dl>
+<p>Формула по который мы вычисляем логиты:  </p><p class="formulaDsp">
+<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+\sum_{i=0}^{n} b + w_i*x_i
+\]" src="form_0.png"/></picture>
+</p>
+<div class="fragment"><div class="line"><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> m = X.size();</div>
+<div class="line"><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> n = X[0].size();</div>
+<div class="line">vector&lt;vector&lt;double&gt;&gt; logits(m, vector&lt;double&gt;(1, 0.0));</div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; m; i++) {</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 1; j++) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; n; k++) {</div>
+<div class="line">            logits[i][j] += X[i][k] * w[k];</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"><span class="keywordflow">return</span> logits;</div>
+</div><!-- fragment --> 
+</div>
+</div>
+<a id="a6d4e290d4c3a49290430251f676a1c22" name="a6d4e290d4c3a49290430251f676a1c22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d4e290d4c3a49290430251f676a1c22">&#9670;&#160;</a></span>loss()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double LogisticRegression::loss </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; vector&lt; double &gt; &gt;&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Функция подсчитывает "функцию потерь" нашей логистической регрессии с использованием l2 - регуляризации, основываясь на у исходе(outcome) и полученных сигмоидах. </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">y</td><td>Вектор типа int, содержащий в себе итог(outсome) для нашей выборки </td></tr>
+    <tr><td class="paramname">z</td><td>Двумерный вектор типа double, содержащий в себе сигмоиды для каждого логита </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Число типа double показывающее текущее значение функции потерь</dd></dl>
+<p>Формула по который мы вычисляем функцию потерь:  </p><p class="formulaDsp">
+<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+\sum_{i=0}^{n} (y_i * \log(\sigma_i) + (1 - y_i) * \log(1 - \sigma_i)) + \sum_{i=0}^{l} w_i ^ 2;
+\]" src="form_2.png"/></picture>
+</p>
+<div class="fragment"><div class="line"><span class="keywordtype">double</span> <a class="code hl_function" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a> = 0;</div>
+<div class="line"> <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; y.size(); i++) {</div>
+<div class="line">     <a class="code hl_function" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a> += (y[i] * (log(z[i][0])) + (1 - y[i]) * log(1 - z[i][0]));</div>
+<div class="line"> }</div>
+<div class="line"> <span class="keywordflow">for</span> (<span class="keywordtype">double</span> i: <a class="code hl_variable" href="class_logistic_regression.html#a809fd1af9406c3346df5e3d73c0c0e8f">w_</a>)</div>
+<div class="line">     <a class="code hl_function" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a> += pow(i, 2);</div>
+<div class="line"> </div>
+<div class="line"> <a class="code hl_function" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a> /= y.size();</div>
+<div class="line"> <a class="code hl_function" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a> *= -1;</div>
+<div class="line"> <span class="keywordflow">return</span> <a class="code hl_function" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a>;</div>
+<div class="ttc" id="aclass_logistic_regression_html_a6d4e290d4c3a49290430251f676a1c22"><div class="ttname"><a href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">LogisticRegression::loss</a></div><div class="ttdeci">double loss(vector&lt; int &gt; y, vector&lt; vector&lt; double &gt; &gt; z)</div><div class="ttdef"><b>Definition</b> regression.cpp:153</div></div>
+</div><!-- fragment --> 
+</div>
+</div>
+<a id="a33085e510b1b4b3a0aa96165874eadc4" name="a33085e510b1b4b3a0aa96165874eadc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33085e510b1b4b3a0aa96165874eadc4">&#9670;&#160;</a></span>model_accuracy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LogisticRegression::model_accuracy </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>results</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Функция показывает точность модели в виде процентов </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">results</td><td>вектор предсказанных результатов тестовой выборки типа int </td></tr>
+    <tr><td class="paramname">y</td><td>вектор действительных результатов тестовой выборки типа int </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>целое число типа int, показывающее точность модели </dd></dl>
+
+</div>
+</div>
+<a id="a90dd12a57fa04710159601253094b6a6" name="a90dd12a57fa04710159601253094b6a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90dd12a57fa04710159601253094b6a6">&#9670;&#160;</a></span>predict()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; int &gt; LogisticRegression::predict </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; vector&lt; double &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>feauters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>threshold</em> = <code>0.5</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Функция возвращает предсказания модели по предоставленной выборке </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">feauters</td><td>двумерный вектор типа double, содержащий в себе выборку </td></tr>
+    <tr><td class="paramname">threshold</td><td>переменная типа double </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>вектор предсказаний типа int </dd></dl>
+
+</div>
+</div>
+<a id="a9fef20236dd4323292c541ba5072b9de" name="a9fef20236dd4323292c541ba5072b9de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fef20236dd4323292c541ba5072b9de">&#9670;&#160;</a></span>predict_proba()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; vector&lt; double &gt; &gt; LogisticRegression::predict_proba </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; vector&lt; double &gt; &gt;&#160;</td>
+          <td class="paramname"><em>feauters</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Функция выдает сигмоиды по выборке с использованием наилучших весов, наша функция предсказаний </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">feauters</td><td>двумерный вектор типа double, содержащий в себе выборку </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>двумерный вектор типа double, содержащий в себе сигмоиды для каждого логита нашей выборки </dd></dl>
+
+</div>
+</div>
+<a id="a13c6d61adff981f7e7fa7f7b945fb986" name="a13c6d61adff981f7e7fa7f7b945fb986"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13c6d61adff981f7e7fa7f7b945fb986">&#9670;&#160;</a></span>save_weights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LogisticRegression::save_weights </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>weights</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Функция сохраняет наилучшие найденные веса в виде weights.txt файла, основываясь на функции потерь</p>
+<p>Принцип сохранения весов в функции <a class="el" href="class_logistic_regression.html#a48457103e07c0f4b27d3edc8daa85877">fit()</a>: </p><div class="fragment"><div class="line">f((!<a class="code hl_variable" href="class_logistic_regression.html#afc792a8aa796fcf31ca1411435cec45f">losses_</a>.empty()) &amp;&amp; (<a class="code hl_function" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a>(<a class="code hl_variable" href="class_logistic_regression.html#a844e8b75a0b428f07dbbd75b0ceef499">y_</a>, z) &lt; *min_element(<a class="code hl_variable" href="class_logistic_regression.html#afc792a8aa796fcf31ca1411435cec45f">losses_</a>.begin(), <a class="code hl_variable" href="class_logistic_regression.html#afc792a8aa796fcf31ca1411435cec45f">losses_</a>.end()))) {</div>
+<div class="line">     <a class="code hl_function" href="class_logistic_regression.html#a13c6d61adff981f7e7fa7f7b945fb986">save_weights</a>(<a class="code hl_variable" href="class_logistic_regression.html#a809fd1af9406c3346df5e3d73c0c0e8f">w_</a>);</div>
+<div class="line"> }</div>
+<div class="line"> <a class="code hl_variable" href="class_logistic_regression.html#afc792a8aa796fcf31ca1411435cec45f">losses_</a>.push_back(<a class="code hl_function" href="class_logistic_regression.html#a6d4e290d4c3a49290430251f676a1c22">loss</a>(<a class="code hl_variable" href="class_logistic_regression.html#a844e8b75a0b428f07dbbd75b0ceef499">y_</a>, z));</div>
+<div class="ttc" id="aclass_logistic_regression_html_a13c6d61adff981f7e7fa7f7b945fb986"><div class="ttname"><a href="class_logistic_regression.html#a13c6d61adff981f7e7fa7f7b945fb986">LogisticRegression::save_weights</a></div><div class="ttdeci">static void save_weights(const vector&lt; double &gt; &amp;weights)</div><div class="ttdef"><b>Definition</b> regression.cpp:167</div></div>
+<div class="ttc" id="aclass_logistic_regression_html_afc792a8aa796fcf31ca1411435cec45f"><div class="ttname"><a href="class_logistic_regression.html#afc792a8aa796fcf31ca1411435cec45f">LogisticRegression::losses_</a></div><div class="ttdeci">vector&lt; double &gt; losses_</div><div class="ttdef"><b>Definition</b> regression.hpp:151</div></div>
+</div><!-- fragment --> <dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">weights</td><td>двумерный вектор весов типа double </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac03a1a3d62ddfae4922e3b87f4df6ff2" name="ac03a1a3d62ddfae4922e3b87f4df6ff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac03a1a3d62ddfae4922e3b87f4df6ff2">&#9670;&#160;</a></span>saveLossToCSV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LogisticRegression::saveLossToCSV </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>losses</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Функция сохраняет "функции потерь" нашей модели на каждой итерации в файл losses_.csv вида loss,iteration:</p>
+<p class="formulaDsp">
+<picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+
+1,0
+
+0.80,1
+
+0.5,2
+
+...
+
+n1, n2
+\]" src="form_3.png"/></picture>
+</p>
+ <dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">losses</td><td>веткор потерь нашей модели на каждой итерации типа double </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a14b5b8b957149cec67d9d566554a2d28" name="a14b5b8b957149cec67d9d566554a2d28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14b5b8b957149cec67d9d566554a2d28">&#9670;&#160;</a></span>sigmoid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; vector&lt; double &gt; &gt; LogisticRegression::sigmoid </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; vector&lt; double &gt; &gt;&#160;</td>
+          <td class="paramname"><em>logits</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Функция подсчитывает сигмоиды по полученным логитам </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logits</td><td>Двумерный вектор логитов типа double </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>двумерный вектор типа double, содержащий в себе сигмоиды для каждого логита</dd></dl>
+<p>Формула по который мы вычисляем логиты:  </p><p class="formulaDsp">
+<picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]" src="form_1.png"/></picture>
+</p>
+<div class="fragment"><div class="line">vector&lt;vector&lt;double&gt;&gt; sigmoids;</div>
+<div class="line"> <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; logits.size(); i++) {</div>
+<div class="line">     vector&lt;double&gt; <a class="code hl_function" href="class_logistic_regression.html#a14b5b8b957149cec67d9d566554a2d28">sigmoid</a>;</div>
+<div class="line">     <a class="code hl_function" href="class_logistic_regression.html#a14b5b8b957149cec67d9d566554a2d28">sigmoid</a>.reserve(logits[0].size());</div>
+<div class="line">     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; logits[0].size(); j++)</div>
+<div class="line">         <a class="code hl_function" href="class_logistic_regression.html#a14b5b8b957149cec67d9d566554a2d28">sigmoid</a>.push_back(1 / (1 + exp(-logits[i][j])));</div>
+<div class="line"> </div>
+<div class="line">     sigmoids.push_back(<a class="code hl_function" href="class_logistic_regression.html#a14b5b8b957149cec67d9d566554a2d28">sigmoid</a>);</div>
+<div class="line"> }</div>
+<div class="line"> <span class="keywordflow">return</span> sigmoids;</div>
+<div class="ttc" id="aclass_logistic_regression_html_a14b5b8b957149cec67d9d566554a2d28"><div class="ttname"><a href="class_logistic_regression.html#a14b5b8b957149cec67d9d566554a2d28">LogisticRegression::sigmoid</a></div><div class="ttdeci">static vector&lt; vector&lt; double &gt; &gt; sigmoid(vector&lt; vector&lt; double &gt; &gt; logits)</div><div class="ttdef"><b>Definition</b> regression.cpp:76</div></div>
+</div><!-- fragment --> 
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="afc792a8aa796fcf31ca1411435cec45f" name="afc792a8aa796fcf31ca1411435cec45f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc792a8aa796fcf31ca1411435cec45f">&#9670;&#160;</a></span>losses_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;double&gt; LogisticRegression::losses_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Вектор типа double, содержащий в себе результаты функции потерь на каждой итерации модели при обучении </p>
+
+</div>
+</div>
+<a id="a853245cbfd4c24b9286985bf38fc386b" name="a853245cbfd4c24b9286985bf38fc386b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a853245cbfd4c24b9286985bf38fc386b">&#9670;&#160;</a></span>lr_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double LogisticRegression::lr_ = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Переменная типа double, содержащая в себе коэффициент скорости обучения модели</p>
+<p><img src="C:\Users\hedge\CLionProjects\DiabetesAI\prj.cw\prj.lab\data\img.png" alt="Пример learning rate" class="inline"/> </p>
+
+</div>
+</div>
+<a id="aaa14ae296067296826728e4d7066aa2c" name="aaa14ae296067296826728e4d7066aa2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa14ae296067296826728e4d7066aa2c">&#9670;&#160;</a></span>max_iter_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LogisticRegression::max_iter_ = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Переменная типа int, содержащая в себе кол-во итераций, которые будет совершать модель при обучении </p>
+
+</div>
+</div>
+<a id="a809fd1af9406c3346df5e3d73c0c0e8f" name="a809fd1af9406c3346df5e3d73c0c0e8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a809fd1af9406c3346df5e3d73c0c0e8f">&#9670;&#160;</a></span>w_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;double&gt; LogisticRegression::w_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Вектор типа double, содержащий в себе веса наней модели </p>
+
+</div>
+</div>
+<a id="aebf4fd5462f1593edf37444870278632" name="aebf4fd5462f1593edf37444870278632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebf4fd5462f1593edf37444870278632">&#9670;&#160;</a></span>X_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;vector&lt;double&gt; &gt; LogisticRegression::X_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Двумерный вектор типа double, содержащий в себе <b>нормализованную</b> выборку </p>
+
+</div>
+</div>
+<a id="a844e8b75a0b428f07dbbd75b0ceef499" name="a844e8b75a0b428f07dbbd75b0ceef499"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a844e8b75a0b428f07dbbd75b0ceef499">&#9670;&#160;</a></span>y_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;int&gt; LogisticRegression::y_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Вектор типа int, содержащий в себе итог(outсome) </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>prj.lab/regression/include/regression/<a class="el" href="regression_8hpp_source.html">regression.hpp</a></li>
+<li>prj.lab/regression/regression.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>
