@@ -13,9 +13,13 @@
 #include <plot/plot.hpp>
 
 /**
+ * @param argc Название .exe файла для запуска тестового приложения
+ * @param argv полный путь до папки с датасетами вида "C:\...\data"
+ *
+ *
  * Обрабатываем встроенный датасет 1
  * \code
- *  DiabetesData a("C:\\Users\\hedge\\CLionProjects\\DiabetesAI\\prj.cw\\prj.lab\\data","dataset1");
+ *  DiabetesData a(argv[1],"dataset1");
     vector<vector<double>> X1 = a.get_X();
     vector<int> y1 = a.get_y();
     LogisticRegression lg1(X1, y1);
@@ -28,7 +32,7 @@
  * \endcode
  * Обрабатываем встроенный датасет 2
  * \code
-    DiabetesData b("C:\\Users\\hedge\\CLionProjects\\DiabetesAI\\prj.cw\\prj.lab\\data","dataset2");
+    DiabetesData b(argv[1],"dataset2");
     vector<vector<double>> X = a.get_X();
     vector<int> y = a.get_y();
  * \endcode
@@ -42,19 +46,19 @@
     Plot::CreateLatexFile(results, y, 10);
  * \endcode
  */
-int main() {
-    DiabetesData a("C:\\Users\\hedge\\CLionProjects\\DiabetesAI\\prj.cw\\prj.lab\\data", "dataset1");
+void main(int argc, char* argv[]) {
+    DiabetesData a(argv[1], "dataset1");
     vector<vector<double>> X1 = a.get_X();
     vector<int> y1 = a.get_y();
     LogisticRegression lg1(X1, y1);
-    vector<double> losses = lg1.fit(10);
+    vector<double> losses = lg1.fit(5);
     for (double losse: losses)
         cout << losse << endl;
 
-    DiabetesData b("C:\\Users\\hedge\\CLionProjects\\DiabetesAI\\prj.cw\\prj.lab\\data", "dataset2");
+    DiabetesData b(argv[1], "dataset2");
     vector<vector<double>> X = a.get_X();
     vector<int> y = a.get_y();
     LogisticRegression lg2(X, y);
     vector<int> results = LogisticRegression::predict(X);
-    Plot::CreateLatexFile(10, results, y);
+    Plot::CreateLatexFile(5, results, y);
 }
