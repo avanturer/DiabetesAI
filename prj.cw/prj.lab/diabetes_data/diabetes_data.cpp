@@ -161,7 +161,7 @@ vector<vector<double>> DiabetesData::data_normalization(vector<vector<double>> X
 
     for (int j = 0; j < X[0].size(); j++) {
         for (auto &i: X) {
-            i[j] = (i[j] - avarage[j]) / deviation[j];
+            i[j] = abs((i[j] - avarage[j])) / deviation[j];
             if (i[j] > 3 * deviation[j]) {
                 i[j] = 0;
             }
