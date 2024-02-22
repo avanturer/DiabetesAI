@@ -3,7 +3,7 @@
   \let\mypdfximage\pdfximage\def\pdfximage{\immediate\mypdfximage}
   \pdfminorversion=7
   % Set document class depending on configuration
-  \documentclass[twoside]{book}
+  \documentclass[twoside]{article}
   %% moved from doxygen.sty due to workaround for LaTex 2019 version and unmaintained tabu package
   \usepackage{ifthen}
   \ifx\requestedLaTeXdate\undefined
@@ -109,9 +109,6 @@
     \renewcommand{\headrulewidth}{0pt}
   }
   \pagestyle{fancyplain}
-  \renewcommand{\chaptermark}[1]{%
-    \markboth{#1}{}%
-  }
   \renewcommand{\sectionmark}[1]{%
     \markright{\thesection\ #1}%
   }
@@ -143,24 +140,6 @@
   \doxynewunicodechar{²}{${}^{2}$}% Superscript two
   \doxynewunicodechar{³}{${}^{3}$}% Superscript three
   % Hyperlinks
-    % Hyperlinks (required, but should be loaded last)
-    \ifpdf
-      \usepackage[pdftex,pagebackref=true]{hyperref}
-    \else
-      \ifxetex
-        \usepackage[pagebackref=true]{hyperref}
-      \else
-        \usepackage[ps2pdf,pagebackref=true]{hyperref}
-      \fi
-    \fi
-    \hypersetup{%
-      colorlinks=true,%
-      linkcolor=blue,%
-      citecolor=blue,%
-      unicode,%
-      pdftitle={Diabetes\+AI},%
-      pdfsubject={}%
-    }
   % Custom commands used by the header
   % Custom commands
   \newcommand{\clearemptydoublepage}{%
@@ -185,12 +164,6 @@
 \begin{document}
   \raggedbottom
   % Titlepage & ToC
-    % To avoid duplicate page anchors due to reuse of same numbers for
-    % the index (be it as roman numbers)
-    \hypersetup{pageanchor=false,
-                bookmarksnumbered=true,
-                pdfencoding=unicode
-               }
   \pagenumbering{alph}
   \begin{titlepage}
   \vspace*{7cm}
@@ -201,34 +174,30 @@
   {\large Создано системой Doxygen 1.9.7}\\
   \end{center}
   \end{titlepage}
-  \clearemptydoublepage
   \pagenumbering{roman}
   \tableofcontents
-  \clearemptydoublepage
   \pagenumbering{arabic}
-  % re-enable anchors again
-  \hypersetup{pageanchor=true}
 %--- Begin generated contents ---
-\chapter{Алфавитный указатель классов}
+\doxysection{Алфавитный указатель классов}
 \input{annotated}
-\chapter{Список файлов}
+\doxysection{Список файлов}
 \input{files}
-\chapter{Классы}
+\doxysection{Классы}
 \input{class_diabetes_data}
 \input{class_logistic_regression}
 \input{class_plot}
-\chapter{Файлы}
+\doxysection{Файлы}
+\input{foo_8h_source}
 \input{diabetes__data_8hpp_source}
 \input{plot_8hpp_source}
 \input{regression_8hpp_source}
 \input{libtest_8cpp}
 %--- End generated contents ---
 % Index
-  \backmatter
   \newpage
   \phantomsection
   \clearemptydoublepage
-  \addcontentsline{toc}{chapter}{\indexname}
+  \addcontentsline{toc}{section}{\indexname}
   \printindex
 % Required for some languages (in combination with latexdocumentpre from the header)
 \end{document}

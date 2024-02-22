@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.13)  2 JUN 2023 00:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.13)  11 JUN 2023 19:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1264,10 +1264,10 @@ Package rerunfilecheck Info: File `refman.out' has not changed.
 (rerunfilecheck)             Checksum: 7CEE3C035061754D9BF0A946FF357418;10007.
  ) 
 Here is how much of TeX's memory you used:
- 20311 strings out of 476361
- 336504 string characters out of 5788046
+ 20313 strings out of 476361
+ 336960 string characters out of 5788046
  1877993 words of memory out of 5000000
- 40210 multiletter control sequences out of 15000+600000
+ 40211 multiletter control sequences out of 15000+600000
  529516 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  101i,16n,117p,817b,755s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1287,11 +1287,12 @@ rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/hedge/AppData
 rs/hedge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb>
 <C:/Users/hedge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 sy10.pfb><C:/Users/hedge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmsy7.pfb><C:/Users/hedge/AppData/Local/Programs/MiKTeX/fonts/type1/urw/
-helvetic/uhvr8a.pfb>
-Output written on refman.pdf (27 pages, 339774 bytes).
+nts/cm/cmsy7.pfb><C:/Users/hedge/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmsy8.pfb><C:/Users/hedge/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/urw/helvetic/uhvr8a.pfb>
+Output written on refman.pdf (27 pages, 349406 bytes).
 PDF statistics:
- 1142 PDF objects out of 1200 (max. 8388607)
- 144 named destinations out of 1000 (max. 500000)
+ 1152 PDF objects out of 1200 (max. 8388607)
+ 145 named destinations out of 1000 (max. 500000)
  457 words of extra memory for PDF output out of 10000 (max. 10000000)
 

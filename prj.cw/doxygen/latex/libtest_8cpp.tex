@@ -1,5 +1,5 @@
-\doxysection{Файл prj.\+test/libtest.cpp}
-\hypertarget{libtest_8cpp}{}\label{libtest_8cpp}\index{prj.test/libtest.cpp@{prj.test/libtest.cpp}}
+\doxysubsection{Файл prj.\+test/libtest.cpp}
+\label{libtest_8cpp}\index{prj.test/libtest.cpp@{prj.test/libtest.cpp}}
 
 
 Тестовое приложение библиотеки Diabetes\+AI.  
@@ -8,31 +8,38 @@
 {\ttfamily \#include $<$regression/regression.\+hpp$>$}\newline
 {\ttfamily \#include $<$diabetes\+\_\+data/diabetes\+\_\+data.\+hpp$>$}\newline
 {\ttfamily \#include $<$plot/plot.\+hpp$>$}\newline
-\doxysubsubsection*{Функции}
+\doxysubsubsubsection*{Функции}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{libtest_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+void \textbf{ main} (int argc, char $\ast$argv[$\,$])
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Подробное описание}
+\doxysubsubsection{Подробное описание}
 Тестовое приложение библиотеки Diabetes\+AI. 
 
-В данном приложении мы тестируем основные функции и методы библиотеки, а именно\+: обработка датасета с помощью класса \doxylink{class_diabetes_data}{Diabetes\+Data}, обучение модели с помощью класса \doxylink{class_logistic_regression}{Logistic\+Regression} по встроенному датасету 1 и кол-\/вом итераций = 10, вывод функции потерь в консоль, прогнозирование диабета по встроенному датасету 2 и вывод статистики модели c помощью класса \doxylink{class_plot}{Plot} 
+В данном приложении мы тестируем основные функции и методы библиотеки, а именно\+: обработка датасета с помощью класса \doxyref{Diabetes\+Data}{стр.}{class_diabetes_data}, обучение модели с помощью класса \doxyref{Logistic\+Regression}{стр.}{class_logistic_regression} по встроенному датасету 1 и кол-\/вом итераций = 10, вывод функции потерь в консоль, прогнозирование диабета по встроенному датасету 2 и вывод статистики модели c помощью класса \doxyref{Plot}{стр.}{class_plot} 
 
-\doxysubsection{Функции}
-\Hypertarget{libtest_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{libtest_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\doxysubsubsection{Функции}
+\label{libtest_8cpp_a91a3bbcc7eb26e8695255b2795d6e46f} 
 \index{libtest.cpp@{libtest.cpp}!main@{main}}
 \index{main@{main}!libtest.cpp@{libtest.cpp}}
-\doxysubsubsection{\texorpdfstring{main()}{main()}}
-{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\doxyparagraph{main()}
+{\footnotesize\ttfamily void main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv[$\,$] }\end{DoxyParamCaption})}
 
+
+\begin{DoxyParams}{Аргументы}
+{\em argc} & Название .exe файла для запуска тестового приложения \\
+\hline
+{\em argv} & полный путь до папки с датасетами вида \"{}\+C\+:\textbackslash{}...\textbackslash{}data\"{}\\
+\hline
+\end{DoxyParams}
 Обрабатываем встроенный датасет 1 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{class_diabetes_data}{DiabetesData}}\ a(\textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)hedge\(\backslash\)\(\backslash\)CLionProjects\(\backslash\)\(\backslash\)DiabetesAI\(\backslash\)\(\backslash\)prj.cw\(\backslash\)\(\backslash\)prj.lab\(\backslash\)\(\backslash\)data"{}},\textcolor{stringliteral}{"{}dataset1"{}});}
+\DoxyCodeLine{DiabetesData\ a(argv[1],\textcolor{stringliteral}{"{}dataset1"{}});}
 \DoxyCodeLine{vector<vector<double>>\ X1\ =\ a.get\_X();}
 \DoxyCodeLine{vector<int>\ y1\ =\ a.get\_y();}
-\DoxyCodeLine{\mbox{\hyperlink{class_logistic_regression}{LogisticRegression}}\ lg1(X1,\ y1);}
+\DoxyCodeLine{LogisticRegression\ lg1(X1,\ y1);}
 
 \end{DoxyCode}
  Выводим функции потерь в консоль 
@@ -44,20 +51,20 @@ int \mbox{\hyperlink{libtest_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \end{DoxyCode}
  Обрабатываем встроенный датасет 2 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{class_diabetes_data}{DiabetesData}}\ b(\textcolor{stringliteral}{"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)hedge\(\backslash\)\(\backslash\)CLionProjects\(\backslash\)\(\backslash\)DiabetesAI\(\backslash\)\(\backslash\)prj.cw\(\backslash\)\(\backslash\)prj.lab\(\backslash\)\(\backslash\)data"{}},\textcolor{stringliteral}{"{}dataset2"{}});}
+\DoxyCodeLine{DiabetesData\ b(argv[1],\textcolor{stringliteral}{"{}dataset2"{}});}
 \DoxyCodeLine{vector<vector<double>>\ X\ =\ a.get\_X();}
 \DoxyCodeLine{vector<int>\ y\ =\ a.get\_y();}
 
 \end{DoxyCode}
  Берем предсказания датасета 2 из обученной модели 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{class_logistic_regression}{LogisticRegression}}\ lg2(X,\ y);}
-\DoxyCodeLine{vector<int>\ results\ =\ \mbox{\hyperlink{class_logistic_regression_a90dd12a57fa04710159601253094b6a6}{LogisticRegression::predict}}(X);}
+\DoxyCodeLine{LogisticRegression\ lg2(X,\ y);}
+\DoxyCodeLine{vector<int>\ results\ =\ LogisticRegression::predict(X);}
 
 \end{DoxyCode}
  Создаем statistic.\+tex файл 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{class_plot_acea287214f4d6b3234b66e72d98f3307}{Plot::CreateLatexFile}}(results,\ y,\ 10);}
+\DoxyCodeLine{Plot::CreateLatexFile(results,\ y,\ 10);}
 
 \end{DoxyCode}
  
